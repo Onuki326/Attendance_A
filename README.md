@@ -15,10 +15,32 @@ Things you may want to cover:
 
 * Database initialization
 
-* How to run the test suite
+インターン課題
+勤怠システム
 
-* Services (job queues, cache servers, search engines, etc.)
+## 使い方
 
-* Deployment instructions
+このアプリケーションを動かす場合は、まずはリポジトリを手元にクローンしてください。
+その後、次のコマンドで必要になる RubyGems をインストールします。
 
-* ...
+```
+$ bundle install --without production
+```
+
+その後、データベースへのマイグレーションを実行します。
+
+```
+$ rails db:migrate
+```
+
+最後に、テストを実行してうまく動いているかどうか確認してください。
+
+```
+$ rails test
+```
+
+テストが無事に通ったら、Railsサーバーを立ち上げる準備が整っているはずです。
+
+```
+$ rails server
+```
