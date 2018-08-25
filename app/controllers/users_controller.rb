@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
   
+  def show
+    @user = User.find(params[:id])
+  end
+  
   def edit
     @user = User.find(params[:id])
   end
@@ -22,6 +26,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       flash[:success] = "アカウントを更新しました"
       # 更新に成功した場合を扱う。
+      redirect_to user_path
     else
       render 'edit'
     end
@@ -37,6 +42,7 @@ class UsersController < ApplicationController
       log_in @user
       # 保存の成功をここで扱う。
       flash[:success] = "登録できました"
+      redirect_to user_path
     else
       render 'new'
     end
@@ -44,7 +50,10 @@ class UsersController < ApplicationController
   
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password,
+      params.require(:user).permit(:name, 
+                                   :email,
+                                   :affiliation,
+                                   :password,
                                    :password_confirmation)
     end
     
