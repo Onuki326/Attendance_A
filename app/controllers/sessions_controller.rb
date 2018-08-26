@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       flash[:success] = 'ログインしました'
       # ユーザーログイン後にユーザー情報のページにリダイレクトする
-      redirect_to user
+      redirect_back_or user
     else
       # エラーメッセージを作成する
       flash.now[:danger] = 'メールアドレスとパスワードの組み合わせが違います'
