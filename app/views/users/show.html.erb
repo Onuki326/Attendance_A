@@ -3,17 +3,40 @@
   <table class="table table-bordered">
     <tr>
       <td>時間管理</td>
-      <td>指定時間勤務</td>
+      <td width="250px">指定時間勤務</td>
       <td colspan="3">基本時間</td>
-      <td>初日</td>
+      <td width="150px">初日</td>
     </tr>
     <tr>
       <td>所属　<%= @user.affiliation %></td>
-      <td>氏名　<%= @user.name %></td>
-      <td>コード</td>
-      <td></td>
-      <td>出勤日数</td>
-      <td>締め</td>
+      <td width="250px">氏名　<%= @user.name %></td>
+      <td width="60px">コード</td>
+      <td width="10px"></td>
+      <td width="180px">出勤日数</td>
+      <td width="150px">締め</td>
+    </tr>
+  </table>
+  
+  <button href="#" type="button" class="btn btn-default">勤怠を編集</button>
+  
+  <table class="table table-bordered">
+    <tr>
+      <td rowspan="2">日付</td>
+      <td rowspan="2">時間</td>
+      <td colspan="3">出社</td>
+      <td colspan="3">退社</td>
+      <td rowspan="2" width="150px">在社時間</td>
+      <td rowspan="2">備考</td>
+      <td rowspan="2" width="150px">残業指示</td>
+      <td rowspan="2" width="350px">指示者</td>
+    </tr>
+    <tr>
+      <td>時</td>
+      <td>分</td>
+      <td width="150px"></td>
+      <td>時</td>
+      <td>分</td>
+      <td width=10px""></td>
     </tr>
   </table>
 </div>

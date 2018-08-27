@@ -116,6 +116,10 @@ input {
   margin-left: 0;
 }
 
+.btn-default {
+  background-color: $gray-lighter;
+}
+
 /* Users index */
 
 .users {
@@ -133,3 +137,8 @@ input {
 .table {
   text-align: center;
 }
+
+.table > tbody > tr > td {
+  vertical-align: bottom;
+}
+
