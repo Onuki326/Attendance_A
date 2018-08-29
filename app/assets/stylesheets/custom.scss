@@ -120,6 +120,11 @@ input {
   background-color: $gray-lighter;
 }
 
+.btn_key {
+  padding: 0, 30px, 0 30px;
+  display: inline-block;
+}
+
 /* Users index */
 
 .users {
@@ -136,6 +141,9 @@ input {
 
 .table {
   text-align: center;
+  p {
+    display: inline-block;
+  }
 }
 
 .table > tbody > tr > td {
