@@ -4,12 +4,12 @@
     <tr>
       <td>
         <button href="#" type="button" class="btn btn-default btn_key">←</button>
-        <p><%= this_month %>　時間管理表</p>
+        <p><%= now_month %>　時間管理表</p>
         <button href="#" type="button" class="btn btn-default btn_key">→</button>
       </td>
       <td width="250px">指定時間勤務</td>
       <td colspan="3">基本時間</td>
-      <td width="150px">初日<%= first_month %></td>
+      <td width="150px">初日<%= beginning_month %></td>
     </tr>
     <tr>
       <td>所属　<%= @user.affiliation %></td>
@@ -40,10 +40,25 @@
       <td width="150px"></td>
       <td>時</td>
       <td>分</td>
-      <td width=10px""></td>
+      <td width="10px"></td>
     </tr>
+    <% for num in @date %>
+      <tr>
+        <td><%= num %></td>
+        <td></td>
+        <td></td>
+        <td width="150px"></td>
+        <td></td>
+        <td></td>
+        <td width=10px""></td>
+        <td></td>
+        <td width="150px"></td>
+        <td width="350px"></td>
+        <td width="150px"></td>
+        <td width="350px"></td>
+      </tr>
+    <% end %>
     <tr>
-      <td></td>
       <td></td>
       <td></td>
       <td></td>
@@ -51,10 +66,11 @@
       <td></td>
       <td></td>
       <td width=10px""></td>
-      <td rowspan="2" width="150px"></td>
-      <td rowspan="2"></td>
-      <td rowspan="2" width="150px"></td>
-      <td rowspan="2" width="350px"></td>
+      <td></td>
+      <td width="150px"></td>
+      <td width="350px"></td>
+      <td width="150px"></td>
+      <td width="350px"></td>
     </tr>
   </table>
 </div>
