@@ -4,12 +4,12 @@
     <tr>
       <td>
         <button href="#" type="button" class="btn btn-default btn_key">←</button>
-        <p><%= now_month %>　時間管理表</p>
+        <p><%= DateTime.now.strftime("%Y年%m月") %>　時間管理表</p>
         <button href="#" type="button" class="btn btn-default btn_key">→</button>
       </td>
       <td width="250px">指定時間勤務</td>
       <td colspan="3">基本時間</td>
-      <td width="150px">初日<%= beginning_month %></td>
+      <td width="150px">初日<%= DateTime.now.beginning_of_month.strftime("%m/%d") %></td>
     </tr>
     <tr>
       <td>所属　<%= @user.affiliation %></td>
@@ -17,7 +17,7 @@
       <td width="60px">コード</td>
       <td width="10px"></td>
       <td width="180px">出勤日数</td>
-      <td width="150px">締め<%= end_month %></td>
+      <td width="150px">締め<%= DateTime.now.end_of_month.strftime("%m/%d") %></td>
     </tr>
   </table>
   
@@ -42,9 +42,9 @@
       <td>分</td>
       <td width="10px"></td>
     </tr>
-    <% for num in @date %>
+    <% @d.each do |d| %>
       <tr>
-        <td><%= num %></td>
+        <td><%= d %></td>
         <td></td>
         <td></td>
         <td width="150px"></td>
@@ -57,7 +57,7 @@
         <td width="150px"></td>
         <td width="350px"></td>
       </tr>
-    <% end %>
+    <% end %>  
     <tr>
       <td></td>
       <td></td>

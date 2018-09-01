@@ -15,17 +15,14 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @d = DateTime.now
-    @first_month = @d.beginning_of_month
-    @first_month.strftime("%m/%d")
-    @end_month = @d.end_of_month
-    @end_month.strftime("%m/%d")
-    @date = []
-    @w = []
-    (@first_month..@end_month).each do |i|
-      @date.push(i.strftime("%m/%d"))
+    @f = DateTime.now.beginning_of_month
+    @e = DateTime.now.end_of_month
+    @d = []
+    (@f..@e).each do |i|
+      @d.push(i.strftime("%m/%d"))
     end
-    (@first_month..@end_month).each do |i|
+    @w = []
+    (@f..@e).each do |i|
       @w.push(i.strftime("%a"))
     end
   end
