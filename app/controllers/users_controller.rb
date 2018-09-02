@@ -22,8 +22,9 @@ class UsersController < ApplicationController
       @d.push(i.strftime("%m/%d"))
     end
     @w = []
+    wd = ["日", "月", "火", "水", "木", "金", "土"]
     (@f..@e).each do |i|
-      @w.push(i.strftime("%a"))
+      @w.push(i.strftime("#{wd[i.wday]}"))
     end
   end
   

@@ -42,10 +42,10 @@
       <td>分</td>
       <td width="10px"></td>
     </tr>
-    <% @d.each do |d| %>
+    <% @d.zip(@w).each do |d, w| %>
       <tr>
-        <td><%= d %></td>
-        <td></td>
+        <td width="100px"><%= d %></td>
+        <td width="100px"><%= w %></td>
         <td></td>
         <td width="150px"></td>
         <td></td>
