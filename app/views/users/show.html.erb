@@ -3,13 +3,13 @@
   <table class="table table-bordered">
     <tr>
       <td>
-        <button href="#" type="button" class="btn btn-default btn_key">←</button>
-        <p><%= DateTime.now.strftime("%Y年%m月") %>　時間管理表</p>
-        <button href="#" type="button" class="btn btn-default btn_key">→</button>
+        <%= link_to "←", user_path(para: @date.prev_month), {:class => "btn btn-default btn_key"} %>
+        <p><%= @date.strftime("%Y年%m月") %>　時間管理表</p>
+        <%= link_to "→", user_path(para: @date.next_month), {:class => "btn btn-default btn_key"} %>
       </td>
       <td width="250px">指定時間勤務</td>
       <td colspan="3">基本時間</td>
-      <td width="150px">初日<%= DateTime.now.beginning_of_month.strftime("%m/%d") %></td>
+      <td width="150px">初日<%= @fd.strftime("%m/%d") %></td>
     </tr>
     <tr>
       <td>所属　<%= @user.affiliation %></td>
@@ -17,7 +17,7 @@
       <td width="60px">コード</td>
       <td width="10px"></td>
       <td width="180px">出勤日数</td>
-      <td width="150px">締め<%= DateTime.now.end_of_month.strftime("%m/%d") %></td>
+      <td width="150px">締め<%= @ed.strftime("%m/%d") %></td>
     </tr>
   </table>
   
