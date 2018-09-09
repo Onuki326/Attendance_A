@@ -10,4 +10,13 @@ module UsersHelper
       @week.push(i.strftime("%a"))
     end
   end
+  
+  def arrival_hour
+    @hour = Attendance.find_by(user_id: @user.id).arrival.strftime("%H")
+  end
+  
+  def arrival_min
+    @min = Attendance.find_by(user_id: @user.id).arrival.strftime("%M")
+  end
+    
 end
