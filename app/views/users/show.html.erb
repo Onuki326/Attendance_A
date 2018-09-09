@@ -46,9 +46,9 @@
       <tr>
         <td width="100px"><%= d %></td>
         <td width="100px"><%= w %></td>
-        <td><%=  %></td>
+        <td><%= @attendance.arrival %></td>
         <td width="150px"></td>
-        <td><%= button_to "出社", attendances_path(attendance: {user_id: current_user.id, arrival: @date}, day: @date), {:class => "btn btn-default btn_key" }%></td>
+        <td><%= button_to "出社", attendances_path(attendance: {user_id: current_user.id, arrival: @date, day: @date}), {:class => "btn btn-default btn_key" }%></td>
         <td></td>
         <td></td>
         <td width=10px""></td>
@@ -58,7 +58,7 @@
         <td width="150px"></td>
         <td width="350px"></td>
       </tr>
-    <% end %>  
+    <% end %>
     <tr>
       <td></td>
       <td></td>

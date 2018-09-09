@@ -10,6 +10,6 @@ class AttendancesController < ApplicationController
   private
   
     def attendance_params
-      params.require(:attendance).permit(:arrival, :leave)
+      params.require(:attendance).permit(:day, :arrival, :leave)
     end  
 end
