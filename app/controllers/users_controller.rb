@@ -15,21 +15,20 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @attendance = current_user.attendances.build if logged_in?
     if params[:para]
       @date = params[:para]
       @date = @date.to_datetime
     else
-      @date = DateTime.now
+      @date = Date.today
     end
-    @attendance = current_user.attendances.build if logged_in?
     @fd = @date.beginning_of_month
     @ed = @date.end_of_month
     @d = []
     @w = []
-    wd = ["日", "月", "火", "水", "木", "金", "土"]
+    @wd = ["日", "月", "火", "水", "木", "金", "土"]
     (@fd..@ed).each do |i|
-      @d.push(i.strftime("%m/%d"))
-      @w.push(i.strftime("#{wd[i.wday]}"))
+      @d.push(i)
     end
   end
   

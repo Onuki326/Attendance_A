@@ -1,22 +1,17 @@
 module UsersHelper
   
-  # 月初から月末を取得
-  
-  def each_week
-    @f = DateTime.now.beginning_of_month
-    @e = DateTime.now.end_of_month
-    @w = []
-    (@f..@e).each do |i|
-      @week.push(i.strftime("%a"))
-    end
+  # 出社時間
+  def arrival_hour(d)
+    @hour = @user.attendances.find_by(day: d)
+    @hour = @hour.arrival.strftime("%H")
   end
   
-  def arrival_hour
-    @hour = Attendance.find_by(user_id: @user.id).arrival.strftime("%H")
-  end
-  
-  def arrival_min
-    @min = Attendance.find_by(user_id: @user.id).arrival.strftime("%M")
+  # 出社時間(分)
+  def arrival_min(d)
+    @min = @user.attendances.find_by(day: d)
+    @min = @min.arrival.strftime("%M")
   end
     
+  # 今日の日付と出勤、退勤の日付をあっているか調べる  
+  
 end

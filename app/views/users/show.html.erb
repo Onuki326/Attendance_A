@@ -42,12 +42,24 @@
       <td>分</td>
       <td width="10px"></td>
     </tr>
-    <% @d.zip(@w).each do |d, w| %>
+    <% @d.each do |d| %>
       <tr>
-        <td width="100px"><%= d %></td>
-        <td width="100px"><%= w %></td>
-        <td><%= arrival_hour %></td>
-        <td width="150px"><%= arrival_min %></td>
+        <td width="100px"><%= d.strftime("%m/%d") %></td>
+        <td width="100px"><%= d.strftime("#{@wd[d.wday]}") %></td>
+        <td>
+          <% if d == Date.today %>
+          <%= arrival_hour(d) %>
+          <% else %>
+          <%= "--" %>
+          <% end %>
+        </td>  
+        <td width="150px">
+          <% if d == Date.today %>
+          <%= arrival_min(d) %>
+          <% else %>
+          <%= "----" %>
+          <% end %>
+          </td>
         <td><%= button_to "出社", attendances_path(attendance: {user_id: @user, arrival: @date, day: @date}), {:class => "btn btn-default btn_key" }%></td>
         <td></td>
         <td></td>
