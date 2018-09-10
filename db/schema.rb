@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180907093218) do
+ActiveRecord::Schema.define(version: 20180910045259) do
 
   create_table "attendances", force: :cascade do |t|
-    t.datetime "day"
+    t.date "day"
     t.datetime "arrival"
     t.datetime "leave"
     t.integer "user_id"
