@@ -12,6 +12,9 @@ module UsersHelper
     @min = @min.arrival.strftime("%M")
   end
     
-  # 今日の日付と出勤、退勤の日付をあっているか調べる  
-  
+  # each文で回した日付に対応する日付を返す  
+  def search_date(d)
+    @search_date = @user.attendances.find_by(day: d)
+    @search_date = @search_date.day
+  end
 end

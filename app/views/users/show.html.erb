@@ -29,46 +29,61 @@
       <td rowspan="2">曜日</td>
       <td colspan="3">出社</td>
       <td colspan="3">退社</td>
-      <td rowspan="2" width="150px">在社時間</td>
+      <td rowspan="2">在社時間</td>
       <td rowspan="2">備考</td>
-      <td rowspan="2" width="150px">残業指示</td>
-      <td rowspan="2" width="350px">指示者</td>
+      <td rowspan="2">残業指示</td>
+      <td rowspan="2">指示者</td>
     </tr>
     <tr>
       <td>時</td>
       <td>分</td>
-      <td width="150px"></td>
+      <td></td>
       <td>時</td>
       <td>分</td>
-      <td width="10px"></td>
+      <td></td>
     </tr>
     <% @d.each do |d| %>
       <tr>
-        <td width="100px"><%= d.strftime("%m/%d") %></td>
-        <td width="100px"><%= d.strftime("#{@wd[d.wday]}") %></td>
+        <td><%= d.strftime("%m/%d") %></td>
+        <td><%= d.strftime("#{@wd[d.wday]}") %></td>
         <td>
-          <% if d == Date.today %>
+          <% if @user.attendances.find_by(day: d) %>
           <%= arrival_hour(d) %>
           <% else %>
           <%= "--" %>
           <% end %>
         </td>  
-        <td width="150px">
-          <% if d == Date.today %>
+        <td>
+          <% if @user.attendances.find_by(day: d) %>
           <%= arrival_min(d) %>
           <% else %>
           <%= "----" %>
           <% end %>
           </td>
-        <td><%= button_to "出社", attendances_path(attendance: {user_id: @user, arrival: @date, day: @date}), {:class => "btn btn-default btn_key" }%></td>
+        <td>
+          <% if d == Date.today &&  @attendance.arrival.nil? %>
+          <%= button_to "出社", attendances_path(attendance: {user_id: @user, arrival: @date, day: @date}), {:class => "btn btn-default btn_key" }%>
+          <% end %>
+          </td>
+        <td>
+          <% if @user.attendances.find_by(day: d) %>
+          <%= arrival_hour(d) %>
+          <% else %>
+          <%= "--" %>
+          <% end %>
+        </td>
+        <td>
+          <% if @user.attendances.find_by(day: d) %>
+          <%= arrival_min(d) %>
+          <% else %>
+          <%= "----" %>
+          <% end %>
+        </td>
+        <td><%= button_to "退社", attendances_path(attendance: {user_id: @user, leave: @date, day: @date}), {:class => "btn btn-default btn_key" }%></td>
         <td></td>
         <td></td>
-        <td width=10px""></td>
         <td></td>
-        <td width="150px"></td>
-        <td width="350px"></td>
-        <td width="150px"></td>
-        <td width="350px"></td>
+        <td></td>
       </tr>
     <% end %>
     <tr>
