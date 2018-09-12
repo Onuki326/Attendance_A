@@ -36,14 +36,15 @@
         <td rowspan="2">指示者</td>
       </tr>
       <tr>
-        <td>時</td>
-        <td>分</td>
-        <td></td>
-        <td>時</td>
-        <td>分</td>
-        <td></td>
+        <td width="64">時</td>
+        <td width="64">分</td>
+        <td width="71"></td>
+        <td width="64">時</td>
+        <td width="64">分</td>
+        <td width="71"></td>
       </tr>
       <% @d.each do |d| %>
+        <% attendance_today(d) %>
         <tr>
           <td><%= d.strftime("%m/%d") %></td>
           <td><%= d.strftime("#{@wd[d.wday]}") %></td>
@@ -53,7 +54,7 @@
             <% else %>
             <%= "--" %>
             <% end %>
-          </td>  
+          </td>
           <td>
             <% if @user.attendances.find_by(day: d) %>
             <%= arrival_min(d) %>
@@ -62,25 +63,28 @@
             <% end %>
           </td>
           <td>
-            <% if d == Date.today &&  @attendance.arrival.nil? %>
-            <%= button_to "出社", attendances_path(attendance: {user_id: @user, arrival: @date, day: @date}), {:class => "btn btn-default btn_key" }%>
+            <% if d == Date.today && @user.attendances.find_by(day: d).nil? %>
+              <%= button_to "出社", attendances_path(attendance: {user_id: @user, arrival: DateTime.now, day: @date}), {:class => "btn btn-default btn_key" }%>
             <% end %>
           </td>
           <td>
-            <% if @user.attendances.find_by(day: d) %>
-            <%= arrival_hour(d) %>
-            <% else %>
+            <% if @user.attendances.find_by(day: d) || @attendance_today.leave.nil? %>
             <%= "--" %>
+            <% else %>
+            <%= leave_hour(d) %>
             <% end %>
           </td>
           <td>
             <% if @user.attendances.find_by(day: d) %>
-            <%= arrival_min(d) %>
+            <%= leave_min(d) %>
             <% else %>
             <%= "----" %>
             <% end %>
           </td>
-          <td><%= button_to "退社", attendances_path(attendance: {user_id: @user, leave: @date, day: @date}), {:class => "btn btn-default btn_key" }%></td>
+          <td>
+            <% if d == Date.today && @user.attendances.find_by(day: d).nil? %>
+              <%= button_to "退社", attendances_path(attendance: {user_id: @user, leave: DateTime.now, day: @date}), {:class => "btn btn-default btn_key" }%></td>
+            <% end %>
           <td></td>
           <td></td>
           <td></td>
