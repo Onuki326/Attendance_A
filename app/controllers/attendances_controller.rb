@@ -3,9 +3,13 @@ class AttendancesController < ApplicationController
   
   def create
     @user = User.find_by(id: params[:attendance][:user_id])
+    @attendance = @user.attendances.find_by(day: params[:attendance][:day])
     #if current_user.attendances.find_by(para: day)
-    @attendance = current_user.attendances.build(attendance_params)
-    @attendance.save
+    if @attendance
+      attendance = @user.attendances.find_by(day: params[:attendance][:day])
+      attendance.arrival = params[:attendance][:arrival]
+      attendance.save
+    end
     redirect_to @user
   end
   

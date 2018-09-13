@@ -15,13 +15,13 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @attendance = current_user.attendances.build if logged_in?
     if params[:para]
       @date = params[:para]
       @date = @date.to_datetime
     else
       @date = Date.today
     end
+    #　日付と曜日と出勤を作成
     @fd = @date.beginning_of_month
     @ed = @date.end_of_month
     @d = []
@@ -29,6 +29,10 @@ class UsersController < ApplicationController
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     (@fd..@ed).each do |i|
       @d.push(i)
+      if not @user.attendances.any? { |obj| obj.day == i }
+        attendance = Attendance.new(user_id: @user.id, day: i)
+        attendance.save
+      end
     end
   end
   

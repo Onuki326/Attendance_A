@@ -22,3 +22,27 @@ User.create(name: "金本 真弥",
             password_confirmation: "222222",
             admin: false)
             
+# テストタイム
+Attendance.create(day: "2018-09-09",
+                  arrival: "2018-9-9 12:26:06",
+                  leave: nil,
+                  user_id: 1,
+                  )
+                  
+Attendance.create(day: "2018-09-10",
+                  arrival: "2018-09-10 04:33:32",
+                  leave: nil,
+                  user_id: 1,
+                  )    
+                
+Attendance.create(day: "2018-09-11",
+                  arrival: "2018-09-11 15:13:45",
+                  leave: nil,
+                  user_id: 1,
+                  )
+                  
+Attendance.create(day: "2018-09-07",
+                   arrival: "2018-09-7 14:57:32",
+                   leave: nil,
+                   user_id: 1,
+                   )
