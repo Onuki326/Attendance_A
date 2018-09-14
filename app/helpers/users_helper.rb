@@ -1,10 +1,5 @@
 module UsersHelper
   
-  # eachで回した日付のAttendance
-  def attendance_today(d)
-    @attendance_today = @user.attendances.find_by(day: d)
-  end  
-  
   # 出社時間(時)
   def arrival_hour(d)
     @a_hour = @user.attendances.find_by(day: d)
@@ -37,9 +32,13 @@ module UsersHelper
     end
   end
   
-  # each文で回した日付に対応する日付を返す  
-  def search_date(d)
-    @search_date = @user.attendances.find_by(day: d)
-    @search_date = @search_date.day
+  # 在社時間(退勤時間-出社時間)
+  def duty_hour(d)
+    if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
+      @arrival_hour = @user.attendances.find_by(day: d).arrival
+      @leave_hour = @user.attendances.find_by(day: d).leave
+      @duty_hour = @leave_hour - @arrival_hour
+      @duty_hour.to_s
+    end
   end
 end

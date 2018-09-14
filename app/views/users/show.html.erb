@@ -44,7 +44,6 @@
         <td width="71"></td>
       </tr>
       <% @d.each do |d| %>
-        <% attendance_today(d) %>
         <tr>
           <td><%= d.strftime("%m/%d") %></td>
           <td><%= d.strftime("#{@wd[d.wday]}") %></td>
@@ -59,7 +58,7 @@
             <% end %>
           </td>
           <td>
-            <% if d == Date.today && Attendance.find_by(user_id: @user, day: d).arrival.nil? %>
+            <% if d == Date.today && @user.attendances.find_by(user_id: @user, day: d).arrival.nil? %>
               <%= button_to "出社", attendances_path(attendance: {user_id: @user, arrival: DateTime.now, day: @date}), {:class => "btn btn-default btn_key" }%>
             <% end %>
           </td>
@@ -74,10 +73,10 @@
             <% end %>
           </td>
           <td>
-            <% if d == Date.today && Attendance.find_by(user_id: @user, day: d).arrival  %>
+            <% if d == Date.today && Attendance.find_by(user_id: @user, day: d).arrival && Attendance.find_by(user_id: @user, day: d).leave.nil?  %>
               <%= button_to "退社", attendances_path(attendance: {user_id: @user, leave: DateTime.now, day: @date}), {:class => "btn btn-default btn_key" }%></td>
             <% end %>
-          <td></td>
+          <td><%= duty_hour(d) %></td>
           <td></td>
           <td></td>
           <td></td>
