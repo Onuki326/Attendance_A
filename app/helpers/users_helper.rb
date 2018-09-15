@@ -37,8 +37,8 @@ module UsersHelper
     if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
       @arrival_hour = @user.attendances.find_by(day: d).arrival
       @leave_hour = @user.attendances.find_by(day: d).leave
-      @duty_hour = @leave_hour - @arrival_hour
-      @duty_hour.to_s
+      @duty_hour = (@leave_hour - @arrival_hour) / 3600
+      sprintf("%.2f", @duty_hour)
     end
   end
 end

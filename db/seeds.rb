@@ -24,24 +24,29 @@ User.create(name: "金本 真弥",
             
 # テストタイム
 Attendance.create(day: "2018-09-10",
-                  arrival: "2018-09-10 07:33:32",
-                  leave: "2018-09-10 22:33:32",
+                  arrival: "2018-09-10 07:33:41",
+                  leave: "2018-09-10 22:33:12",
                   user_id: 1,
                   )    
                 
 Attendance.create(day: "2018-09-11",
-                  arrival: "2018-09-11 08:43:45",
+                  arrival: "2018-09-11 08:43:21",
                   leave: "2018-09-11 23:13:45",
                   user_id: 1,
                   )
                   
 Attendance.create(day: "2018-09-12",
-                   arrival: "2018-09-12 08:56:32",
-                   leave: "2018-09-12 23:57:32",
+                   arrival: "2018-09-12 08:56:13",
+                   leave: "2018-09-12 23:57:04",
                    user_id: 1,
                    )
 Attendance.create(day: "2018-09-13",
-                   arrival: "2018-09-13 08:40:32",
-                   leave: "2018-09-13 23:54:32",
+                   arrival: "2018-09-13 08:40:51",
+                   leave: "2018-09-13 23:54:22",
+                   user_id: 1,
+                   )
+Attendance.create(day: "2018-09-14",
+                   arrival: "2018-09-14 08:52:36",
+                   leave: "2018-09-14 22:53:32",
                    user_id: 1,
                    )
