@@ -35,10 +35,24 @@ module UsersHelper
   # 在社時間(退勤時間-出社時間)
   def duty_hour(d)
     if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
-      @arrival_hour = @user.attendances.find_by(day: d).arrival
-      @leave_hour = @user.attendances.find_by(day: d).leave
-      @duty_hour = (@leave_hour - @arrival_hour) / 3600
-      sprintf("%.2f", @duty_hour)
+      @duty_hour = (@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival) / 3600
+      @duty_hour = sprintf("%.2f", @duty_hour)
     end
   end
+  
+  def total_hour
+    
+    if @user.attendances.find_by(day: Date.today)
+      @hours = []
+      @d.each do |d|
+        if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
+          #@hours.push((@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival))
+          a = (@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival) / 3600
+          a = sprintf("%.2f", a).to_f
+          @hours.push(a)
+        end
+      end
+      @hours.sum
+    end  
+  end  
 end
