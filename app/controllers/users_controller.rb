@@ -15,13 +15,16 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+   
+    # 日付の取得、変更
     if params[:para]
       @date = params[:para]
       @date = @date.to_datetime
     else
       @date = Date.today
     end
-    #　日付と曜日と出勤を作成
+   
+    #　該当する月の日付と曜日と勤怠インスタンスを作成
     @fd = @date.beginning_of_month
     @ed = @date.end_of_month
     @d = []
@@ -37,13 +40,11 @@ class UsersController < ApplicationController
     
     # 在社時間と出勤日数
     @hours = []
-    if @user.attendances.find_by(day: Date.today)
-      @d.each do |d|
-        if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
-          a = (@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival) / 3600
-          a = sprintf("%.2f", a).to_f
-          @hours.push(a)
-        end
+    @d.each do |d|
+      if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
+        a = (@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival) / 3600
+        a = sprintf("%.2f", a).to_f
+        @hours.push(a)
       end
     end
   end

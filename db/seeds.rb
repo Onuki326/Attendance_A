@@ -23,6 +23,23 @@ User.create(name: "金本 真弥",
             admin: false)
             
 # テストタイム
+Attendance.create(day: "2018-08-04",
+                  arrival: "2018-08-04 08:49:21",
+                  leave: "2018-08-04 17:31:12",
+                  user_id: 1,
+                  )    
+                
+Attendance.create(day: "2018-08-05",
+                  arrival: "2018-08-05 08:43:21",
+                  leave: "2018-08-05 17:15:45",
+                  user_id: 1,
+                  )
+                  
+Attendance.create(day: "2018-08-6",
+                   arrival: "2018-08-06 08:56:13",
+                   leave: "2018-08-06 18:02:04",
+                   user_id: 1,
+                   )
 Attendance.create(day: "2018-09-10",
                   arrival: "2018-09-10 07:33:41",
                   leave: "2018-09-10 22:33:12",
