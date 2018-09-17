@@ -40,19 +40,17 @@ module UsersHelper
     end
   end
   
-  def total_hour
-    
-    if @user.attendances.find_by(day: Date.today)
-      @hours = []
-      @d.each do |d|
-        if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
-          #@hours.push((@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival))
-          a = (@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival) / 3600
-          a = sprintf("%.2f", a).to_f
-          @hours.push(a)
-        end
-      end
-      @hours.sum
-    end  
-  end  
+  #def total_hour
+   # @hours = []
+    #if @user.attendances.find_by(day: Date.today)
+     # @d.each do |d|
+      #  if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
+       #   a = (@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival) / 3600
+        #  a = sprintf("%.2f", a).to_f
+        #  @hours.push(a)
+      #  end
+      #end
+      #@hours.sum
+    #end 
+  #end 
 end

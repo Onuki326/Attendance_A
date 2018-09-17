@@ -9,7 +9,7 @@
           <%= link_to "→", user_path(para: @date.next_month), {:class => "btn btn-default btn_key"} %>
         </td>
         <td width="250px">指定時間勤務</td>
-        <td colspan="3">基本時間</td>
+        <td colspan="3">基本時間"管理者登録時間"</td>
         <td width="150px">初日<%= @fd.strftime("%m/%d") %></td>
       </tr>
       <tr>
@@ -17,7 +17,7 @@
         <td width="250px">氏名　<%= @user.name %></td>
         <td width="60px">コード</td>
         <td width="10px"></td>
-        <td width="180px">出勤日数</td>
+        <td width="180px">出勤日数 <%= @hours.length %>日</td>
         <td width="150px">締め<%= @ed.strftime("%m/%d") %></td>
       </tr>
     </table>
@@ -83,9 +83,9 @@
         </tr>
       <% end %>
         <tr>
-          <td colspan="2"></td>
+          <td colspan="2">"管理者登録時間"*@hours</td>
           <td colspan="6"></td>
-          <td rowspan="2"><%= total_hour %></td>
+          <td rowspan="2"><%= @hours.sum %></td>
           <td rowspan="2"></td>
           <td rowspan="2"></td>
           <td rowspan="2"></td>
