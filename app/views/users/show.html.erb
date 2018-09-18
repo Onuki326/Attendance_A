@@ -4,9 +4,9 @@
     <table class="table table-bordered">
       <tr>
         <td>
-          <%= link_to "←", user_path(para: @date.prev_month), {:class => "btn btn-default btn_key"} %>
+          <%= link_to "←", user_path(date: @date.prev_month), {:class => "btn btn-default btn_key"} %>
           <p><%= @date.strftime("%Y年%m月") %>　時間管理表</p>
-          <%= link_to "→", user_path(para: @date.next_month), {:class => "btn btn-default btn_key"} %>
+          <%= link_to "→", user_path(date: @date.next_month), {:class => "btn btn-default btn_key"} %>
         </td>
         <td width="250px">指定時間勤務</td>
         <td colspan="3">基本時間"管理者登録時間"</td>
@@ -22,27 +22,30 @@
       </tr>
     </table>
   
-    <button href="#" type="button" class="btn btn-default">勤怠を編集</button>
+    <%= link_to "勤怠を編集", edit_attendance_path(@user, date: @date), {:class => "btn btn-default"} %>
     
-    <table class="table table-bordered">
-      <tr>
-        <td rowspan="2">日付</td>
-        <td rowspan="2">曜日</td>
-        <td colspan="3">出社</td>
-        <td colspan="3">退社</td>
-        <td rowspan="2">在社時間</td>
-        <td rowspan="2">備考</td>
-        <td rowspan="2">残業指示</td>
-        <td rowspan="2">指示者</td>
-      </tr>
-      <tr>
-        <td width="64">時</td>
-        <td width="64">分</td>
-        <td width="71"></td>
-        <td width="64">時</td>
-        <td width="64">分</td>
-        <td width="71"></td>
-      </tr>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <td rowspan="2">日付</td>
+          <td rowspan="2">曜日</td>
+          <td colspan="3">出社</td>
+          <td colspan="3">退社</td>
+          <td rowspan="2">在社時間</td>
+          <td rowspan="2">備考</td>
+          <td rowspan="2">残業指示</td>
+          <td rowspan="2">指示者</td>
+        </tr>
+        <tr>
+          <td width="64">時</td>
+          <td width="64">分</td>
+          <td width="71"></td>
+          <td width="64">時</td>
+          <td width="64">分</td>
+          <td width="71"></td>
+        </tr>
+      </thead>
+      <tbody>
       <% @d.each do |d| %>
         <tr>
           <td><%= d.strftime("%m/%d") %></td>
@@ -82,6 +85,8 @@
           <td></td>
         </tr>
       <% end %>
+      </tbody>
+      <tfoot>
         <tr>
           <td colspan="2">"管理者登録時間"*@hours</td>
           <td colspan="6"></td>
@@ -90,6 +95,7 @@
           <td rowspan="2"></td>
           <td rowspan="2"></td>
         </tr>
+      </tfoot>  
     </table>
   </div>
 <% else %>

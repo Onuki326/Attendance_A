@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
    
     # 日付の取得、変更
-    if params[:para]
-      @date = params[:para]
+    if params[:date]
+      @date = params[:date]
       @date = @date.to_datetime
     else
       @date = Date.today

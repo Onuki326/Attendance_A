@@ -16,6 +16,23 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
   
+  def edit
+    @user = User.find_by(params[:id])
+    @date = params[:date]
+    @date = @date.to_datetime
+    @d = []
+    @fd = @date.beginning_of_month
+    @ed = @date.end_of_month
+    @wd = ["日", "月", "火", "水", "木", "金", "土"]
+    (@fd..@ed).each do |i|
+      @d.push(i)
+      if not @user.attendances.any? { |obj| obj.day == i }
+        attendance = Attendance.new(user_id: @user.id, day: i)
+        attendance.save
+      end
+    end
+  end
+  
   private
   
     def attendance_params
