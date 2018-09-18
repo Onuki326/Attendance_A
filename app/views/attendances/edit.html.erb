@@ -18,12 +18,24 @@
       <tr>
         <td><%= d.strftime("%m/%d") %></td>
         <td><%= d.strftime("#{@wd[d.wday]}") %></td>
-        <td colspan="3"></td>
-        <td colspan="3"></td>
-        <td colspan="2"></td>
-        <td colspan="2"></td>
-        <td colspan="2"></td>
-        <td colspan="2"></td>
+        <td colspan="3">
+          <input type="time" class="form-control">
+        </td>
+        <td colspan="3">
+          <input type="time" class="form-control">
+        </td>
+        <td colspan="2">
+          <input type="text" class="form-control">
+        </td>
+        <td colspan="2">
+          <input type="text" class="form-control">
+        </td>
+        <td colspan="2">
+          <input type="text" class="form-control">
+        </td>
+        <td colspan="2">
+          <input type="text" class="form-control">
+        </td>
       </tr>
     <% end %>
     </tbody>
