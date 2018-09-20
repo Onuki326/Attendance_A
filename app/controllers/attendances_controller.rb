@@ -18,6 +18,7 @@ class AttendancesController < ApplicationController
   
   def edit
     @user = User.find_by(params[:id])
+    @attendance = Attendance.new(id: @user)
     @date = params[:date]
     @date = @date.to_datetime
     @d = []
@@ -26,11 +27,13 @@ class AttendancesController < ApplicationController
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     (@fd..@ed).each do |i|
       @d.push(i)
-      if not @user.attendances.any? { |obj| obj.day == i }
-        attendance = Attendance.new(user_id: @user.id, day: i)
-        attendance.save
-      end
     end
+  end
+  
+  def update
+    @attendance = Attendance.find_by(params[:id])
+    @attendance.save
+    redirect_to @user
   end
   
   private

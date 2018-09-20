@@ -1,45 +1,45 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <td>日付</td>
-        <td>曜日</td>
-        <td colspan="3">出社</td>
-        <td colspan="3">退社</td>
-        <td colspan="2">在社時間</td>
-        <td colspan="2">備考</td>
-        <td colspan="2">残業指示</td>
-        <td colspan="2">指示者</td>
-      </tr>
-    </thead>
-    <tbody>
-    <% @d.each do |d| %>
-      <tr>
-        <td><%= d.strftime("%m/%d") %></td>
-        <td><%= d.strftime("#{@wd[d.wday]}") %></td>
-        <td colspan="3">
-          <input type="time" class="form-control">
-        </td>
-        <td colspan="3">
-          <input type="time" class="form-control">
-        </td>
-        <td colspan="2">
-          <input type="text" class="form-control">
-        </td>
-        <td colspan="2">
-          <input type="text" class="form-control">
-        </td>
-        <td colspan="2">
-          <input type="text" class="form-control">
-        </td>
-        <td colspan="2">
-          <input type="text" class="form-control">
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-  <%= link_to "キャンセル", user_path, {:class => "btn btn-default btn_key" } %>
-  <%= button_to "編集を保存する", attendance_path, {:class => "btn btn-default btn_key" } %>
-</div>
+<%= form_for(@attendance, url: attendance_path, class: "form-control") do |f| %>
+  <div class="row">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <td>日付</td>
+          <td>曜日</td>
+          <td colspan="3">出社</td>
+          <td colspan="3">退社</td>
+          <td colspan="2">在社時間</td>
+          <td colspan="2">備考</td>
+          <td colspan="2">残業指示</td>
+          <td colspan="2">指示者</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @d.each do |d| %>
+          <tr>
+            <td><%= d.strftime("%m/%d") %></td>
+            <td><%= d.strftime("#{@wd[d.wday]}") %></td>
+            <td colspan="3">
+              <%= f.time_field :arrival, class: "form-control" %>
+            </td>
+            <td colspan="3">
+              <%= f.time_field :leave, class: "form-control" %>
+            </td>
+            <td colspan="2"></td>
+            <td colspan="2">
+              <input type="text" class="form-control">
+            </td>
+            <td colspan="2">
+              <input type="text" class="form-control">
+            </td>
+            <td colspan="2">
+              <input type="text" class="form-control">
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+      <%= link_to "キャンセル", user_path, {:class => "btn btn-default btn_key" } %>
+      <%= f.submit "編集を保存する",  class: "btn btn-default btn_key" %>
+  </div>
+<% end %>
