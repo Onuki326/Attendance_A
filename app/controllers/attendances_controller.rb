@@ -17,8 +17,8 @@ class AttendancesController < ApplicationController
   end
   
   def edit
-    @user = User.find_by(params[:id])
-    @attendance = Attendance.new(id: @user)
+    @user = User.new(id: params[:id])
+    @user.attendances.build
     @date = params[:date]
     @date = @date.to_datetime
     @d = []
@@ -36,9 +36,9 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
   
-  private
+    private
   
-    def attendance_params
-      params.require(:attendance).permit(:day, :arrival, :leave)
-    end
+      def attendance_params
+        params.require(:attendance).permit(:day, :arrival, :leave)
+      end
 end

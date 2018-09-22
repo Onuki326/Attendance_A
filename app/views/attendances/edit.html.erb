@@ -1,5 +1,5 @@
 <% provide(:title, @user.name) %>
-<%= form_for(@attendance, url: attendance_path, class: "form-control") do |f| %>
+<%= form_for(@user, url: attendance_path, class: "form-control") do |f| %>
   <div class="row">
     <table class="table table-bordered table-striped">
       <thead>
@@ -20,10 +20,12 @@
             <td><%= d.strftime("%m/%d") %></td>
             <td><%= d.strftime("#{@wd[d.wday]}") %></td>
             <td colspan="3">
-              <%= f.time_field :arrival, class: "form-control" %>
+              <%= f.fields_for @user.attendances.find_by(day: d) do |i| %>
+                <%= i.time_field :arrival, class: "form-control" %>
             </td>
             <td colspan="3">
-              <%= f.time_field :leave, class: "form-control" %>
+                <%= i.time_field :leave, class: "form-control" %>
+              <% end %>
             </td>
             <td colspan="2"></td>
             <td colspan="2">
