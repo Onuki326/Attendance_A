@@ -17,8 +17,8 @@ class AttendancesController < ApplicationController
   end
   
   def edit
-    @user = User.new(id: params[:id])
-    @user.attendances.build
+    @user = User.find(params[:id])
+    @attendance = @user.attendances.build(id: @user.id)
     @date = params[:date]
     @date = @date.to_datetime
     @d = []
@@ -31,9 +31,12 @@ class AttendancesController < ApplicationController
   end
   
   def update
-    @attendance = Attendance.find_by(params[:id])
-    @attendance.save
-    redirect_to @user
+    @attendace = Attendance.find_by(params[:id])
+    if @attendance = Attendance.update_attributes(attendance_params)
+      redirect_to @user
+    else
+      render "attendaces#edit"
+    end
   end
   
     private
