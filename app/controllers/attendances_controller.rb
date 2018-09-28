@@ -31,17 +31,15 @@ class AttendancesController < ApplicationController
   end
   
   def update
-    @attendace = Attendance.find_by(params[:id])
-    if @attendance = Attendance.update_attributes(attendance_params)
-      redirect_to @user
-    else
-      render "attendaces#edit"
-    end
+    #byebug
+    @user = User.find(params[:id])
+    @user.update_attributes(attendances_params)
+    redirect_to @user
   end
   
     private
   
-      def attendance_params
-        params.require(:attendance).permit(:day, :arrival, :leave)
+      def attendances_params
+        params.require(:user).permit(attendances_attributes: [:day, :arrival, :leave, :_destroy, :id])
       end
 end

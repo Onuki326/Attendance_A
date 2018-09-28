@@ -8,7 +8,9 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   has_secure_password
+  #勤怠情報と紐付け
   has_many :attendances, dependent: :destroy
+  accepts_nested_attributes_for :attendances
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)

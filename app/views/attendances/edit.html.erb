@@ -20,11 +20,11 @@
             <td><%= d.strftime("%m/%d") %></td>
             <td><%= d.strftime("#{@wd[d.wday]}") %></td>
             <td colspan="3">
-              <%= f.fields_for @user.attendances.find_by(day: d) do |i| %>
-                <%= i.time_field :arrival, class: "form-control" %>
+              <%= f.fields_for :attendances, @user.attendances.find_by(day: d) do |t| %>
+                <%= t.time_field :arrival, class: "form-control" %>
             </td>
             <td colspan="3">
-                <%= i.time_field :leave, class: "form-control" %>
+                <%= t.time_field :leave, class: "form-control" %>
               <% end %>
             </td>
             <td colspan="2"></td>
