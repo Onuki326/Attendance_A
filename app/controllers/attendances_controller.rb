@@ -42,4 +42,5 @@ class AttendancesController < ApplicationController
       def attendances_params
         params.require(:user).permit(attendances_attributes: [:day, :arrival, :leave, :_destroy, :id])
       end
+      
 end
