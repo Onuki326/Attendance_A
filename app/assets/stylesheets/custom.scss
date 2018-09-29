@@ -136,8 +136,14 @@ input {
   background-color: $gray-lighter;
 }
 
-.btn_key {
-  display: inline-block;
+.form-btn-wrapper{
+  width: 75%;
+  margin: auto;
+  text-align: center;
+}
+
+.form-btn {
+  width: 25%;
 }
 
 /* Users index */
