@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <%= form_for(@user, url: attendance_path(@attendance), class: "form-control") do |f| %>
+  <%= form_for(@user, url: attendance_path(@user), class: "form-control") do |f| %>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -43,7 +43,6 @@
     </table>
       <div class="form-btn-wrapper">
         <%= link_to "キャンセル", @user, {:class => "btn btn-default btn_key form-btn" } %>
-        <%#= f.button "キャンセル", class: "btn btn-default btn-key" %>
         <%= f.submit "編集を保存する", class: "btn btn-default btn_key form-btn" %>
       </div>
   <% end %>
