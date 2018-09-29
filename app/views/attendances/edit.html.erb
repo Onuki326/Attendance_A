@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
-<%= form_for(@user, url: attendance_path, class: "form-control") do |f| %>
-  <div class="row">
+<div class="row">
+  <%= form_for(@user, url: attendance_path(@user), class: "form-control") do |f| %>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -20,11 +20,11 @@
             <td><%= d.strftime("%m/%d") %></td>
             <td><%= d.strftime("#{@wd[d.wday]}") %></td>
             <td colspan="3">
-              <%= f.fields_for :attendances, @user.attendances.find_by(day: d) do |i| %>
-                <%= i.time_field :arrival, class: "form-control" %>
+              <%= f.fields_for :attendances, @user.attendances.find_by(day: d) do |t| %>
+                <%= t.time_field :arrival, class: "form-control" %>
             </td>
             <td colspan="3">
-                <%= i.time_field :leave, class: "form-control" %>
+                <%= t.time_field :leave, class: "form-control" %>
               <% end %>
             </td>
             <td colspan="2"></td>
@@ -41,7 +41,9 @@
         <% end %>
       </tbody>
     </table>
-      <%= link_to "キャンセル", user_path, {:class => "btn btn-default btn_key" } %>
-      <%= f.submit "編集を保存する", class: "btn btn-default btn_key" %>
-  </div>
-<% end %>
+      <div class="form-btn-wrapper">
+        <%= link_to "キャンセル", @user, {:class => "btn btn-default btn_key form-btn" } %>
+        <%= f.submit "編集を保存する", class: "btn btn-default btn_key form-btn" %>
+      </div>
+  <% end %>
+</div>
