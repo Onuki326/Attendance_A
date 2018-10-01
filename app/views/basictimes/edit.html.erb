@@ -1,11 +1,11 @@
 <% provide(:title, "基本情報編集") %>
 <div class="row">
   <h1>基本情報の更新</h1>
-    <%= form_for(@basic_time, url: basictime_path, class: "form-control") do |f| %>
+    <%= form_for(@basictime, url: basictime_path, class: "form-control") do |f| %>
       <%= f.label :specified_working_hours %>
       <%= f.time_field :specified_working_hours, class: "form-controll" %>
       <%= f.label :basic_working_hours %>
       <%= f.time_field :basic_working_hours, class: "form-controll" %>
-      <%= f.submit "編集", class: "btn btn-primary"%>
+      <%= f.submit "編集", class: "btn btn-primary" %>
     <% end %>
 </div>
