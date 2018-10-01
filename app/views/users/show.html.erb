@@ -8,8 +8,8 @@
           <p><%= @date.strftime("%Y年%m月") %>　時間管理表</p>
           <%= link_to "→", user_path(date: @date.next_month), {:class => "btn btn-default btn_key"} %>
         </td>
-        <td width="250px">指定時間勤務</td>
-        <td colspan="3">基本時間"管理者登録時間"</td>
+        <td width="250px"><%= specified_working_hours %></td>
+        <td colspan="3"><%= basic_working_hours %></td>
         <td width="150px">初日<%= @fd.strftime("%m/%d") %></td>
       </tr>
       <tr>
@@ -88,7 +88,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="2">"管理者登録時間"*@hours</td>
+          <td colspan="2"><%= @hours %></td>
           <td colspan="6"></td>
           <td rowspan="2"><%= @hours.sum %></td>
           <td rowspan="2"></td>
