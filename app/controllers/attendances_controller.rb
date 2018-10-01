@@ -37,6 +37,10 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
   
+  def basic_time
+    
+  end  
+  
     private
   
       def attendances_params

@@ -60,4 +60,16 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
+  
+  # 管理者ユーザーか確認
+  def admin_user?
+    current_user.admin == true
+  end
+  
+  # 管理者ユーザーの取得
+  def admin_user
+    if (user_id = session[:user_id])
+      @admin = User.find_by(id: user_id)
+    end  
+  end  
 end
