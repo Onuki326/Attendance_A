@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'basictime/edit'
+
+  get 'basictime/create'
+
+  get 'basictime/update'
+
   root   'static_pages#home'
   get    '/signup',     to: 'users#new'
   post   '/signup',     to: 'users#create'
@@ -10,4 +16,5 @@ Rails.application.routes.draw do
   
   resources :users
   resources :attendances, only: [:create, :edit, :update]
+  resource  :basictime,   only: [:create, :edit, :update]
 end
