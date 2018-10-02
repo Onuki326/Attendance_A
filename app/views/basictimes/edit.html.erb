@@ -2,6 +2,7 @@
 <div class="row">
   <h1>基本情報の更新</h1>
     <%= form_for(@basictime, url: basictime_path, class: "form-control") do |f| %>
+      <%= hidden_field_tag :id, @basictime.id %>
       <%= f.label :specified_working_hours %>
       <%= f.time_field :specified_working_hours, class: "form-controll" %>
       <%= f.label :basic_working_hours %>

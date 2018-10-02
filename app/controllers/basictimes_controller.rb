@@ -15,6 +15,10 @@ class BasictimesController < ApplicationController
   end
 
   def update
+    @user = current_user
+    @basictime = Basictime.find(params[:id])
+    @basictime.update_attributes(basictime_params)
+    redirect_to @user
   end
   
    private

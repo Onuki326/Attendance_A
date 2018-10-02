@@ -40,15 +40,27 @@ module UsersHelper
     end
   end
   
+  
+  
   # 指定勤務時間
   def specified_working_hours
-    @specified_working_hours = Basictime.first.specified_working_hours
-    @specified_working_hours = @specified_working_hours.strftime("%H:%M")
+    @specified_working_hours = Basictime.first
+    if @specified_working_hours.nil?
+      @specified_working_hours = "--:--"
+    else  
+      @specified_working_hours = Basictime.first.specified_working_hours
+      @specified_working_hours = @specified_working_hours.strftime("%H:%M")
+    end  
   end
   
   # 基本時間
   def basic_working_hours
-    @basic_working_hours = Basictime.first.basic_working_hours
-    @basic_working_hours = @basic_working_hours.strftime("%H:%M")
+    @basic_working_hours = Basictime.first
+    if @basic_working_hours.nil?
+      @basic_working_hours = "--:--"
+    else  
+      @basic_working_hours = Basictime.first.basic_working_hours
+      @basic_working_hours = @basic_working_hours.strftime("%H:%M")
+    end  
   end  
 end

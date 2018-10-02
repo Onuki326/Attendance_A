@@ -155,6 +155,9 @@ ja:
       session:
         email: メールアドレス
         password: パスワード
+      basictime:
+        specified_working_hours: 指定勤務時間
+        basic_working_hours: 基本勤務時間
   number:
     currency:
       format:
