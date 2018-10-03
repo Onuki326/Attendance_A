@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     @ed = @date.end_of_month
     @d = []
     @w = []
+    @hours = []
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     (@fd..@ed).each do |i|
       @d.push(i)
@@ -37,17 +38,21 @@ class UsersController < ApplicationController
         attendance = Attendance.new(user_id: @user.id, day: i)
         attendance.save
       end
+      #if @user.attendances.find_by(day: i).arrival && @user.attendances.find_by(day: i).leave
+        #a = (@user.attendances.find_by(day: i).leave - @user.attendances.find_by(day: i).arrival) / 3600
+        #a = sprintf("%.2f", a).to_f
+        #@hours.push(a)
+      #end
     end
     
     # 在社時間と出勤日数
-    @hours = []
-    @d.each do |d|
-      if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
-        a = (@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival) / 3600
-        a = sprintf("%.2f", a).to_f
-        @hours.push(a)
-      end
-    end
+    #@d.each do |d|
+     # if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
+     #  a = (@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival) / 3600
+     #  a = sprintf("%.2f", a).to_f
+     #  @hours.push(a)
+    # end
+    #end
   end
   
   def edit

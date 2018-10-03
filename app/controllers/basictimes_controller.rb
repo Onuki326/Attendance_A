@@ -1,4 +1,6 @@
 class BasictimesController < ApplicationController
+  #before_action :check_admin, only: [:edit, :create, :update]
+  
   def edit
     if Basictime.first
       @basictime = Basictime.first
@@ -24,5 +26,6 @@ class BasictimesController < ApplicationController
    private
     def basictime_params
       params.require(:basictime).permit(:specified_working_hours, :basic_working_hours)
-    end  
+    end
+    
 end

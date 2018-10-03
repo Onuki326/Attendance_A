@@ -23,47 +23,47 @@ User.create(name: "金本 真弥",
             admin: false)
             
 # テストタイム
-Attendance.create(day: "2018-08-04",
-                  arrival: "2018-08-04 08:49:21",
-                  leave: "2018-08-04 17:31:12",
+Attendance.create(day: "2018-09-04",
+                  arrival: "2018-09-04 08:49:21",
+                  leave: "2018-09-04 17:31:12",
                   user_id: 1,
                   )    
                 
-Attendance.create(day: "2018-08-05",
-                  arrival: "2018-08-05 08:43:21",
-                  leave: "2018-08-05 17:15:45",
+Attendance.create(day: "2018-09-05",
+                  arrival: "2018-09-05 08:43:21",
+                  leave: "2018-09-05 17:15:45",
                   user_id: 1,
                   )
                   
-Attendance.create(day: "2018-08-6",
-                   arrival: "2018-08-06 08:56:13",
-                   leave: "2018-08-06 18:02:04",
+Attendance.create(day: "2018-09-6",
+                   arrival: "2018-09-06 08:56:13",
+                   leave: "2018-09-06 18:02:04",
                    user_id: 1,
                    )
-Attendance.create(day: "2018-09-10",
-                  arrival: "2018-09-10 07:33:41",
-                  leave: "2018-09-10 22:33:12",
+Attendance.create(day: "2018-010-10",
+                  arrival: "2018-10-10 07:33:41",
+                  leave: "2018-10-10 22:33:12",
                   user_id: 1,
                   )    
                 
-Attendance.create(day: "2018-09-11",
-                  arrival: "2018-09-11 08:43:21",
-                  leave: "2018-09-11 23:13:45",
+Attendance.create(day: "2018-10-11",
+                  arrival: "2018-10-11 08:43:21",
+                  leave: "2018-10-11 23:13:45",
                   user_id: 1,
                   )
                   
-Attendance.create(day: "2018-09-12",
-                   arrival: "2018-09-12 08:56:13",
-                   leave: "2018-09-12 23:57:04",
+Attendance.create(day: "2018-10-12",
+                   arrival: "2018-10-12 08:56:13",
+                   leave: "2018-10-12 23:57:04",
                    user_id: 1,
                    )
-Attendance.create(day: "2018-09-13",
-                   arrival: "2018-09-13 08:40:51",
-                   leave: "2018-09-13 23:54:22",
+Attendance.create(day: "2018-10-13",
+                   arrival: "2018-10-13 08:40:51",
+                   leave: "2018-10-13 23:54:22",
                    user_id: 1,
                    )
-Attendance.create(day: "2018-09-14",
-                   arrival: "2018-09-14 08:52:36",
-                   leave: "2018-09-14 22:53:32",
+Attendance.create(day: "2018-10-14",
+                   arrival: "2018-10-14 08:52:36",
+                   leave: "2018-10-14 22:53:32",
                    user_id: 1,
                    )

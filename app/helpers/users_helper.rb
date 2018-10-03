@@ -37,19 +37,33 @@ module UsersHelper
     if @user.attendances.find_by(day: d).arrival && @user.attendances.find_by(day: d).leave
       @duty_hour = (@user.attendances.find_by(day: d).leave - @user.attendances.find_by(day: d).arrival) / 3600
       @duty_hour = sprintf("%.2f", @duty_hour)
+      @hours.push(@duty_hour.to_f)
+      @duty_hour
     end
   end
   
+  # 勤務日数
+  def attendance_days
+    @hours.length
+      byebug
+  end  
   
+  # 合計勤務時間
+  def total_hour
+    @t_hour = @hours.sum
+    @t_hour = sprintf("%.2f", @t_hour)
+  end  
   
   # 指定勤務時間
   def specified_working_hours
     @specified_working_hours = Basictime.first
     if @specified_working_hours.nil?
-      @specified_working_hours = "--:--"
+      @specified_working_hours = 0
     else  
       @specified_working_hours = Basictime.first.specified_working_hours
-      @specified_working_hours = @specified_working_hours.strftime("%H:%M")
+      s_hour = @specified_working_hours.strftime("%H").to_i
+      s_min = @specified_working_hours.strftime("%M").to_f / 60
+      @s_sec = s_hour + s_min
     end  
   end
   
@@ -57,10 +71,13 @@ module UsersHelper
   def basic_working_hours
     @basic_working_hours = Basictime.first
     if @basic_working_hours.nil?
-      @basic_working_hours = "--:--"
+      @basic_working_hours = 0
     else  
       @basic_working_hours = Basictime.first.basic_working_hours
-      @basic_working_hours = @basic_working_hours.strftime("%H:%M")
-    end  
-  end  
+      b_hour = @basic_working_hours.strftime("%H").to_i
+      b_min = @basic_working_hours.strftime("%M").to_f / 60
+      @b_sec = b_hour + b_min
+    end
+  end
+  
 end
