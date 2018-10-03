@@ -38,10 +38,11 @@ class UsersController < ApplicationController
         attendance = Attendance.new(user_id: @user.id, day: i)
         attendance.save
       end
+      # 在社時間
       #if @user.attendances.find_by(day: i).arrival && @user.attendances.find_by(day: i).leave
-        #a = (@user.attendances.find_by(day: i).leave - @user.attendances.find_by(day: i).arrival) / 3600
-        #a = sprintf("%.2f", a).to_f
-        #@hours.push(a)
+       # a = (@user.attendances.find_by(day: i).leave - @user.attendances.find_by(day: i).arrival) / 3600
+      #  a = sprintf("%.2f", a).to_f
+       # @hours.push(a)
       #end
     end
     

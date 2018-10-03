@@ -17,7 +17,7 @@
         <td width="250px">氏名　<%= @user.name %></td>
         <td width="60px">コード</td>
         <td width="10px"></td>
-        <td width="180px">出勤日数 <%= attendance_days %>日</td>
+        <td width="180px">出勤日数 <%= @hours.length %>日</td>
         <td width="150px">締め<%= @ed.strftime("%m/%d") %></td>
       </tr>
     </table>
@@ -88,7 +88,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="2"><%= basic_working_hours * @hours.length %></td>
+          <td colspan="2"><%= basic_total_hour %></td>
           <td colspan="6"></td>
           <td rowspan="2"><%= total_hour %></td>
           <td rowspan="2"></td>
