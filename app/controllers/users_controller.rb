@@ -39,11 +39,11 @@ class UsersController < ApplicationController
         attendance.save
       end
       # 在社時間
-      #if @user.attendances.find_by(day: i).arrival && @user.attendances.find_by(day: i).leave
-       # a = (@user.attendances.find_by(day: i).leave - @user.attendances.find_by(day: i).arrival) / 3600
-      #  a = sprintf("%.2f", a).to_f
-       # @hours.push(a)
-      #end
+      if @user.attendances.find_by(day: i).arrival && @user.attendances.find_by(day: i).leave
+        @duty_hour = (@user.attendances.find_by(day: i).leave - @user.attendances.find_by(day: i).arrival) / 3600
+        @duty_hour = sprintf("%.2f", @duty_hour)
+        @hours.push(@duty_hour.to_f)
+      end
     end
     
     # 在社時間と出勤日数
