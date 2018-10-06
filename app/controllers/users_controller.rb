@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:destroy, :index]
+  before_action :correct_user,   only: [:show, :edit, :update]
+  before_action :admin_user_true?,     only: [:destroy, :index]
   
   def destroy
     User.find(params[:id]).destroy
@@ -99,12 +99,14 @@ class UsersController < ApplicationController
 
     # 正しいユーザーかどうか確認
     def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      if not admin_user?
+        @user = User.find(params[:id])
+        redirect_to(root_url) unless current_user?(@user)
+      end
     end
     
     # 管理者かどうか確認
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-     end
+    #def admin_user
+     # redirect_to(root_url) unless current_user.admin?
+    #end
 end

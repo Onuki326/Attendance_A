@@ -1,5 +1,5 @@
 class BasictimesController < ApplicationController
-  #before_action :check_admin, only: [:edit, :create, :update]
+  before_action :admin_user_true?, only: [:edit, :create, :update]
   
   def edit
     if Basictime.first

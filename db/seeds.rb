@@ -22,7 +22,15 @@ User.create(name: "金本 真弥",
             password_confirmation: "222222",
             admin: false)
             
+User.create(name: "吉田 一貴",
+            email: "yoshida@email.com",
+            affiliation: "西条",
+            password: "333333",
+            password_confirmation: "333333",
+            admin: false)
+            
 # テストタイム
+
 Attendance.create(day: "2018-09-04",
                   arrival: "2018-09-04 08:49:21",
                   leave: "2018-09-04 17:31:12",

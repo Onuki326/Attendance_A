@@ -66,10 +66,9 @@ module SessionsHelper
     current_user.admin == true
   end
   
-  # 管理者ユーザーの取得
-  #def admin_user
-   # if (user_id = session[:user_id])
-    #  @admin = User.find_by(id: user_id)
-    #end  
-  #end  
+  # 管理者かどうか確認してfalseならhomeへ
+  def admin_user_true?
+    redirect_to(root_url) unless current_user.admin?
+  end
+    
 end

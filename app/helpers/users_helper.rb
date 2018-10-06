@@ -55,7 +55,8 @@ module UsersHelper
   def specified_working_hours
     @specified_working_hours = Basictime.first
     if @specified_working_hours.nil?
-      @specified_working_hours = 0
+      @specified_working_hours = 0.00
+      @specified_working_hours = sprintf("%.2f", @specified_working_hours)
     else  
       @specified_working_hours = Basictime.first.specified_working_hours
       s_hour = @specified_working_hours.strftime("%H").to_i
@@ -69,7 +70,8 @@ module UsersHelper
   def basic_working_hours
     @basic_working_hours = Basictime.first
     if @basic_working_hours.nil?
-      @basic_working_hours = 0
+      @basic_working_hours = 0.00
+      @basic_working_hours = sprintf("%.2f", @basic_working_hours)
     else  
       @basic_working_hours = Basictime.first.basic_working_hours
       b_hour = @basic_working_hours.strftime("%H").to_i
