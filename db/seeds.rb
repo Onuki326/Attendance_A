@@ -116,7 +116,7 @@ Attendance.create(day: "2018-10-03",
                    )
 Attendance.create(day: "2018-10-04",
                    arrival: "2018-10-4 08:40:00",
-                   leave: "2018-10-4 17:27:00",
+                   leave: "2018-10-4 17:11:00",
                    user_id: 2,
                    )
 Attendance.create(day: "2018-10-05",

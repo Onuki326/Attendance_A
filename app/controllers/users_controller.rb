@@ -95,18 +95,4 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
     
-    # beforeアクション
-
-    # 正しいユーザーかどうか確認
-    def correct_user
-      if not admin_user?
-        @user = User.find(params[:id])
-        redirect_to(root_url) unless current_user?(@user)
-      end
-    end
-    
-    # 管理者かどうか確認
-    #def admin_user
-     # redirect_to(root_url) unless current_user.admin?
-    #end
 end

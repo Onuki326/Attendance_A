@@ -70,5 +70,13 @@ module SessionsHelper
   def admin_user_true?
     redirect_to(root_url) unless current_user.admin?
   end
+  
+  # 正しいユーザーかどうか確認、管理者も
+  def correct_user
+    if not admin_user?
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
+  end
     
 end

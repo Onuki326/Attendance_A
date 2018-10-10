@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
-  #before_action :logged_in_user, only: [:create]
+  before_action :correct_user,     only: [:edit]
   
   def create
     @user = User.find_by(id: params[:attendance][:user_id])
@@ -44,4 +44,16 @@ class AttendancesController < ApplicationController
         params.require(:user).permit(attendances_attributes: [:day, :arrival, :leave, :_destroy, :id])
       end
       
+  # beforeアクション
+  
+  def admin_user_and_correct_user
+    if admin_user?
+      @user = User.find(params[:id])
+    elsif 
+      @user = User.find(params[:id])
+    else
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
+  end  
 end
