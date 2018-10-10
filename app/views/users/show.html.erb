@@ -62,7 +62,7 @@
           </td>
           <td>
             <% if d == Date.today && @user.attendances.find_by(user_id: @user, day: d).arrival.nil? %>
-              <%= button_to "出社", attendances_path(attendance: {user_id: @user, arrival: DateTime.now, day: @date}), {:class => "btn btn-default btn_key" }%>
+              <%= button_to "出社", attendances_path(attendance: {user_id: @user, day: @date}), class: "btn btn-default btn_key" %>
             <% end %>
           </td>
           <td>
@@ -77,7 +77,7 @@
           </td>
           <td>
             <% if d == Date.today && Attendance.find_by(user_id: @user, day: d).arrival && Attendance.find_by(user_id: @user, day: d).leave.nil?  %>
-              <%= button_to "退社", attendances_path(attendance: {user_id: @user, leave: DateTime.now, day: @date}), {:class => "btn btn-default btn_key" }%></td>
+              <%= button_to "退社", attendances_path(attendance: {user_id: @user, day: @date}), class: "btn btn-default btn_key" %>
             <% end %>
           <td><%= duty_hour(d) %></td>
           <td></td>

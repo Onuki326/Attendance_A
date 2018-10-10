@@ -1,18 +1,19 @@
 class AttendancesController < ApplicationController
-  before_action :logged_in_user, only: [:create]
+  #before_action :logged_in_user, only: [:create]
   
   def create
     @user = User.find_by(id: params[:attendance][:user_id])
     @attendance = @user.attendances.find_by(day: params[:attendance][:day])
     if @attendance.arrival.nil?
       attendance = @user.attendances.find_by(day: params[:attendance][:day])
-      attendance.arrival = params[:attendance][:arrival]
+      attendance.arrival = DateTime.now.change(sec: 00)
       attendance.save
     elsif @attendance.leave.nil?
       attendance = @user.attendances.find_by(day: params[:attendance][:day])
-      attendance.leave = params[:attendance][:leave]
+      attendance.leave = DateTime.now.change(sec: 00)
       attendance.save
     end
+    #byebug
     redirect_to @user
   end
   
@@ -36,10 +37,6 @@ class AttendancesController < ApplicationController
     @user.update_attributes(attendances_params)
     redirect_to @user
   end
-  
-  def basic_time
-    
-  end  
   
     private
   
