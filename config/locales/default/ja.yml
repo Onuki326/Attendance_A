@@ -157,7 +157,7 @@ ja:
         email: メールアドレス
         password: パスワード
       basictime:
-        specified_working_hours: 指定勤務時間
+        starting_work_at: 指定勤務開始時間
         basic_working_hours: 基本勤務時間
   number:
     currency:

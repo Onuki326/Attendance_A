@@ -58,7 +58,7 @@ module UsersHelper
       @specified_working_hours = 0.00
       @specified_working_hours = sprintf("%.2f", @specified_working_hours)
     else  
-      @specified_working_hours = Basictime.first.specified_working_hours
+      @specified_working_hours = Basictime.first.starting_work_at
       s_hour = @specified_working_hours.strftime("%H").to_i
       s_min = @specified_working_hours.strftime("%M").to_f / 60
       @s_sec = s_hour + s_min
