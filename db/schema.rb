@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181016114247) do
+ActiveRecord::Schema.define(version: 20181016132146) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "day"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20181016114247) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.string "affiliation"
+    t.string "employee_number"
+    t.string "employee_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

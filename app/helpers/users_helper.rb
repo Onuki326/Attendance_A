@@ -89,10 +89,10 @@ module UsersHelper
       @basic_working_hours = sprintf("%.2f", @basic_working_hours)
     else  
       @basic_working_hours = Basictime.first.basic_working_hours
-      b_hour = @basic_working_hours.strftime("%H").to_i
-      b_min = @basic_working_hours.strftime("%M").to_f / 60
-      b_s = b_hour + b_min
-      b_s = sprintf("%.2f", b_s)
+      h = @basic_working_hours.strftime("%H").to_i
+      m = @basic_working_hours.strftime("%M").to_f / 60
+      s = h + m
+      s = sprintf("%.2f", s)
     end
   end
   

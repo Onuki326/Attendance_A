@@ -7,17 +7,26 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # テストユーザー
+User.create(name: "管理者",
+            email: "admin@email.com",
+            password: "000000",
+            password_confirmation: "000000",
+            admin: true
+            )
+
 User.create(name: "小貫 祐汰", 
             email: "onu4648yu@icloud.com", 
             affiliation: "成田", 
+            employee_number: "001",
             password: "111111", 
             password_confirmation: "111111",
-            admin: true 
+            admin: false
             )
 
 User.create(name: "金本 真弥",
             email: "kanamoto@email.com",
             affiliation: "山武",
+            employee_number: "011",
             password: "222222",
             password_confirmation: "222222",
             admin: false)
@@ -25,6 +34,7 @@ User.create(name: "金本 真弥",
 User.create(name: "吉田 一貴",
             email: "yoshida@email.com",
             affiliation: "西条",
+            employee_number: "101",
             password: "333333",
             password_confirmation: "333333",
             admin: false)
