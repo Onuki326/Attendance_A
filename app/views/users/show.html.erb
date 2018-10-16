@@ -8,9 +8,9 @@
           <p><%= @date.strftime("%Y年%m月") %>　時間管理表</p>
           <%= link_to "→", user_path(date: @date.next_month), {:class => "btn btn-default btn_key"} %>
         </td>
-        <td width="250px">指定勤務開始時間 <%= specified_working_hours %><br>
-                          指定勤務終了時間 #</td>
-        <td colspan="3">基本勤務時間 <%= basic_working_hours %></td>
+        <td width="250px">指定勤務開始時間 <%= starting_hour %><br>
+                          指定勤務終了時間 <%= finishing_hour %></td>
+        <td colspan="3">基本勤務時間 <%= basic_working_hour %></td>
         <td width="150px">初日<%= @fd.strftime("%m/%d") %></td>
       </tr>
       <tr>

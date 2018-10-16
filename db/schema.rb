@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181015075151) do
+ActiveRecord::Schema.define(version: 20181016114247) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "day"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20181015075151) do
     t.datetime "starting_work_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "finishing_work_at"
   end
 
   create_table "users", force: :cascade do |t|

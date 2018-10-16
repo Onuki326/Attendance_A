@@ -25,7 +25,7 @@ class BasictimesController < ApplicationController
   
    private
     def basictime_params
-      params.require(:basictime).permit(:specified_working_hours, :basic_working_hours)
+      params.require(:basictime).permit(:starting_work_at, :finishing_work_at, :basic_working_hours)
     end
     
 end

@@ -51,23 +51,38 @@ module UsersHelper
     @t_hour = sprintf("%.2f", @t_hour)
   end  
   
-  # 指定勤務時間
-  def specified_working_hours
-    @specified_working_hours = Basictime.first
-    if @specified_working_hours.nil?
-      @specified_working_hours = 0.00
-      @specified_working_hours = sprintf("%.2f", @specified_working_hours)
+  # 指定勤務開始時間
+  def starting_hour
+    @sh = Basictime.first
+    if @sh.nil?
+      @sh = 0.00
+      @sh = sprintf("%.2f", @sh)
     else  
-      @specified_working_hours = Basictime.first.starting_work_at
-      s_hour = @specified_working_hours.strftime("%H").to_i
-      s_min = @specified_working_hours.strftime("%M").to_f / 60
-      @s_sec = s_hour + s_min
-      @s_sec = sprintf("%.2f", @s_sec)
+      @sh = Basictime.first.starting_work_at
+      h = @sh.strftime("%H").to_i
+      m = @sh.strftime("%M").to_f / 60
+      s = h + m
+      s = sprintf("%.2f", s)
     end  
   end
   
+  # 指定勤務終了時間
+  def finishing_hour
+    @fh = Basictime.first
+    if @fh.nil?
+      @fh = 0.00
+      @fh = sprintf("%.2f", @fh)
+    else  
+      @fh = Basictime.first.finishing_work_at
+      h = @fh.strftime("%H").to_i
+      m = @fh.strftime("%M").to_f / 60
+      s = h + m
+      s = sprintf("%.2f", s)
+    end
+  end  
+  
   # 基本時間
-  def basic_working_hours
+  def basic_working_hour
     @basic_working_hours = Basictime.first
     if @basic_working_hours.nil?
       @basic_working_hours = 0.00
@@ -76,14 +91,14 @@ module UsersHelper
       @basic_working_hours = Basictime.first.basic_working_hours
       b_hour = @basic_working_hours.strftime("%H").to_i
       b_min = @basic_working_hours.strftime("%M").to_f / 60
-      @b_sec = b_hour + b_min
-      @b_sec = sprintf("%.2f", @b_sec)
+      b_s = b_hour + b_min
+      b_s = sprintf("%.2f", b_s)
     end
   end
   
   # 基本時間合計
   def basic_total_hour
-    @basic_total_hour = basic_working_hours.to_f * @hours.length
+    @basic_total_hour = basic_working_hour.to_f * @hours.length
     @basic_total_hour = sprintf("%.2f", @basic_total_hour)
   end
 end
