@@ -22,8 +22,9 @@
         <td width="150px">締め<%= @ed.strftime("%m/%d") %></td>
       </tr>
     </table>
-  
-    <%= link_to "勤怠を編集", edit_attendance_path(@user, date: @date), {:class => "btn btn-default"} %>
+    <%= link_to "勤怠を編集", edit_attendance_path(@user, date: @date), class: "btn btn-default" %>
+    <%= link_to "CSV出力", "#", class: "btn btn-default btn_key" %>
+    <%= link_to "勤怠修正ログ(承認済み)", "#", class: "btn btn-default btn_key block_btn" %>
     
     <table class="table table-bordered table-striped">
       <thead>
@@ -58,6 +59,7 @@
       <tbody>
       <% @d.each do |d| %>
         <tr>
+          <td><%= link_to "残業申請", "#", class: "btn btn-default btn_key"%></td>
           <td><%= d.strftime("%m/%d") %></td>
           <td><%= d.strftime("#{@wd[d.wday]}") %></td>
           <td>
