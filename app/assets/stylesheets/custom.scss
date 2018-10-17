@@ -167,6 +167,9 @@ input {
   p {
     display: inline-block;
   }
+  .td_bottom{
+    vertical-align:bottom;
+  }
 }
 
 .table > tbody > tr > td {

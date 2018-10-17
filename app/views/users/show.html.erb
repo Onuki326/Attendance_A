@@ -28,22 +28,31 @@
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <td rowspan="2">日付</td>
-          <td rowspan="2">曜日</td>
-          <td colspan="3">出社</td>
-          <td colspan="3">退社</td>
-          <td rowspan="2">在社時間</td>
-          <td rowspan="2">備考</td>
-          <td rowspan="2">残業指示</td>
-          <td rowspan="2">指示者</td>
+          <td rowspan="3" class="td_bottom">残業申請</td>
+          <td rowspan="3" class="td_bottom">日付</td>
+          <td rowspan="3" class="td_bottom">曜日</td>
+          <td colspan="8">【実績】</td>
+          <td colspan="12">所定外勤務</td>
         </tr>
         <tr>
-          <td width="64">時</td>
-          <td width="64">分</td>
-          <td width="71"></td>
-          <td width="64">時</td>
-          <td width="64">分</td>
-          <td width="71"></td>
+          <td colspan="3">出社</td>
+          <td colspan="3">退社</td>
+          <td rowspan="2" class="td_bottom">在社時間</td>
+          <td rowspan="2" class="td_bottom">備考</td>
+          <td colspan="2">終了予定時間</td>
+          <td colspan="4" rowspan="2" class="td_bottom">時間外時間</td>
+          <td colspan="4" rowspan="2" class="td_bottom">業務処理内容</td>
+          <td colspan="4" rowspan="2" class="td_bottom">指示者確認</td>
+        </tr>
+        <tr>
+          <td colspan="1">時</td>
+          <td colspan="1">分</td>
+          <td colspan="1"></td>
+          <td colspan="1">時</td>
+          <td colspan="1">分</td>
+          <td colspan="1"></td>
+          <td colspan="1">時</td>
+          <td colspan="1">分</td>
         </tr>
       </thead>
       <tbody>
@@ -84,6 +93,9 @@
           <td></td>
           <td></td>
           <td></td>
+          <td colspan="4"></td>
+          <td colspan="4"></td>
+          <td colspan="4"></td>
         </tr>
       <% end %>
       </tbody>
@@ -95,6 +107,9 @@
           <td rowspan="2"></td>
           <td rowspan="2"></td>
           <td rowspan="2"></td>
+          <td colspan="4"></td>
+          <td colspan="4"></td>
+          <td colspan="4"></td>
         </tr>
       </tfoot>  
     </table>
