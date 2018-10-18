@@ -22,10 +22,12 @@
         <td width="150px">締め<%= @ed.strftime("%m/%d") %></td>
       </tr>
     </table>
+    <%= link_to "【所属長承認のお知らせ】", "#", class: "info" %><br>
+    <%= link_to "【勤怠変更申請のお知らせ】", "#", class: "info" %><br>
+    <%= link_to "【残業申請のお知らせ】", "#", class: "info" %><br>
     <%= link_to "勤怠を編集", edit_attendance_path(@user, date: @date), class: "btn btn-default" %>
-    <%= link_to "CSV出力", "#", class: "btn btn-default btn_key" %>
+    <%= link_to "CSV出力", "#", class: "btn btn-default btn_key" %><br>
     <%= link_to "勤怠修正ログ(承認済み)", "#", class: "btn btn-default btn_key block_btn" %>
-    
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -111,7 +113,13 @@
           <td rowspan="2"></td>
           <td colspan="4"></td>
           <td colspan="4"></td>
-          <td colspan="4"></td>
+          <td colspan="4">
+            所属長承認 未
+            <%= form_for(@user) do |f| %>
+              <%= f.select :name, User.all.map{|t| [t.name, t.id]}, include_blank: true %>
+              <%= f.submit "申請", class: "btn btn-default btn_key" %>
+            <% end %>
+          </td>
         </tr>
       </tfoot>  
     </table>

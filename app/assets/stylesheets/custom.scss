@@ -135,7 +135,7 @@ input {
 .btn-default {
   background-color: #008fde;
   color: white;
-  border-color: #008fde;
+  border-color: #CCCCCC;
 }
 
 .form-btn-wrapper{
@@ -148,6 +148,9 @@ input {
   width: 25%;
 }
 
+.info {
+  color: black;
+}
 
 /* Users index */
 
@@ -175,4 +178,13 @@ input {
 
 .table > tbody > tr > td {
   vertical-align: bottom;
+}
+
+
+/* テスト　*/
+
+select {
+  /*-webkit-appearance: none;
+  -moz-appearance: none;
+	appearance: none;*/
 }
