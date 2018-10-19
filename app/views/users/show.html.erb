@@ -4,9 +4,9 @@
     <table class="table table-bordered">
       <tr>
         <td>
-          <%= link_to "←", user_path(date: @date.prev_month), {:class => "btn btn-default btn_key"} %>
+          <%= link_to "←", user_path(date: @date.prev_month), class: "btn btn_default btn_key" %>
           <p><%= @date.strftime("%Y年%m月") %>　時間管理表</p>
-          <%= link_to "→", user_path(date: @date.next_month), {:class => "btn btn-default btn_key"} %>
+          <%= link_to "→", user_path(date: @date.next_month), class: "btn btn_default btn_key" %>
         </td>
         <td width="250px">指定勤務開始時間 <%= starting_hour %><br>
                           指定勤務終了時間 <%= finishing_hour %></td>
@@ -25,9 +25,9 @@
     <%= link_to "【所属長承認のお知らせ】", "#", class: "info" %><br>
     <%= link_to "【勤怠変更申請のお知らせ】", "#", class: "info" %><br>
     <%= link_to "【残業申請のお知らせ】", "#", class: "info" %><br>
-    <%= link_to "勤怠を編集", edit_attendance_path(@user, date: @date), class: "btn btn-default" %>
-    <%= link_to "CSV出力", "#", class: "btn btn-default btn_key" %><br>
-    <%= link_to "勤怠修正ログ(承認済み)", "#", class: "btn btn-default btn_key block_btn" %>
+    <%= link_to "勤怠を編集", edit_attendance_path(@user, date: @date), class: "btn btn_default" %>
+    <%= link_to "CSV出力", "#", class: "btn btn_default btn_key" %><br>
+    <%= link_to "勤怠修正ログ(承認済み)", "#", class: "btn btn_default btn_key block_btn" %>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -61,7 +61,7 @@
       <tbody>
       <% @d.each do |d| %>
         <tr>
-          <td><%= link_to "残業申請", "#", class: "btn btn-default btn_key"%></td>
+          <td><%= link_to "残業申請", "#", class: "btn btn_default btn_key"%></td>
           <td><%= d.strftime("%m/%d") %></td>
           <td><%= d.strftime("#{@wd[d.wday]}") %></td>
           <td>
@@ -76,7 +76,8 @@
           </td>
           <td>
             <% if d == Date.today && @user.attendances.find_by(user_id: @user, day: d).arrival.nil? %>
-              <%= button_to "出社", attendances_path(attendance: {user_id: @user, day: @date}), class: "btn btn-default btn_key" %>
+              <%= button_to "出社", attendances_path(attendance: 
+                                    {user_id: @user, day: @date}), class: "btn btn_default btn_key" %>
             <% end %>
           </td>
           <td>
@@ -91,7 +92,8 @@
           </td>
           <td>
             <% if d == Date.today && Attendance.find_by(user_id: @user, day: d).arrival && Attendance.find_by(user_id: @user, day: d).leave.nil?  %>
-              <%= button_to "退社", attendances_path(attendance: {user_id: @user, day: @date}), class: "btn btn-default btn_key" %>
+              <%= button_to "退社", attendances_path(attendance: 
+                                    {user_id: @user, day: @date}), class: "btn btn_default btn_key" %>
             <% end %>
           <td><%= duty_hour(d) %></td>
           <td></td>
@@ -117,7 +119,7 @@
             所属長承認 未
             <%= form_for(@user) do |f| %>
               <%= f.select :name, User.all.map{|t| [t.name, t.id]}, include_blank: true %>
-              <%= f.submit "申請", class: "btn btn-default btn_key" %>
+              <%= f.submit "申請", class: "btn btn_default btn_key" %>
             <% end %>
           </td>
         </tr>

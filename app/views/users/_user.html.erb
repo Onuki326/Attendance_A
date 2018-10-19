@@ -1,7 +1,12 @@
 <li>
-  <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
+    <%= link_to user.name, user %><br>
     | <%= link_to "削除", user, method: :delete,
-                                  data: { confirm: "本当によろしいですか?" } %>
+                                data: { confirm: "本当によろしいですか?" }, class: "btn btn_default btn_key" %>
+    <div class="jumbotron">
+      <!--<div class="row">-->
+        <%= link_to "編集", user, method: :update, class: "btn btn_default btn-lg" %>
+      <!--</div>-->
+    </div>
   <% end %>
 </li>
