@@ -49,7 +49,7 @@ module UsersHelper
   def total_hour
     @t_hour = @hours.sum
     @t_hour = sprintf("%.2f", @t_hour)
-  end  
+  end
   
   # 指定勤務開始時間
   def starting_hour
