@@ -101,4 +101,5 @@ module UsersHelper
     @basic_total_hour = basic_working_hour.to_f * @hours.length
     @basic_total_hour = sprintf("%.2f", @basic_total_hour)
   end
+  
 end
