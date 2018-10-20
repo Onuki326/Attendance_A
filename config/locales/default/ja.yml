@@ -153,13 +153,15 @@ ja:
         password: パスワード
         password_confirmation: パスワード確認
         affiliation:  所属
-      session:
-        email: メールアドレス
-        password: パスワード
-      basictime:
         starting_work_at: 指定勤務開始時間
         finishing_work_at: 指定勤務終了時間
         basic_working_hours: 基本勤務時間
+        employee_number: 社員番号
+        employee_id: カードID
+      session:
+        email: メールアドレス
+        password: パスワード
+      
   number:
     currency:
       format:
