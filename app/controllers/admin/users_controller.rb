@@ -6,7 +6,8 @@ class Admin::UsersController < ApplicationController
     users = User.all
     @users = []
     users.each do |user|
-      if user.attendances.find_by(day: Date.today).arrival && user.attendances.find_by(day: Date.today).leave.nil?
+    attendance = Attendance.find_by(user_id: user, day: Date.today)
+      if attendance&.arrival && attendance&.leave.nil?
         @users.push(user)
       end 
     end  

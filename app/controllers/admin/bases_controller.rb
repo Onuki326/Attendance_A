@@ -1,5 +1,8 @@
 class Admin::BasesController < ApplicationController
-  def edit
+  
+  before_action :admin_user_true?
+  
+  def show
     @base = Base.new
   end
 end
