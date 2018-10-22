@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       member do
         get :active
         get :basictime
+        get :base
       end
     end
   end
