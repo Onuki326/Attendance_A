@@ -18,6 +18,6 @@ class Admin::UsersController < ApplicationController
   
   def basictime
     @user = User.find(params[:id])
-  end  
+  end
   
 end

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    resource :base 
     resources :users do
       member do
         get :active
         get :basictime
-        get :base
       end
     end
   end
