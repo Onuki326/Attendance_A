@@ -13,5 +13,11 @@ class Admin::UsersController < ApplicationController
   end
   
   def index
+    @users = User.paginate(page: params[:page])
   end
+  
+  def basictime
+    @user = User.find(params[:id])
+  end  
+  
 end

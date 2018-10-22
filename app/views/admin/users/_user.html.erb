@@ -1,0 +1,48 @@
+<li>
+  <% if current_user.admin? && !current_user?(user) %>
+    <%= link_to user.name, user %><br>
+    | <%= link_to "削除", user, method: :delete,
+                                data: { confirm: "本当によろしいですか?" }, class: "btn btn_default btn_key" %>
+    <p>
+      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample<%= user.id %>" aria-expanded="false" aria-controls="collapseExample">
+        編集
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample<%= user.id %>">
+      <div class="card card-body">
+        <%= form_for(user) do |f| %>
+  
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control' %>
+  
+          <%= f.label :affiliation %>
+          <%= f.text_field :affiliation, class: 'form-control' %>
+          
+          <%= f.label :employee_number %>
+          <%= f.text_field :employee_number, class: 'form-control' %>
+          
+          <%= f.label :employee_id %>
+          <%= f.text_field :employee_id, class: 'form-control' %>
+  
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+
+          <%= f.label :basic_working_hours %>
+          <%= f.time_field :basic_working_hours, class: 'form-control' %>
+          
+          <%= f.label :starting_work_at %>
+          <%= f.time_field :starting_work_at, class: 'form-control' %>
+
+          <%= f.label :finishing_work_at %>
+          <%= f.time_field :finishing_work_at, class: 'form-control' %>
+          
+          <%= f.submit "編集する", class: "btn btn-primary" %>
+
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</li>
