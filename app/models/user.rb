@@ -41,5 +41,10 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
+  
+  def self.updatable_attributes
+    ["name", "email"]
+  end
+  
 end
 

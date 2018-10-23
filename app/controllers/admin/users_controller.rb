@@ -17,6 +17,11 @@ class Admin::UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
   
+  def create
+    User.import(params[:csv_file])
+    redirect_to admin_users_url
+  end
+  
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(admin_user_params)
