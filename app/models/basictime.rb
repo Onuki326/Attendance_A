@@ -1,2 +1,0 @@
-class Basictime < ApplicationRecord
-end

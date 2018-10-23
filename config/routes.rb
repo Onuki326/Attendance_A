@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   
   resources :users
   resources :attendances, only: [:create, :edit, :update]
-  resource  :basictime,   only: [:create, :edit, :update]
+  
 end

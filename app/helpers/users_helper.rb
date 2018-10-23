@@ -53,12 +53,11 @@ module UsersHelper
   
   # 指定勤務開始時間
   def starting_hour
-    @sh = Basictime.first
+    @sh = @user.starting_work_at
     if @sh.nil?
       @sh = 0.00
       @sh = sprintf("%.2f", @sh)
     else  
-      @sh = Basictime.first.starting_work_at
       h = @sh.strftime("%H").to_i
       m = @sh.strftime("%M").to_f / 60
       s = h + m
@@ -68,12 +67,11 @@ module UsersHelper
   
   # 指定勤務終了時間
   def finishing_hour
-    @fh = Basictime.first
+    @fh = @user.finishing_work_at
     if @fh.nil?
       @fh = 0.00
       @fh = sprintf("%.2f", @fh)
     else  
-      @fh = Basictime.first.finishing_work_at
       h = @fh.strftime("%H").to_i
       m = @fh.strftime("%M").to_f / 60
       s = h + m
@@ -83,12 +81,11 @@ module UsersHelper
   
   # 基本時間
   def basic_working_hour
-    @basic_working_hours = Basictime.first
+    @basic_working_hours = @user.basic_working_hours
     if @basic_working_hours.nil?
       @basic_working_hours = 0.00
       @basic_working_hours = sprintf("%.2f", @basic_working_hours)
     else  
-      @basic_working_hours = Basictime.first.basic_working_hours
       h = @basic_working_hours.strftime("%H").to_i
       m = @basic_working_hours.strftime("%M").to_f / 60
       s = h + m
