@@ -1,7 +1,7 @@
 <% provide(:title, "基本情報編集") %>
 <div class="row">
   <h1>基本情報の更新</h1>
-    <%= form_for(@user, url: basictime_path, class: "form-control") do |f| %>
+    <%= form_for(@user, url: user_path, class: "form-control") do |f| %>
       <%= hidden_field_tag :id, @user.id %>
       <%= f.label :starting_work_at %>
       <%= f.time_field :starting_work_at, class: "form-controll" %>
