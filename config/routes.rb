@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resource :base 
+    resources :bases 
     resources :users do
       member do
         get :active
