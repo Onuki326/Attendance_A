@@ -161,7 +161,10 @@ ja:
       session:
         email: メールアドレス
         password: パスワード
-      
+      base:
+        base_number: 拠点番号
+        base_name: 拠点名
+        attendance_type: 勤怠種類
   number:
     currency:
       format:

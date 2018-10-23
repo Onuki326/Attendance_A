@@ -92,7 +92,12 @@ class UsersController < ApplicationController
                                    :email,
                                    :affiliation,
                                    :password,
-                                   :password_confirmation)
+                                   :password_confirmation,
+                                   :employee_number,
+                                   :employee_id,
+                                   :basic_working_hours,
+                                   :starting_work_at,
+                                   :finishing_work_at)
     end
     
 end
