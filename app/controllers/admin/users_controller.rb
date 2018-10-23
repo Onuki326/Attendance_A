@@ -17,8 +17,39 @@ class Admin::UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
   
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(admin_user_params)
+      flash[:success] = "編集しました"
+      redirect_to admin_users_url
+    else
+      render admin_users
+    end  
+  end
+  
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "削除しました"
+    redirect_to asmin_users_url
+  end  
+  
   def basictime
     @user = User.find(params[:id])
   end
+  
+    private
+    
+    def admin_user_params
+      params.require(:user).permit(:name, 
+                                     :email,
+                                     :affiliation,
+                                     :password,
+                                     :password_confirmation,
+                                     :employee_number,
+                                     :employee_id,
+                                     :basic_working_hours,
+                                     :starting_work_at,
+                                     :finishing_work_at)
+    end                                 
   
 end

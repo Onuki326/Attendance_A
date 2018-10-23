@@ -10,7 +10,7 @@
     </p>
     <div class="collapse" id="collapseExample<%= user.id %>">
       <div class="card card-body">
-        <%= form_for(user) do |f| %>
+        <%= form_for [:admin, user] do |f| %>
   
           <%= f.label :name %>
           <%= f.text_field :name, class: 'form-control' %>

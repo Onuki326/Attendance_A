@@ -8,7 +8,7 @@
       <nav>
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? && admin_user? %>
-            <li><%= link_to "トップへ", user_path(current_user) %></li>
+            <li><%= link_to "トップへ", admin_users_path %></li>
             <li><%= link_to "ユーザー一覧", admin_users_path %></li>
             <li><%= link_to "出勤社員一覧", active_admin_user_path(current_user) %></li>
             <li><%= link_to "拠点情報の修正", admin_bases_path %></li>
