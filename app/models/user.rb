@@ -41,10 +41,15 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
+  def self.import(file)
+    csv = CSV.table("file")
+    csv.save
+  end  
   
-  def self.updatable_attributes
-    ["name", "email"]
-  end
+  def csv_params
+    require(:user).permit(:name,
+                          :email)
+  end  
   
 end
 
