@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  
   attr_accessor :remember_token
   before_save { email.downcase! }
   validates :name,  presence: true, length: { maximum: 50 }
@@ -42,14 +43,24 @@ class User < ApplicationRecord
   end
   
   def self.import(file)
-    csv = CSV.table("file")
-    csv.save
+    CSV.foreach(file.path, headers: true) do |row|
+      csv = row.to_hash.slice(*update_attribute)
+      user = User.find_by(id: csv["id"])
+      
+      if user.nil?  
+        user = User.new
+      end
+      user.attributes = row.to_hash.slice(*update_attribute)
+      
+      user.save!
+    end  
   end  
   
-  def csv_params
-    require(:user).permit(:name,
-                          :email)
-  end  
+  def self.update_attribute
+    ["id", "name", "email", "password",
+     "admin","affiliation","employee_number",
+     "employee_id","basic_working_hours","starting_work_at","finishing_work_at","sperior"]
+  end
   
 end
 
