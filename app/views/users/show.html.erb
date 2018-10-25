@@ -118,7 +118,7 @@
           <td colspan="4">
             所属長承認 未
             <%= form_for(@user) do |f| %>
-              <%= f.select :name, User.all.map{|t| [t.name, t.id]}, include_blank: true %>
+              <%= f.select :name, @sperior_user.map{|t| [t.name, t.sperior]}, include_blank: true %>
               <%= f.submit "申請", class: "btn btn_default btn_key" %>
             <% end %>
           </td>

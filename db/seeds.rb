@@ -20,7 +20,8 @@ User.create(name: "小貫 祐汰",
             employee_number: "001",
             password: "111111", 
             password_confirmation: "111111",
-            admin: false
+            admin: false,
+            sperior: true
             )
 
 User.create(name: "金本 真弥",
@@ -29,7 +30,9 @@ User.create(name: "金本 真弥",
             employee_number: "011",
             password: "222222",
             password_confirmation: "222222",
-            admin: false)
+            admin: false,
+            sperior: false
+            )
             
 User.create(name: "吉田 一貴",
             email: "yoshida@email.com",
@@ -37,7 +40,8 @@ User.create(name: "吉田 一貴",
             employee_number: "101",
             password: "333333",
             password_confirmation: "333333",
-            admin: false)
+            admin: false,
+            sperior: false)
             
 # テストタイム
 

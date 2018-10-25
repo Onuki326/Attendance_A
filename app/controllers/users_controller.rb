@@ -43,6 +43,8 @@ class UsersController < ApplicationController
         @duty_hour = sprintf("%.2f", @duty_hour)
         @hours.push(@duty_hour.to_f)
       end
+      # 上長ユーザーの取得
+      @sperior_user = User.where(sperior: true)
     end
     
     # 在社時間と出勤日数
