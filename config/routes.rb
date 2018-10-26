@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    resources :bases 
-    resources :users do
-      member do
-        get :active
-        get :basictime
-      end
-    end
-  end
-
   root   'static_pages#home'
   get    '/signup',     to: 'users#new'
   post   '/signup',     to: 'users#create'
@@ -18,7 +8,21 @@ Rails.application.routes.draw do
   delete '/logout',     to: 'sessions#destroy'
   
   resources :users do
-    resource :attendances #only: [:create, :edit, :update]
+    resource :attendances do #only: [:create, :edit, :update]
+      member do
+        get :approval
+      end
+    end  
+  end
+  
+  namespace :admin do
+    resources :bases 
+    resources :users do
+      member do
+        get :active
+        get :basictime
+      end
+    end
   end
   
 end

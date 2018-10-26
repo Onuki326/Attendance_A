@@ -34,6 +34,10 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
   
+  def approval
+    
+  end  
+  
     private
   
       def attendance_params

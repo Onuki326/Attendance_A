@@ -23,7 +23,8 @@
       </tr>
     </table>
     <%= link_to "【所属長承認のお知らせ】", "#", class: "info" %><br>
-    <%= link_to "【勤怠変更申請のお知らせ】", "#", class: "info" %><br>
+    <%= link_to "【勤怠変更申請のお知らせ】", approval_user_attendances_path(user_id: @user), remote: true, class: "info" %><br>
+    <div class="modal fade" id="attendance-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
     <%= link_to "【残業申請のお知らせ】", "#", class: "info" %><br>
     <%= link_to "勤怠を編集", edit_user_attendances_path(@user, date: @date), class: "btn btn_default" %>
     <%= link_to "CSV出力", "#", class: "btn btn_default btn_key" %><br>
