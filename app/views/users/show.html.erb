@@ -25,7 +25,7 @@
     <%= link_to "【所属長承認のお知らせ】", "#", class: "info" %><br>
     <%= link_to "【勤怠変更申請のお知らせ】", "#", class: "info" %><br>
     <%= link_to "【残業申請のお知らせ】", "#", class: "info" %><br>
-    <%= link_to "勤怠を編集", edit_attendance_path(@user, date: @date), class: "btn btn_default" %>
+    <%= link_to "勤怠を編集", edit_user_attendances_path(@user, date: @date), class: "btn btn_default" %>
     <%= link_to "CSV出力", "#", class: "btn btn_default btn_key" %><br>
     <%= link_to "勤怠修正ログ(承認済み)", "#", class: "btn btn_default btn_key block_btn" %>
     <table class="table table-bordered table-striped">
@@ -76,8 +76,8 @@
           </td>
           <td>
             <% if d == Date.today && @user.attendances.find_by(user_id: @user, day: d).arrival.nil? %>
-              <%= button_to "出社", attendances_path(attendance: 
-                                    {user_id: @user, day: @date}), class: "btn btn_default btn_key" %>
+              <%= button_to "出社", user_attendances_path( 
+                                    user_id: @user, day: @date), class: "btn btn_default btn_key" %>
             <% end %>
           </td>
           <td>
@@ -92,8 +92,8 @@
           </td>
           <td>
             <% if d == Date.today && Attendance.find_by(user_id: @user, day: d).arrival && Attendance.find_by(user_id: @user, day: d).leave.nil?  %>
-              <%= button_to "退社", attendances_path(attendance: 
-                                    {user_id: @user, day: @date}), class: "btn btn_default btn_key" %>
+              <%= button_to "退社", user_attendances_path( 
+                                    user_id: @user, day: @date), class: "btn btn_default btn_key" %>
             <% end %>
           <td><%= duty_hour(d) %></td>
           <td></td>

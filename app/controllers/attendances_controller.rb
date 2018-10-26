@@ -2,18 +2,16 @@ class AttendancesController < ApplicationController
   before_action :correct_user,     only: [:edit]
   
   def create
-    @user = User.find_by(id: params[:attendance][:user_id])
-    @attendance = @user.attendances.find_by(day: params[:attendance][:day])
+    byebug
+    @user = User.find_by(id: params[:user_id])
+    @attendance = @user.attendances.find_by(day: params[:day])
     if @attendance.arrival.nil?
-      attendance = @user.attendances.find_by(day: params[:attendance][:day])
-      attendance.arrival = DateTime.now.change(sec: 00)
-      attendance.save
+      @attendance.arrival = DateTime.now.change(sec: 00)
+      @attendance.save
     elsif @attendance.leave.nil?
-      attendance = @user.attendances.find_by(day: params[:attendance][:day])
-      attendance.leave = DateTime.now.change(sec: 00)
-      attendance.save
+      @attendance.leave = DateTime.now.change(sec: 00)
+      @attendance.save
     end
-    #byebug
     redirect_to @user
   end
   
