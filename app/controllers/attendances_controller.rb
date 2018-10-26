@@ -1,8 +1,7 @@
 class AttendancesController < ApplicationController
-  before_action :correct_user,     only: [:edit]
+  before_action :attendance_correct_user,     only: [:edit]
   
   def create
-    byebug
     @user = User.find_by(id: params[:user_id])
     @attendance = @user.attendances.find_by(day: params[:day])
     if @attendance.arrival.nil?
@@ -16,8 +15,8 @@ class AttendancesController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
-    @attendance = @user.attendances.build(id: @user.id)
+    @user = User.find(params[:user_id])
+    @attendance = @user.attendances.build
     @date = params[:date]
     @date = @date.to_datetime
     @d = []
@@ -30,28 +29,24 @@ class AttendancesController < ApplicationController
   end
   
   def update
-    #byebug
-    @user = User.find(params[:id])
-    @user.update_attributes(attendances_params)
+    @user = User.find(params[:user_id])
+    @user.update_attributes(attendance_params)
     redirect_to @user
   end
   
     private
   
-      def attendances_params
-        params.require(:user).permit(attendances_attributes: [:day, :arrival, :leave, :_destroy, :id])
+      def attendance_params
+        params.require(:user).permit(attendances_attributes: [:id, :arrival, :leave])
       end
       
   # beforeアクション
   
-  def admin_user_and_correct_user
-    if admin_user?
-      @user = User.find(params[:id])
-    elsif 
-      @user = User.find(params[:id])
-    else
-      @user = User.find(params[:id])
+  def attendance_correct_user
+    if not admin_user?
+      @user = User.find(params[:user_id])
       redirect_to(root_url) unless current_user?(@user)
     end
-  end  
+  end
+  
 end

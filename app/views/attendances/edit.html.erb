@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <%= form_for(@user, url: attendance_path(@user), class: "form-control") do |f| %>
+  <%= form_for(@user, url: user_attendances_path(@user), class: "form-control") do |f| %>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
