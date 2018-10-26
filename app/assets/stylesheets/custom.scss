@@ -71,6 +71,15 @@ h2 {
   color: #777;
 }
 
+h3 {
+  font-size: 0.5em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -150,6 +159,13 @@ input {
 
 .form-btn {
   width: 25%;
+}
+
+.btn-modal {
+  display: inline-block;
+  width: auto;
+  margin-bottom: 15px;
+  margin: 0, auto;
 }
 
 .info {
