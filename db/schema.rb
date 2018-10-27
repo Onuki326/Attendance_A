@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181024044055) do
+ActiveRecord::Schema.define(version: 20181027073458) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "day"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20181024044055) do
     t.string "attendance_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "requester_id"
+    t.integer "requested_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requested_id"], name: "index_relationships_on_requested_id"
+    t.index ["requester_id", "requested_id"], name: "index_relationships_on_requester_id_and_requested_id", unique: true
+    t.index ["requester_id"], name: "index_relationships_on_requester_id"
   end
 
   create_table "users", force: :cascade do |t|

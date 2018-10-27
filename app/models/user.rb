@@ -12,6 +12,10 @@ class User < ApplicationRecord
   #勤怠情報と紐付け
   has_many :attendances, dependent: :destroy
   accepts_nested_attributes_for :attendances
+  #relationshipと紐付け
+  has_many :active_relationships, class_name: "Relationship",
+                           foreign_key: "requester_id",
+                           dependent: :destroy
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
