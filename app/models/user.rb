@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :active_relationships, class_name: "Relationship",
                            foreign_key: "requester_id",
                            dependent: :destroy
+  #申請している、されているの紐付け(複数)
+  has_many :requesting, through: :acrive_relationships, resouce: :requested_id                         
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -60,6 +62,22 @@ class User < ApplicationRecord
     end  
   end  
   
+  # ユーザーを申請する
+  def requesting(other_user)
+    recesting << other_user
+  end
+
+  # ユーザーを申請を解除する
+  def unrequested(other_user)
+    active_relationships.find_by(requested_id: other_user.id).destroy
+  end
+
+  # 現在のユーザーが申請してたらtrueを返す
+  def requesting?(other_user)
+    requesting.include?(other_user)
+  end
+
+  # CSV読み込みを許可するカラム
   def self.update_attribute
     ["id", "name", "email", "password",
      "admin","affiliation","employee_number",
