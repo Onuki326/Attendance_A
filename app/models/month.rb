@@ -1,2 +1,0 @@
-class Month < Attendance
-end  

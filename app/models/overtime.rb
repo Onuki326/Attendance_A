@@ -1,2 +1,2 @@
-class Overtime < 
+class Overtime < Attendance
 end  

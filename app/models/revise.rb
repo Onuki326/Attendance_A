@@ -1,0 +1,2 @@
+class Revise < Attendance
+end  
