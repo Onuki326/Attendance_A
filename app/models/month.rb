@@ -1,0 +1,2 @@
+class Month < Attendance
+end  

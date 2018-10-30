@@ -45,7 +45,7 @@ class AttendancesController < ApplicationController
     private
   
       def attendance_params
-        params.require(:user).permit(attendances_attributes: [:id, :arrival, :leave, :name])
+        params.require(:user).permit(attendances_attributes: [:id, :arrival, :leave, :sperior_id, :type])
       end
       
   # beforeアクション

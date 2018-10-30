@@ -1,0 +1,2 @@
+class Edit < Attendance
+end  
