@@ -26,11 +26,15 @@ class AttendancesController < ApplicationController
     (@fd..@ed).each do |i|
       @d.push(i)
     end
+    # 上長ユーザーの取得
+      @sperior_users = User.where(sperior: true)
   end
   
   def update
     @user = User.find(params[:user_id])
     @user.update_attributes(attendance_params)
+    binding.pry
+    #@user.passive_relationships.find_by(requester_id: ).destroy ユーザーの申請を取り消す
     redirect_to @user
   end
   
@@ -41,7 +45,7 @@ class AttendancesController < ApplicationController
     private
   
       def attendance_params
-        params.require(:user).permit(attendances_attributes: [:id, :arrival, :leave])
+        params.require(:user).permit(attendances_attributes: [:id, :arrival, :leave, :name])
       end
       
   # beforeアクション

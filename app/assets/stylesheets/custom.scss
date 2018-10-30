@@ -83,6 +83,7 @@ h3 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  display: inline-block;
 }
 
 /* header */
@@ -200,6 +201,12 @@ input {
   vertical-align: bottom;
 }
 
+/* flash */
+
+.flash {
+  border: 2px solid red;
+  color: red;
+}
 
 /* テスト　*/
 

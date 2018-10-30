@@ -16,8 +16,13 @@ class User < ApplicationRecord
   has_many :active_relationships, class_name: "Relationship",
                            foreign_key: "requester_id",
                            dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship",
+                           foreign_key: "requested_id",
+                           dependent: :destroy                         
+                           
   #申請している、されているの紐付け(複数)
-  has_many :requesting, through: :acrive_relationships, resouce: :requested_id                         
+  has_many :requesting, through: :active_relationships, source: :requested
+  has_many :requesters, through: :passive_relationships, source: :requester
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -62,7 +67,7 @@ class User < ApplicationRecord
     end  
   end  
   
-  # ユーザーを申請する
+  # ユーザーに申請する
   def requesting(other_user)
     recesting << other_user
   end
@@ -76,6 +81,16 @@ class User < ApplicationRecord
   def requesting?(other_user)
     requesting.include?(other_user)
   end
+  
+  # 申請されているユーザー
+  #def requesters(other_user)
+   # requesters << other_user
+  #end
+  
+  # 申請されているか確認
+  def requester?(other_user)
+    requesters.include?(other_user)
+  end  
 
   # CSV読み込みを許可するカラム
   def self.update_attribute

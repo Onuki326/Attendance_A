@@ -8,9 +8,9 @@
           <td>曜日</td>
           <td colspan="3">出社</td>
           <td colspan="3">退社</td>
+          <td>翌日</td>
           <td colspan="2">在社時間</td>
           <td colspan="2">備考</td>
-          <td colspan="2">残業指示</td>
           <td colspan="2">指示者</td>
         </tr>
       </thead>
@@ -27,15 +27,13 @@
                 <%= t.time_field :leave, class: "form-control" %>
               <% end %>
             </td>
+            <td></td>
             <td colspan="2"></td>
             <td colspan="2">
               <input type="text" class="form-control">
             </td>
             <td colspan="2">
-              <input type="text" class="form-control">
-            </td>
-            <td colspan="2">
-              <input type="text" class="form-control">
+              <%= f.select :name, @sperior_users.map {|u| [u.name, u.id]}, include_blank: true %>
             </td>
           </tr>
         <% end %>

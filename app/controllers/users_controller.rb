@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         @hours.push(@duty_hour.to_f)
       end
       # 上長ユーザーの取得
-      @sperior_user = User.where(sperior: true)
+      @sperior_users = User.where(sperior: true)
     end
     
     # 在社時間と出勤日数
@@ -74,6 +74,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    
   end
   
   def create

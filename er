@@ -1,0 +1,16 @@
+=> [32m#<User:0x000000061384a8[0m
+ id: [1;34m2[0m,
+ name: [31m[1;31m"[0m[31m小貫 祐汰[1;31m"[0m[31m[0m,
+ email: [31m[1;31m"[0m[31monu4648yu@icloud.com[1;31m"[0m[31m[0m,
+ created_at: [1;34;4mFri[0m, [1;34m26[0m [1;34;4mOct[0m [1;34m2018[0m [1;34m14[0m:[1;34m18[0m:[1;34m56[0m [1;34;4mJST[0m [1;34m+09[0m:[1;34m00[0m,
+ updated_at: [1;34;4mFri[0m, [1;34m26[0m [1;34;4mOct[0m [1;34m2018[0m [1;34m14[0m:[1;34m18[0m:[1;34m56[0m [1;34;4mJST[0m [1;34m+09[0m:[1;34m00[0m,
+ password_digest: [31m[1;31m"[0m[31m$2a$10$/KvOklOHBU97JRpqFRWad.HWWIbWnquYyoULPUl8a2qaN8sx/PgGG[1;31m"[0m[31m[0m,
+ remember_digest: [1;36mnil[0m,
+ admin: [1;36mfalse[0m,
+ affiliation: [31m[1;31m"[0m[31m成田[1;31m"[0m[31m[0m,
+ employee_number: [31m[1;31m"[0m[31m001[1;31m"[0m[31m[0m,
+ employee_id: [1;36mnil[0m,
+ basic_working_hours: [1;36mnil[0m,
+ starting_work_at: [1;36mnil[0m,
+ finishing_work_at: [1;36mnil[0m,
+ sperior: [1;36mtrue[0m[32m>[0m

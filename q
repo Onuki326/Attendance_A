@@ -1,0 +1,16 @@
+=> [32m#<User:0x00000007289ae0[0m
+ id: [1;34m3[0m,
+ name: [31m[1;31m"[0m[31m金本 真弥[1;31m"[0m[31m[0m,
+ email: [31m[1;31m"[0m[31mkanamoto@email.com[1;31m"[0m[31m[0m,
+ created_at: [1;34;4mSun[0m, [1;34m28[0m [1;34;4mOct[0m [1;34m2018[0m [1;34m16[0m:[1;34m36[0m:[1;34m24[0m [1;34;4mJST[0m [1;34m+09[0m:[1;34m00[0m,
+ updated_at: [1;34;4mSun[0m, [1;34m28[0m [1;34;4mOct[0m [1;34m2018[0m [1;34m16[0m:[1;34m36[0m:[1;34m24[0m [1;34;4mJST[0m [1;34m+09[0m:[1;34m00[0m,
+ password_digest: [31m[1;31m"[0m[31m$2a$10$cGXr4ARk8UZn7S5ANTk.N.kEoeqdJBOOildCgwR1rWbVm46W0Fr0i[1;31m"[0m[31m[0m,
+ remember_digest: [1;36mnil[0m,
+ admin: [1;36mfalse[0m,
+ affiliation: [31m[1;31m"[0m[31m山武[1;31m"[0m[31m[0m,
+ employee_number: [31m[1;31m"[0m[31m011[1;31m"[0m[31m[0m,
+ employee_id: [1;36mnil[0m,
+ basic_working_hours: [1;36mnil[0m,
+ starting_work_at: [1;36mnil[0m,
+ finishing_work_at: [1;36mnil[0m,
+ sperior: [1;36mfalse[0m[32m>[0m
