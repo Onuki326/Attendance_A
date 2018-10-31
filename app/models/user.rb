@@ -15,12 +15,16 @@ class User < ApplicationRecord
   #勤怠編集申請
   has_many :revise_applications, class_name: "Revise",
                                  dependent: :destroy
+  accepts_nested_attributes_for :revise_applications
   #勤怠残業申請
   has_many :overtime_applications, class_name: "Overtime",
                                    dependent: :destroy
+  accepts_nested_attributes_for :overtime_applications                                 
   #勤怠申請
   has_many :normal_applications, class_name: "Normal",
                                  dependent: :destroy
+  accepts_nested_attributes_for :normal_applications 
+  
   #relationshipと紐付け
   has_many :active_relationships, class_name: "Relationship",
                            foreign_key: "requester_id",

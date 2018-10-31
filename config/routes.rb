@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     end  
     resource :attendances do #only: [:create, :edit, :update]
       member do
-        get :approval
+        get  :approval
       end
-    end  
+    end
   end
   
   namespace :admin do
