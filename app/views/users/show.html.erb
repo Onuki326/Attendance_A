@@ -70,33 +70,33 @@
           <td><%= d.strftime("%m/%d") %></td>
           <td><%= d.strftime("#{@wd[d.wday]}") %></td>
           <td>
-            <% if @user.attendances.find_by(day: d) %>
+            <% if not @user.normal_arrival(d).nil? %>
             <%= arrival_hour(d) %>
             <% end %>
           </td>
           <td>
-            <% if @user.attendances.find_by(day: d) %>
+            <% if not @user.normal_arrival(d).nil? %>
             <%= arrival_min(d) %>
             <% end %>
           </td>
           <td>
-            <% if d == Date.today && @user.attendances.find_by(user_id: @user, day: d).arrival.nil? %>
+            <% if d == Date.today && @user.normal_arrival(d).nil? %>
               <%= button_to "出社", user_attendances_path( 
                                     user_id: @user, day: @date), class: "btn btn_default btn_key" %>
             <% end %>
           </td>
           <td>
-            <% if @user.attendances.find_by(day: d)  %>
+            <% if not @user.normal_leave(d).nil?  %>
             <%= leave_hour(d) %>
             <% end %>
           </td>
           <td>
-            <% if @user.attendances.find_by(day: d) %>
+            <% if not @user.normal_leave(d).nil? %>
             <%= leave_min(d) %>
             <% end %>
           </td>
           <td>
-            <% if d == Date.today && Attendance.find_by(user_id: @user, day: d).arrival && Attendance.find_by(user_id: @user, day: d).leave.nil?  %>
+            <% if d == Date.today && @user.normal_arrival(d).present? && @user.normal_leave(d).nil?  %>
               <%= button_to "退社", user_attendances_path( 
                                     user_id: @user, day: @date), class: "btn btn_default btn_key" %>
             <% end %>

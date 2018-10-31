@@ -62,19 +62,19 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
-  def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      csv = row.to_hash.slice(*update_attribute)
-      user = User.find_by(id: csv["id"])
-      
-      if user.nil?  
-        user = User.new
-      end
-      user.attributes = row.to_hash.slice(*update_attribute)
-      
-      user.save!
-    end  
-  end  
+  # ユーザーの勤怠情報関連
+  
+  # type: normalの特定の日のarrival取得
+  def normal_arrival(day)
+    normal_applications.find_by(day: day)&.arrival
+  end
+  
+  # type: normalの特定の日のleave取得
+  def normal_leave(day)
+    normal_applications.find_by(day: day)&.leave
+  end
+  
+  # 関係性関連
   
   # ユーザーに申請する
   def requesting(other_user)
@@ -101,12 +101,30 @@ class User < ApplicationRecord
     requesters.include?(other_user)
   end  
 
+  # CSV関連
+  
+  # CSV読み込み
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      csv = row.to_hash.slice(*update_attribute)
+      user = User.find_by(id: csv["id"])
+      
+      if user.nil?  
+        user = User.new
+      end
+      user.attributes = row.to_hash.slice(*update_attribute)
+      
+      user.save!
+    end  
+  end
+  
   # CSV読み込みを許可するカラム
   def self.update_attribute
     ["id", "name", "email", "password",
      "admin","affiliation","employee_number",
      "employee_id","basic_working_hours","starting_work_at","finishing_work_at","sperior"]
   end
+  
   
 end
 

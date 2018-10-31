@@ -3,7 +3,7 @@ class AttendancesController < ApplicationController
   
   def create
     @user = User.find_by(id: params[:user_id])
-    @attendance = @user.attendances.find_by(day: params[:day])
+    @attendance = @user.normal_applications.find_by(day: params[:day])
     if @attendance.arrival.nil?
       @attendance.arrival = DateTime.now.change(sec: 00)
       @attendance.save

@@ -33,13 +33,13 @@ class UsersController < ApplicationController
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     (@fd..@ed).each do |i|
       @d.push(i)
-      if not @user.attendances.any? { |obj| obj.day == i }
-        attendance = Attendance.new(user_id: @user.id, day: i)
+      if not @user.normal_applications.any?{ |n| n.day == i }
+        attendance = Normal.new(user_id: @user.id, day: i)
         attendance.save
       end
       # 在社時間
-      if @user.attendances.find_by(day: i).arrival && @user.attendances.find_by(day: i).leave
-        @duty_hour = (@user.attendances.find_by(day: i).leave - @user.attendances.find_by(day: i).arrival) / 3600
+      if @user.normal_arrival(i).present? && @user.normal_leave(i).present?
+        @duty_hour = ((@user.normal_leave(i)) - (@user.normal_arrival(i))) / 3600
         @duty_hour = sprintf("%.2f", @duty_hour)
         @hours.push(@duty_hour.to_f)
       end

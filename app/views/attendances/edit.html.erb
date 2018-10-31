@@ -21,7 +21,6 @@
             <td><%= d.strftime("#{@wd[d.wday]}") %></td>
             <td colspan="3">
               <%= f.fields_for :attendances, @user.attendances.find_by(day: d) do |t| %>
-                <%= t.hidden_field :type, value: "edit" %> 
                 <%= t.hidden_field :user_id, value: @user.id %>
                 <%= t.time_field :arrival, class: "form-control" %>
             </td>
