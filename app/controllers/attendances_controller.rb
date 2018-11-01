@@ -45,7 +45,20 @@ class AttendancesController < ApplicationController
   
   def create
     @user = User.find_by(id: params[:user_id])
-    binding.pry
+    @revises = []
+    @revises = revise_params
+    @revises[:revise_applications_attributes].each do |i|
+      @revise = Revise.new(@revises[:revise_applications_attributes][:"#{i}"])
+      if @revise.sperior_id.present?
+        @sperior = User.find_by(id: @revise.sperior_id)
+        @user.approy(@sperior)
+        day = @revise.day.mday
+        #binding.pry
+        @revise.arrival&.change(day: day)
+        @revise.leave&.change(day: day)
+        @revise.save
+      end
+    end
     #if @attendance.arrival.nil?
     #  @attendance.arrival = DateTime.now.change(sec: 00)
     #  @attendance.save
@@ -58,10 +71,11 @@ class AttendancesController < ApplicationController
   
     private
   
-      def revice_params
-        params.require(:user).permit(revise_applications_attributes: [:user_id, :id, :arrival, :leave, :sperior_id, :type])
+      def revise_params
+        params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, :leave, :sperior_id, :type])
       end
       
+     
   # beforeアクション
   
   def attendance_correct_user

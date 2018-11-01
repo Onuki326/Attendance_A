@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <%= form_for(@user, url: user_attendances_path, html: {method: "post"}, class: "form-control") do |f| %>
+  <%= form_for(@user, url: user_attendances_path(date: @date), html: {method: "post"}, class: "form-control") do |f| %>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -16,15 +16,13 @@
       </thead>
       <tbody>
         <% @d.each do |d| %>
-          <%= form_for(@attendance, url: user_attendances_path) do |f| %>
-            <%= f.time_field :arrival, value: @user.normal_applications.find_by(day: d)&.arrival&.strftime("%H:%M:%S") %>
-            <%= f.submit "save" %>
-          <% end %>
           <tr>
             <td><%= d.strftime("%m/%d") %></td>
             <td><%= d.strftime("#{@wd[d.wday]}") %></td>
             <td colspan="3">
               <%= f.fields_for :revise_applications, @user.normal_applications.find_by(day: d) do |t| %>
+                <%= t.hidden_field :user_id, value: @user.id %> 
+                <%= t.hidden_field :day, value: d %>
                 <%= t.time_field :arrival, class: "form-control" %>
             </td>
             <td colspan="3">

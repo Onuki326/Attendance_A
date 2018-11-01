@@ -80,31 +80,16 @@ class User < ApplicationRecord
   
   # 関係性関連
   
-  # ユーザーに申請する
-  def requesting(other_user)
-    recesting << other_user
+  # 申請する
+  def approy(other)
+    requesting << other
   end
 
-  # ユーザーを申請を解除する
-  def unrequested(other_user)
+  # 申請取り消し
+  def unapproy(other_user)
     active_relationships.find_by(requested_id: other_user.id).destroy
   end
-
-  # 現在のユーザーが申請してたらtrueを返す
-  def requesting?(other_user)
-    requesting.include?(other_user)
-  end
   
-  # 申請されているユーザー
-  #def requesters(other_user)
-   # requesters << other_user
-  #end
-  
-  # 申請されているか確認
-  def requester?(other_user)
-    requesters.include?(other_user)
-  end  
-
   # CSV関連
   
   # CSV読み込み
