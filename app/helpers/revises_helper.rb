@@ -54,4 +54,8 @@ module RevisesHelper
     normal.leave.strftime("%M")
   end
   
+  # select-box用 第二引数に入れる
+  def sperior_users(speriors)
+    speriors.map {|u| [u.name, u.id]}
+  end
 end

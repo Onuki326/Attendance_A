@@ -45,7 +45,7 @@ User.create(name: "吉田 一貴",
             
 # テストタイム
 
-# ユーザー2
+# ユーザー4
 
 Attendance.create(day: "2018-10-01",
                   arrival: "2018-10-01 08:49:00",

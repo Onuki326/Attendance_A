@@ -31,10 +31,10 @@
             <td></td>
             <td colspan="2"></td>
             <td colspan="2">
-              <input type="text" class="form-control">
+              <%= t.text_field :remark, class: "form-control" %>
             </td>
             <td colspan="2">
-                <%= t.select :sperior_id, @sperior_users.map {|u| [u.name, u.id]}, include_blank: true %>
+                <%= t.select :sperior_id, sperior_users(@sperior_users), include_blank: true, class: "form-control" %>
               <% end %>
             </td>
           </tr>
