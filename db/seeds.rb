@@ -68,8 +68,8 @@ Attendance.create(day: "2018-10-4",
                    type: "Normal"
                    )
 Attendance.create(day: "2018-11-01",
-                  arrival: "2018-11-1 07:33:00",
-                  leave: "2018-11-1 22:33:00",
+                  arrival: "2018-11-1 08:49:00",
+                  leave: "2018-11-1 17:13:00",
                   user_id: 4,
                   type: "Normal"
                   )    
@@ -82,19 +82,21 @@ Attendance.create(day: "2018-11-02",
                   )
                   
 Attendance.create(day: "2018-11-01",
-                   arrival: "2018-11-1 08:56:00",
-                   leave: "2018-11-1 23:57:00",
+                   arrival: "2018-11-1 8:49:00",
+                   leave: "2018-11-1 13:45:00",
                    user_id: 4,
                    type: "Revise",
-                   sperior_id: "2"
+                   sperior_id: "2",
+                   remark: "体調不良の為、早退"
                    )
                    
 Attendance.create(day: "2018-11-2",
-                   arrival: "2018-11-2 08:40:00",
-                   leave: "2018-11-2 23:54:00",
+                   arrival: "2018-11-2 07:25:00",
+                   leave: "2018-11-2 17:13:00",
                    user_id: 4,
                    type: "Revise",
-                   sperior_id: "2"
+                   sperior_id: "2",
+                   remark: "早番の為、出勤時間変更"
                    )
                    
 #Attendance.create(day: "2018-11-05",
@@ -134,11 +136,12 @@ Attendance.create(day: "2018-11-01",
                   )    
                 
 Attendance.create(day: "2018-11-01",
-                  arrival: "2018-11-1 08:41:00",
-                  leave: "2018-11-1 18:49:00",
+                  arrival: "2018-11-1 08:39:00",
+                  leave: "2018-11-1 20:49:00",
                   user_id: 3,
                   type: "Revise",
-                  sperior_id: "2"
+                  sperior_id: "2",
+                  remark: "間違えて退勤を切った為"
                   )
                   
 #Attendance.create(day: "2018-11-03",
