@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   
   resources :users do
     resource :attendances do #only: [:create, :edit, :update]
-      member do
-        get  :approval
+      resource :revise do
+        member do
+          get :modal
+        end
       end
-      resource :revise
     end
   end
   

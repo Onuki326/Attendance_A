@@ -50,50 +50,53 @@ User.create(name: "吉田 一貴",
 Attendance.create(day: "2018-10-01",
                   arrival: "2018-10-01 08:49:00",
                   leave: "2018-10-01 17:31:00",
-                  user_id: 2,
+                  user_id: 4,
                   type: "Normal"
                   )    
                 
 Attendance.create(day: "2018-10-03",
                   arrival: "2018-10-03 08:43:00",
                   leave: "2018-10-03 17:15:00",
-                  user_id: 2,
+                  user_id: 4,
                   type: "Normal"
                   )
                   
 Attendance.create(day: "2018-10-4",
                    arrival: "2018-10-04 08:56:00",
                    leave: "2018-10-04 18:02:00",
-                   user_id: 2,
+                   user_id: 4,
                    type: "Normal"
                    )
 Attendance.create(day: "2018-11-01",
                   arrival: "2018-11-1 07:33:00",
                   leave: "2018-11-1 22:33:00",
-                  user_id: 2,
+                  user_id: 4,
                   type: "Normal"
                   )    
                 
 Attendance.create(day: "2018-11-02",
                   arrival: "2018-11-2 08:43:00",
                   leave: "2018-11-2 23:13:00",
-                  user_id: 2,
+                  user_id: 4,
                   type: "Normal"
                   )
                   
-#Attendance.create(day: "2018-11-03",
- #                  arrival: "2018-11-3 08:56:00",
-  #                 leave: "2018-11-3 23:57:00",
-   #                user_id: 2,
-    #               type: "Normal"
-     #              )
+Attendance.create(day: "2018-11-01",
+                   arrival: "2018-11-1 08:56:00",
+                   leave: "2018-11-1 23:57:00",
+                   user_id: 4,
+                   type: "Revise",
+                   sperior_id: "2"
+                   )
                    
-#Attendance.create(day: "2018-11-04",
- #                  arrival: "2018-11-4 08:40:00",
-  #                 leave: "2018-11-4 23:54:00",
-   #                user_id: 2,
-    #               type: "Normal"
-     #              )
+Attendance.create(day: "2018-11-2",
+                   arrival: "2018-11-2 08:40:00",
+                   leave: "2018-11-2 23:54:00",
+                   user_id: 4,
+                   type: "Revise",
+                   sperior_id: "2"
+                   )
+                   
 #Attendance.create(day: "2018-11-05",
  #                  arrival: "2018-11-5 08:52:00",
   #                 leave: "2018-11-5 22:53:00",
@@ -130,12 +133,13 @@ Attendance.create(day: "2018-11-01",
                   type: "Normal"  
                   )    
                 
-#Attendance.create(day: "2018-11-02",
- #                 arrival: "2018-11-2 08:41:00",
-  #                leave: "2018-11-2 18:49:00",
-   #               user_id: 3,
-    #              type: "Normal"
-     #             )
+Attendance.create(day: "2018-11-01",
+                  arrival: "2018-11-1 08:41:00",
+                  leave: "2018-11-1 18:49:00",
+                  user_id: 3,
+                  type: "Revise",
+                  sperior_id: "2"
+                  )
                   
 #Attendance.create(day: "2018-11-03",
  #                  arrival: "2018-11-3 08:52:00",
@@ -154,4 +158,15 @@ Attendance.create(day: "2018-11-01",
   #                 leave: "2018-11-5 17:04:00",
    #                user_id: 3,
     #               type: "Normal"
-     #              )                   
+     #              )
+
+# 申請テストデータ
+
+# ユーザー3から2
+
+user = User.find(2)
+tester_one = User.find(3)
+tester_two = User.find(4)
+testers = []
+testers.push(tester_one, tester_two)
+testers.each {|t| t.approy(user)}
