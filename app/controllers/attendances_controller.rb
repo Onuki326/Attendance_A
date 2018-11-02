@@ -31,27 +31,21 @@ class AttendancesController < ApplicationController
     
   end  
   
-  def revise
-    @user = User.find_by(id: params[:user_id])
-    @fd = DateTime.now.beginning_of_month
-    @ed = @fd.end_of_month
-    (@fd..@ed).each do |i|
-      if @revise = @user.normal_applications.find_buy(day: i)
-        @revice = Revise.new(revice_params)
-      end 
-    redirect_to @user  
-    end
-  end
-  
   def create
     @user = User.find_by(id: params[:user_id])
     @revises = []
     @revises = revise_params
     @revises[:revise_applications_attributes].each do |i|
       @revise = Revise.new(@revises[:revise_applications_attributes][:"#{i}"])
-      if @revise.sperior_id.present?
-        @sperior = User.find_by(id: @revise.sperior_id)
+      @sperior = User.find_by(id: @revise.sperior_id)
+      if @revise.sperior_id.present? && !@user.requesting?(@sperior)
         @user.approy(@sperior)
+        day = @revise.day.mday
+        #binding.pry
+        @revise.arrival&.change(day: day)
+        @revise.leave&.change(day: day)
+        @revise.save
+      elsif @revise.sperior_id.present? && @user.requesting?(@sperior)
         day = @revise.day.mday
         #binding.pry
         @revise.arrival&.change(day: day)

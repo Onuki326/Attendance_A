@@ -81,13 +81,18 @@ class User < ApplicationRecord
   # 関係性関連
   
   # 申請する
-  def approy(other)
-    requesting << other
+  def approy(sperior)
+    requesting << sperior
   end
 
   # 申請取り消し
-  def unapproy(other_user)
-    active_relationships.find_by(requested_id: other_user.id).destroy
+  def unapproy(sperior)
+    active_relationships.find_by(requested_id: sperior.id).destroy
+  end
+  
+  # 申請しているか確認(してたらtrue)
+  def requesting?(sperior)
+    requesting.include?(sperior)
   end
   
   # CSV関連
