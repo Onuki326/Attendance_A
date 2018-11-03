@@ -215,3 +215,8 @@ select {
   -moz-appearance: none;
 	appearance: none;*/
 }
+
+
+input, textarea, select, .uneditable-input {
+  width: auto;
+}

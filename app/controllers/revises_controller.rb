@@ -24,16 +24,16 @@ class RevisesController < ApplicationController
       @sperior = User.find_by(id: @revise.sperior_id)
       if @revise.sperior_id.present? && !@user.requesting?(@sperior)
         @user.approy(@sperior)
-        day = @revise.day.mday
-        #binding.pry
-        @revise.arrival&.change(day: day)
-        @revise.leave&.change(day: day)
+        if @revise.yesterday == true
+          
+          @revise.leave = @revise.leave.tomorrow
+        end  
         @revise.save
       elsif @revise.sperior_id.present? && @user.requesting?(@sperior)
-        day = @revise.day.mday
-        #binding.pry
-        @revise.arrival&.change(day: day)
-        @revise.leave&.change(day: day)
+        if @revise.yesterday == true
+          
+          @revise.leave = @revise.leave.tomorrow
+        end  
         @revise.save
       end
     end
@@ -52,7 +52,8 @@ class RevisesController < ApplicationController
     private
   
       def revise_params
-        params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, :leave, :sperior_id, :type])
+        params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, :leave, 
+                                                                      :sperior_id, :type, :yesterday, :remark])
       end
 
 end
