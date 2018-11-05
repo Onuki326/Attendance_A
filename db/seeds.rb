@@ -135,14 +135,14 @@ Attendance.create(day: "2018-11-01",
                   type: "Normal"  
                   )    
                 
-Attendance.create(day: "2018-11-01",
-                  arrival: "2018-11-1 08:39:00",
-                  leave: "2018-11-1 20:49:00",
-                  user_id: 3,
-                  type: "Revise",
-                  sperior_id: "2",
-                  remark: "間違えて退勤を切った為"
-                  )
+#Attendance.create(day: "2018-11-01",
+ #                 arrival: "2018-11-1 08:39:00",
+  #                leave: "2018-11-1 20:49:00",
+   #               user_id: 3,
+    #              type: "Revise",
+     #             sperior_id: "2",
+      #            remark: "間違えて退勤を切った為"
+       #           )
                   
 #Attendance.create(day: "2018-11-03",
  #                  arrival: "2018-11-3 08:52:00",
@@ -168,8 +168,8 @@ Attendance.create(day: "2018-11-01",
 # ユーザー3から2
 
 user = User.find(2)
-tester_one = User.find(3)
+#tester_one = User.find(3)
 tester_two = User.find(4)
 testers = []
-testers.push(tester_one, tester_two)
+testers.push(tester_two)
 testers.each {|t| t.approy(user)}

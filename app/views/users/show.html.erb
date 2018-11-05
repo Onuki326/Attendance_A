@@ -106,7 +106,11 @@
           <td></td>
           <td colspan="4"></td>
           <td colspan="4"></td>
-          <td colspan="4"></td>
+          <td colspan="4">
+            <% if @user.revise_applications.find_by(day: d)&.state = "申請中" %>
+              <%= @user.normal_applications.find_by(day: d)&.state %>
+            <% end %>
+          </td>  
         </tr>
       <% end %>
       </tbody>

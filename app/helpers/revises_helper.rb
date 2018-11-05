@@ -58,4 +58,9 @@ module RevisesHelper
   def sperior_users(speriors)
     speriors.map {|u| [u.name, u.id]}
   end
+  
+  # ユーザーの申請情報
+  def user_apploy_to_srerior(user)
+    user.revise_applications.where(sperior_id: @user)
+  end
 end

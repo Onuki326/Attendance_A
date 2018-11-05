@@ -24,18 +24,30 @@ class RevisesController < ApplicationController
       @sperior = User.find_by(id: @revise.sperior_id)
       if @revise.sperior_id.present? && !@user.requesting?(@sperior)
         @user.approy(@sperior)
+        @day = @revise.day.mday
         if @revise.yesterday == true
-          
+          @revise.arrival = @revise.arrival&.change(day: @day)
+          @revise.leave = @revise.leave&.change(day: @day)
           @revise.leave = @revise.leave.tomorrow
+        else
+          @revise.arrival = @revise.arrival&.change(day: @day)
+          @revise.leave = @revise.leave&.change(day: @day)
         end  
-        @revise.save
       elsif @revise.sperior_id.present? && @user.requesting?(@sperior)
         if @revise.yesterday == true
-          
+          @revise.arrival = @revise.arrival&.change(day: @day)
+          @revise.leave = @revise.leave&.change(day: @day)
           @revise.leave = @revise.leave.tomorrow
-        end  
-        @revise.save
+        else
+          @revise.arrival = @revise.arrival&.change(day: @day)
+          @revise.leave = @revise.leave&.change(day: @day)
+        end
       end
+      if @revise.save
+        @normal = @user.normal_applications.find_by(day: @revise.day)
+        @normal.state = "申請中"
+        @normal.save
+      end  
     end
     redirect_to @user
   end
@@ -47,13 +59,15 @@ class RevisesController < ApplicationController
       @users.push(i)
     end
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
+    @at = Normal.new
   end
   
     private
   
       def revise_params
-        params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, :leave, 
-                                                                      :sperior_id, :type, :yesterday, :remark])
+        params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, 
+                                                                      :leave, :sperior_id, :type, 
+                                                                      :yesterday, :remark, :state])
       end
 
 end
