@@ -86,8 +86,8 @@ class User < ApplicationRecord
   end
 
   # 申請取り消し
-  def unapproy(sperior)
-    active_relationships.find_by(requested_id: sperior.id).destroy
+  def unapproy(user,sperior)
+    user.active_relationships.find_by(requested_id: sperior.id).destroy
   end
   
   # 申請しているか確認(してたらtrue)

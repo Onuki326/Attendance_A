@@ -57,8 +57,8 @@
                       <td><%= revise_leave_min(revise)%></td>
                       <td><%= revise.remark %></td>
                       <td><%= t.select :state, Attendance.states.map{|k, v| [k, k]} %></td>
-                      <td></td>
-                      <td><%= button_to "確認", "#", class: "btn btn_default btn_key" %></td>
+                      <td><%= t.check_box :change_state, {multipule: true}, "true", "false" %></td>
+                      <td><%#= button_to "確認", "#", class: "btn btn_default btn_key" %></td>
                     </tr>
                   <% end %>
                 <% end %>

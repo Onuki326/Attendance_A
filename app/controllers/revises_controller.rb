@@ -68,7 +68,7 @@ class RevisesController < ApplicationController
       def revise_params
         params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, 
                                                                       :leave, :sperior_id, :type, 
-                                                                      :yesterday, :remark, :state])
+                                                                      :yesterday_state, :remark, :state])
       end
 
 end
