@@ -5,21 +5,21 @@ class NormalsController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @revises = []
-      binding.pry
     revise_params[:revise].each do |revise|
-      if not revise[:sperior_id].nil?
+      if not revise[:change_state].blank?
         @revises.push(revise)
       end
     end
     @revises.each do |revise_data|
-      if revise_data[:change_state] == "true"
-        @applicant = User.find_by(id: revise_data[:user_id])
-        @revise_attendance = Normal.find_by(day: revise_data[:day])
-        @revise_attendance.update(revise_data)
-        if @applicant.revise_applications.blank?
-          @applicant.active_relationships.find_by(requested_id: @user.id).destroy
-          #relation.destroy
-        end
+      @applicant = User.find_by(id: revise_data[:user_id])
+      @normal_attendance = Normal.find_by(day: revise_data[:day])
+      if @normal_attendance.update(revise_data)
+        revise = Revise.find_by(day: revise_data[:day], user_id: revise_data[:user_id])
+      #binding.pry
+        revise.destroy
+      end  
+      if @applicant.revise_applications.blank?
+        @applicant.active_relationships.find_by(requested_id: @user).destroy
       end
     end
     redirect_to @user
@@ -27,6 +27,6 @@ class NormalsController < ApplicationController
   
     private
       def revise_params
-        params.permit(revise: [:user_id, :sperior_id, :day, :arrival, :leave, :state, :change_state])
+        params.permit(revise: [:user_id, :sperior_id, :day, :arrival, :leave, :state, change_state: []])
       end  
 end
