@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
-  before_action :attendance_correct_user,     only: [:edit]
+  #before_action :attendance_correct_user,     only: [:edit]
   
   
   #def edit
@@ -20,9 +20,9 @@ class AttendancesController < ApplicationController
   #end
   
   def update
+    binding.pry
     @user = User.find(params[:user_id])
     @user.update_attributes(normal_params)
-    #binding.pry
     #@user.passive_relationships.find_by(requester_id: ).destroy ユーザーの申請を取り消す
     redirect_to @user
   end
@@ -31,7 +31,8 @@ class AttendancesController < ApplicationController
     
   end  
   
-  #def create
+  def create
+    binding.pry
   #  @user = User.find_by(id: params[:user_id])
   #  @revises = []
   #  @revises = revise_params
@@ -52,7 +53,7 @@ class AttendancesController < ApplicationController
   #    end
   #  end
   #  redirect_to @user
-  #end
+  end
   
     private
   
@@ -60,6 +61,9 @@ class AttendancesController < ApplicationController
         params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, :leave, :sperior_id, :type])
       end
       
+      def normal_params
+        params.permit([normal: [:day, :arrival, :leave, :sperior_id, :user_id]])
+      end
      
   # beforeアクション
   

@@ -59,7 +59,8 @@ class RevisesController < ApplicationController
       @users.push(i)
     end
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
-    @at = Normal.new
+    @attendance = Attendance.new(sperior_id: @user.id)
+    @normal = Revise.new
   end
   
     private

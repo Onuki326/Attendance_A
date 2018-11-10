@@ -68,22 +68,22 @@ Attendance.create(day: "2018-10-4",
                    type: "Normal"
                    )
 Attendance.create(day: "2018-11-01",
-                  arrival: "2018-11-1 08:49:00",
-                  leave: "2018-11-1 17:13:00",
+                  arrival: "2018-11-1 09:00:00",
+                  leave: "2018-11-1 17:0:00",
                   user_id: 4,
                   type: "Normal"
                   )    
                 
 Attendance.create(day: "2018-11-02",
-                  arrival: "2018-11-2 08:43:00",
-                  leave: "2018-11-2 23:13:00",
+                  arrival: "2018-11-2 09:00:00",
+                  leave: "2018-11-2 17:00:00",
                   user_id: 4,
                   type: "Normal"
                   )
                   
 Attendance.create(day: "2018-11-01",
-                   arrival: "2018-11-1 8:49:00",
-                   leave: "2018-11-1 13:45:00",
+                   arrival: "2018-11-1 8:30:00",
+                   leave: "2018-11-1 20:30:00",
                    user_id: 4,
                    type: "Revise",
                    sperior_id: "2",
@@ -91,8 +91,8 @@ Attendance.create(day: "2018-11-01",
                    )
                    
 Attendance.create(day: "2018-11-2",
-                   arrival: "2018-11-2 07:25:00",
-                   leave: "2018-11-2 17:13:00",
+                   arrival: "2018-11-2 06:30:00",
+                   leave: "2018-11-2 20:30:00",
                    user_id: 4,
                    type: "Revise",
                    sperior_id: "2",

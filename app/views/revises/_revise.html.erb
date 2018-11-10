@@ -3,7 +3,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>  
-      <%= form_for(@at, url: user_attendances_revise_path(date: @date), html: {method: "post"}, class: "form-control") do |f| %>
+      <%= form_for(@user, url: user_normal_path(@user), html: {method: "put"}, class: "form-control") do |f| %>
         <div class="modal-body">
           <% @users.each do |user| %>
             <h2 class="modal-title">【<%= user.name %>からの勤怠申請変更】</h2>
@@ -38,22 +38,29 @@
           </thead>
               <tbody>
                 <% user_apploy_to_srerior(user).each do |revise| %>
-                  <tr>
-                    <td><%= revise_day(revise) %></td>
-                    <td><%= revise_week(revise, @wd) %></td>
-                    <td><%= normal_arrival_hour(user, revise) %></td>
-                    <td><%= normal_arrival_min(user, revise) %></td>
-                    <td><%= normal_leave_hour(user, revise) %></td>
-                    <td><%= normal_leave_min(user, revise) %></td>
-                    <td><%= revise_arrival_hour(revise) %></td>
-                    <td><%= revise_arrival_min(revise) %></td>
-                    <td><%= revise_leave_hour(revise) %></td>
-                    <td><%= revise_leave_min(revise)%></td>
-                    <td><%= revise.remark %></td>
-                      <td><%= f.select :state, Attendance.states.map{|k, v| [k, k]} %></td>
-                    <td></td>
-                    <td><%= button_to "確認", "#", class: "btn btn_default btn_key" %></td>
-                  </tr>
+                  <%= fields_for "revise[]", @attendance do |t| %>
+                    <%= t.hidden_field :user_id, value: user.id %>
+                    <%= t.hidden_field :day, value: revise.day %>
+                    <%= t.hidden_field :arrival, value: revise.arrival %>
+                    <%= t.hidden_field :leave, value: revise.leave %>
+                    <%= t.hidden_field :sperior_id, value: revise.sperior_id %>
+                    <tr>
+                      <td><%= revise_day(revise) %></td>
+                      <td><%= revise_week(revise, @wd) %></td>
+                      <td><%= normal_arrival_hour(user, revise) %></td>
+                      <td><%= normal_arrival_min(user, revise) %></td>
+                      <td><%= normal_leave_hour(user, revise) %></td>
+                      <td><%= normal_leave_min(user, revise) %></td>
+                      <td><%= revise_arrival_hour(revise) %></td>
+                      <td><%= revise_arrival_min(revise) %></td>
+                      <td><%= revise_leave_hour(revise) %></td>
+                      <td><%= revise_leave_min(revise)%></td>
+                      <td><%= revise.remark %></td>
+                      <td><%= t.select :state, Attendance.states.map{|k, v| [k, k]} %></td>
+                      <td></td>
+                      <td><%= button_to "確認", "#", class: "btn btn_default btn_key" %></td>
+                    </tr>
+                  <% end %>
                 <% end %>
               </tbody>
             </table>
