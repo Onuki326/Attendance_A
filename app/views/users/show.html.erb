@@ -26,7 +26,7 @@
     
     <%= link_to "【勤怠変更申請のお知らせ】", modal_user_attendances_revise_path(user_id: @user), remote: true, class: "info" %>
     <div id="revise-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-    <% if @user.requesters %>
+    <% if @user.requesters.present? %>
       <p class="flash"><%= @user.requesters.count %>件のお知らせ</p><br>
     <% end %>
     <%= link_to "【残業申請のお知らせ】", "#", class: "info" %><br>
@@ -108,7 +108,7 @@
           <td colspan="4"></td>
           <td colspan="4">
             <% if @user.revise_applications.find_by(day: d)&.state = "申請中" %>
-              <%= @user.normal_applications.find_by(day: d)&.state %>
+              <%=  %>
             <% end %>
           </td>  
         </tr>

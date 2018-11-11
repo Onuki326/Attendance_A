@@ -99,12 +99,12 @@ Attendance.create(day: "2018-11-2",
                    remark: "早番の為、出勤時間変更"
                    )
                    
-#Attendance.create(day: "2018-11-05",
- #                  arrival: "2018-11-5 08:52:00",
-  #                 leave: "2018-11-5 22:53:00",
-   #                user_id: 2,
-    #               type: "Normal"
-     #              )
+Attendance.create(day: "2018-11-05",
+                   arrival: "2018-11-5 08:52:00",
+                   leave: "2018-11-5 22:53:00",
+                   user_id: 2,
+                   type: "Normal"
+                   )
                   
 # ユーザー3
                    

@@ -25,7 +25,7 @@ class RevisesController < ApplicationController
       if @revise.sperior_id.present? && !@user.requesting?(@sperior)
         @user.approy(@sperior)
         @day = @revise.day.mday
-        if @revise.yesterday == true
+        if @revise.yesterday_state == "true"
           @revise.arrival = @revise.arrival&.change(day: @day)
           @revise.leave = @revise.leave&.change(day: @day)
           @revise.leave = @revise.leave.tomorrow
@@ -34,7 +34,7 @@ class RevisesController < ApplicationController
           @revise.leave = @revise.leave&.change(day: @day)
         end  
       elsif @revise.sperior_id.present? && @user.requesting?(@sperior)
-        if @revise.yesterday == true
+        if @revise.yesterday_state == "true"
           @revise.arrival = @revise.arrival&.change(day: @day)
           @revise.leave = @revise.leave&.change(day: @day)
           @revise.leave = @revise.leave.tomorrow
@@ -58,9 +58,9 @@ class RevisesController < ApplicationController
     @user.requesters.each do |i|
       @users.push(i)
     end
-    @wd = ["日", "月", "火", "水", "木", "金", "土"]
+    #binding.pry
     @attendance = Attendance.new(sperior_id: @user.id)
-    @normal = Revise.new
+    @wd = ["日", "月", "火", "水", "木", "金", "土"]
   end
   
     private
@@ -68,7 +68,7 @@ class RevisesController < ApplicationController
       def revise_params
         params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, 
                                                                       :leave, :sperior_id, :type, 
-                                                                      :yesterday_state, :remark, :state])
+                                                                      :remark, :state, yesterday_state: []])
       end
 
 end

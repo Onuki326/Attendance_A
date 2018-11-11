@@ -12,12 +12,11 @@ class NormalsController < ApplicationController
     end
     @revises.each do |revise_data|
       @applicant = User.find_by(id: revise_data[:user_id])
-      @normal_attendance = Normal.find_by(day: revise_data[:day])
+      @normal_attendance = Normal.find_by(user_id: @applicant.id, day: revise_data[:day])
       if @normal_attendance.update(revise_data)
         revise = Revise.find_by(day: revise_data[:day], user_id: revise_data[:user_id])
-      #binding.pry
         revise.destroy
-      end  
+      end
       if @applicant.revise_applications.blank?
         @applicant.active_relationships.find_by(requested_id: @user).destroy
       end
