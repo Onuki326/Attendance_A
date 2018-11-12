@@ -64,51 +64,55 @@
         </tr>
       </thead>
       <tbody>
-      <% @d.each do |d| %>
+      <% @d.each do |day| %>
         <tr>
           <td><%= link_to "残業申請", "#", class: "btn btn_default btn_key"%></td>
-          <td><%= d.strftime("%m/%d") %></td>
-          <td><%= d.strftime("#{@wd[d.wday]}") %></td>
+          <td><%= day.strftime("%m/%d") %></td>
+          <td><%= day.strftime("#{@wd[day.wday]}") %></td>
           <td>
-            <% if not @user.normal_arrival(d).nil? %>
-            <%= arrival_hour(d) %>
+            <% if not @user.normal_arrival(day).nil? %>
+            <%= arrival_hour(day) %>
             <% end %>
           </td>
           <td>
-            <% if not @user.normal_arrival(d).nil? %>
-            <%= arrival_min(d) %>
+            <% if not @user.normal_arrival(day).nil? %>
+            <%= arrival_min(day) %>
             <% end %>
           </td>
           <td>
-            <% if d == Date.today && @user.normal_arrival(d).nil? %>
+            <% if day == Date.today && @user.normal_arrival(day).nil? %>
               <%= button_to "出社", user_attendances_path( 
                                     user_id: @user, day: @date), class: "btn btn_default btn_key" %>
             <% end %>
           </td>
           <td>
-            <% if not @user.normal_leave(d).nil?  %>
-            <%= leave_hour(d) %>
+            <% if not @user.normal_leave(day).nil?  %>
+            <%= leave_hour(day) %>
             <% end %>
           </td>
           <td>
-            <% if not @user.normal_leave(d).nil? %>
-            <%= leave_min(d) %>
+            <% if not @user.normal_leave(day).nil? %>
+            <%= leave_min(day) %>
             <% end %>
           </td>
           <td>
-            <% if d == Date.today && @user.normal_arrival(d).present? && @user.normal_leave(d).nil?  %>
+            <% if day == Date.today && @user.normal_arrival(day).present? && @user.normal_leave(day).nil?  %>
               <%= button_to "退社", user_attendances_path( 
                                     user_id: @user, day: @date), class: "btn btn_default btn_key" %>
             <% end %>
-          <td><%= duty_hour(d) %></td>
+          <td><%= duty_hour(day) %></td>
           <td></td>
           <td></td>
           <td></td>
           <td colspan="4"></td>
           <td colspan="4"></td>
           <td colspan="4">
-            <% if @user.revise_applications.find_by(day: d)&.state = "申請中" %>
-              <%=  %>
+            <% if @user.normal_applications.find_by(day: day)&.state == "申請中" %>
+              <p>勤怠編集申請中</p>
+            <% elsif @user.normal_applications.find_by(day: day)&.state == "承認"%>
+              <p>勤怠編集承認済</p>
+            <% elsif  @user.normal_applications.find_by(day: day)&.state == "否認" %>
+              <p>勤怠編集否認</p>
             <% end %>
           </td>  
         </tr>

@@ -99,4 +99,9 @@ module UsersHelper
     @basic_total_hour = sprintf("%.2f", @basic_total_hour)
   end
   
+  # 申請状況表示
+  def apploy_state(day)
+    @user.revise_applications.find_by(day: day)&.state
+  end  
+  
 end

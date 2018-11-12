@@ -47,7 +47,7 @@ class RevisesController < ApplicationController
         @normal = @user.normal_applications.find_by(day: @revise.day)
         @normal.state = "申請中"
         @normal.save
-      end  
+      end
     end
     redirect_to @user
   end

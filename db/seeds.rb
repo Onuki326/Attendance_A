@@ -71,14 +71,16 @@ Attendance.create(day: "2018-11-01",
                   arrival: "2018-11-1 09:00:00",
                   leave: "2018-11-1 17:0:00",
                   user_id: 4,
-                  type: "Normal"
+                  type: "Normal",
+                  state: "申請中"
                   )    
                 
 Attendance.create(day: "2018-11-02",
                   arrival: "2018-11-2 09:00:00",
                   leave: "2018-11-2 17:00:00",
                   user_id: 4,
-                  type: "Normal"
+                  type: "Normal",
+                  state: "申請中"
                   )
                   
 Attendance.create(day: "2018-11-01",
@@ -87,7 +89,8 @@ Attendance.create(day: "2018-11-01",
                    user_id: 4,
                    type: "Revise",
                    sperior_id: "2",
-                   remark: "体調不良の為、早退"
+                   remark: "体調不良の為、早退",
+                   state: "申請中"
                    )
                    
 Attendance.create(day: "2018-11-2",
@@ -96,7 +99,8 @@ Attendance.create(day: "2018-11-2",
                    user_id: 4,
                    type: "Revise",
                    sperior_id: "2",
-                   remark: "早番の為、出勤時間変更"
+                   remark: "早番の為、出勤時間変更",
+                   state: "申請中"
                    )
                    
 Attendance.create(day: "2018-11-05",
@@ -132,7 +136,8 @@ Attendance.create(day: "2018-11-01",
                   arrival: "2018-11-1 08:39:00",
                   leave: "2018-11-1 17:34:00",
                   user_id: 3,
-                  type: "Normal"  
+                  type: "Normal",
+                  state: "申請中"
                   )    
                 
 Attendance.create(day: "2018-11-01",
@@ -141,27 +146,28 @@ Attendance.create(day: "2018-11-01",
                   user_id: 3,
                   type: "Revise",
                   sperior_id: "2",
-                  remark: "間違えて退勤を切った為"
+                  remark: "間違えて退勤を切った為",
+                  state: "申請中"
                   )
                   
-#Attendance.create(day: "2018-11-03",
- #                  arrival: "2018-11-3 08:52:00",
-  #                 leave: "2018-11-3 18:21:00",
-   #                user_id: 3,
-    #               type: "Normal"
-     #              )
-#Attendance.create(day: "2018-11-04",
- #                  arrival: "2018-11-4 08:40:00",
-  #                 leave: "2018-11-4 17:11:00",
-   #                user_id: 3,
-    #               type: "Normal"
-     #              )
-#Attendance.create(day: "2018-11-05",
- #                  arrival: "2018-11-5 08:43:00",
-  #                 leave: "2018-11-5 17:04:00",
-   #                user_id: 3,
-    #               type: "Normal"
-     #              )
+Attendance.create(day: "2018-11-03",
+                   arrival: "2018-11-3 08:52:00",
+                   leave: "2018-11-3 18:21:00",
+                   user_id: 3,
+                   type: "Normal"
+                  )
+Attendance.create(day: "2018-11-04",
+                   arrival: "2018-11-4 08:40:00",
+                   leave: "2018-11-4 17:11:00",
+                   user_id: 3,
+                   type: "Normal"
+                   )
+Attendance.create(day: "2018-11-05",
+                   arrival: "2018-11-5 08:43:00",
+                   leave: "2018-11-5 17:04:00",
+                   user_id: 3,
+                   type: "Normal"
+                )
 
 # 申請テストデータ
 
