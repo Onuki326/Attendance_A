@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :users do
     resource :normal, only: [:update]
+    resource :overtime
     resource :attendances do
       resource :revise do
         member do
