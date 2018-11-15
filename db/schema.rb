@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181110034128) do
+ActiveRecord::Schema.define(version: 20181115130442) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "day"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20181110034128) do
     t.boolean "yesterday_state", default: false
     t.integer "state", default: 0
     t.boolean "change_state", default: false
+    t.datetime "finish_at"
     t.index ["user_id", "created_at"], name: "index_attendances_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end

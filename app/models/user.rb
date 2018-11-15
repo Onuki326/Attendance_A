@@ -19,7 +19,7 @@ class User < ApplicationRecord
   #勤怠残業申請
   has_many :overtime_applications, class_name: "Overtime",
                                    dependent: :destroy
-  accepts_nested_attributes_for :overtime_applications                                 
+  accepts_nested_attributes_for :overtime_applications                         
   #勤怠申請
   has_many :normal_applications, class_name: "Normal",
                                  dependent: :destroy

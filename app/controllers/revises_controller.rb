@@ -29,10 +29,11 @@ class RevisesController < ApplicationController
           @revise.arrival = @revise.arrival&.change(day: @day)
           @revise.leave = @revise.leave&.change(day: @day)
           @revise.leave = @revise.leave.tomorrow
+          binding.pry
         else
           @revise.arrival = @revise.arrival&.change(day: @day)
           @revise.leave = @revise.leave&.change(day: @day)
-        end  
+        end
       elsif @revise.sperior_id.present? && @user.requesting?(@sperior)
         if @revise.yesterday_state == "true"
           @revise.arrival = @revise.arrival&.change(day: @day)
