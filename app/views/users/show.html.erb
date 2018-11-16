@@ -26,10 +26,13 @@
     
     <%= link_to "【勤怠変更申請のお知らせ】", modal_user_attendances_revise_path(user_id: @user), remote: true, class: "info" %>
     <div id="revise-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-    <% if @user.requesters.present? %>
-      <p class="flash"><%= @user.requesters.count %>件のお知らせ</p><br>
+    <% if @revise_aploy.present? %>
+      <p class="flash"><%= @revise_aploy.count %>件のお知らせ</p>
     <% end %>
-    <%= link_to "【残業申請のお知らせ】", user_overtime_path(user_id: @user), remote: true, class: "info" %><br>
+    <%= link_to "【残業申請のお知らせ】", user_overtime_path(user_id: @user), remote: true, class: "info" %>
+    <% if @revise_aploy.present? %>
+      <p class="flash"><%= @overtime_aploy.count %>件のお知らせ</p>
+    <% end %>  
     <%= link_to "勤怠を編集", new_user_attendances_revise_path(@user, date: @date), class: "btn btn_default" %>
     <%= link_to "CSV出力", "#", class: "btn btn_default btn_key" %><br>
     <%= link_to "勤怠修正ログ(承認済み)", "#", class: "btn btn_default btn_key block_btn" %>

@@ -45,6 +45,17 @@ class UsersController < ApplicationController
       end
       # 上長ユーザーの取得
       @sperior_users = User.where(sperior: true)
+      # 編集申請お知らせ
+      @revise_aploy = []
+      @overtime_aploy = []
+      @user.requesters.each do |user|
+        if user.revise_applications.present?
+          @revise_aploy.push(user)
+        end
+        if user.overtime_applications.present?
+          @overtime_aploy.push(user)
+        end  
+      end  
     end
     
     # 在社時間と出勤日数
