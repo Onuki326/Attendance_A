@@ -1,4 +1,9 @@
 class OvertimesController < ApplicationController
+  
+  def show
+    @user = User.find(params[:user_id])
+  end  
+  
   def new
     @user = User.find(params[:user_id])
     @overtime = Overtime.new(user_id: @user.id, day: params[:day])
