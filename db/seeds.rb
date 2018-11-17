@@ -31,7 +31,8 @@ User.create(name: "金本 真弥",
             password: "222222",
             password_confirmation: "222222",
             admin: false,
-            sperior: false
+            sperior: false,
+            finishing_work_at: "18:00"
             )
             
 User.create(name: "吉田 一貴",
@@ -41,7 +42,9 @@ User.create(name: "吉田 一貴",
             password: "333333",
             password_confirmation: "333333",
             admin: false,
-            sperior: false)
+            sperior: false,
+            finishing_work_at: "18:00"
+            )
             
 # テストタイム
 

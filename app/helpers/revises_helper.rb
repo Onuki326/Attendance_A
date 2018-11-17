@@ -4,6 +4,7 @@ module RevisesHelper
   def revise_day(revise)
     revise.day.strftime("%m/%d")
   end
+  
   # reviseの曜日
   def revise_week(revise, weeks)
     week = revise.day.wday

@@ -2,7 +2,15 @@ class OvertimesController < ApplicationController
   
   def show
     @user = User.find(params[:user_id])
-  end  
+    @users = []
+    @user.requesters.each do |user|
+      if user.overtime_applications.present?
+        @users.push(user)
+      end
+    end
+    @overtime = Overtime.new(sperior_id: @user.id)
+    @wd = ["日", "月", "火", "水", "木", "金", "土"]
+  end
   
   def new
     @user = User.find(params[:user_id])
