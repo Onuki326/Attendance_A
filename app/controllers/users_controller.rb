@@ -52,10 +52,10 @@ class UsersController < ApplicationController
         if user.revise_applications.present?
           @revise_aploy.push(user)
         end
-        if user.overtime_applications.present?
+        if user.overtime_applications.where(state: "申請中").present?
           @overtime_aploy.push(user)
-        end  
-      end  
+        end
+      end
     end
     
     # 在社時間と出勤日数

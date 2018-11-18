@@ -106,6 +106,15 @@ Attendance.create(day: "2018-11-2",
                    state: "申請中"
                    )
                    
+Attendance.create(day: "2018-11-02",
+                   finish_at: "2018-11-2 23:35:00",
+                   user_id: 4,
+                   type: "Overtime",
+                   sperior_id: "2",
+                  remark: "タスク消化のため",
+                  state: "申請中"
+                  )
+                   
 Attendance.create(day: "2018-11-05",
                    arrival: "2018-11-5 08:52:00",
                    leave: "2018-11-5 22:53:00",

@@ -60,6 +60,7 @@ class RevisesController < ApplicationController
       @users.push(i)
     end
     #binding.pry
+    @applications = Revise.where(sperior_id: @user.id)
     @attendance = Attendance.new(sperior_id: @user.id)
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
   end

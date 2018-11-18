@@ -8,7 +8,8 @@ class OvertimesController < ApplicationController
         @users.push(user)
       end
     end
-    @overtime = Overtime.new(sperior_id: @user.id)
+    @applications = Overtime.where(sperior_id: @user.id)
+    @overtime = Attendance.new(sperior_id: @user.id)
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
   end
   
@@ -34,10 +35,18 @@ class OvertimesController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:user_id])
+    overtime_params[:overtime].each do |overtime|
+      if not overtime[:change_state].blank?
+        @overtime = Overtime.find_by(user_id: overtime[:user_id], day: overtime[:day])
+        @overtime.update(overtime)
+      end
+    end
+    redirect_to @user
   end
   
     private
       def overtime_params
-        params.require(:overtime).permit(:finish_at, :day, :sperior_id, :remark, :yesterday_state, :state)
+        params.permit(overtime: [:user_id, :finish_at, :day, :sperior_id, :remark, :yesterday_state, :state, change_state: []])
       end  
 end
