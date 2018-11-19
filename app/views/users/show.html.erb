@@ -30,7 +30,7 @@
       <p class="flash"><%= @revise_aploy.count %>件のお知らせ</p>
     <% end %>
     <%= link_to "【残業申請のお知らせ】", user_overtime_path(user_id: @user), remote: true, class: "info" %>
-    <% if @revise_aploy.present? %>
+    <% if @overtime_aploy.present? %>
       <p class="flash"><%= @overtime_aploy.count %>件のお知らせ</p>
     <% end %>
     <div id="overtime_check_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

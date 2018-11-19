@@ -8,7 +8,8 @@ class OvertimesController < ApplicationController
         @users.push(user)
       end
     end
-    @applications = Overtime.where(sperior_id: @user.id)
+    #binding.pry
+    @applications = Overtime.where(sperior_id: @user.id, state: "申請中")
     @overtime = Attendance.new(sperior_id: @user.id)
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
   end
