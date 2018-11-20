@@ -103,5 +103,21 @@ module UsersHelper
   def apploy_state(day)
     @user.revise_applications.find_by(day: day)&.state
   end  
+  # 残業申請stateを取得
+  def overtime_state(user, day)
+    user.overtime_applications.find_by(day: day)&.state
+  end
   
+  # 勤怠編集stateを取得
+  def normal_state(user, day)
+    user.normal_applications.find_by(day: day)&.state
+  end
+  
+  # 時間外時間取得
+  def overtime_at(user, date)
+    finish = user.overtime_applications.find_by(day: date).finish_at
+    standard = user.finishing_work_at.change(day: date.day)
+    overtime = (finish - standard)/3600
+    overtime = sprintf("%.2f", overtime)
+  end  
 end
