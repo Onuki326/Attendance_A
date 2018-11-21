@@ -18,17 +18,19 @@
             </tr>
           </thead>
           <tbody>
-            <%= f.hidden_field :state, value: "申請中" %>
-            <%= f.hidden_field :day, value: @overtime.day %>
-            <%= f.hidden_field :type, value: "Overtime" %>
-            <tr>
-              <td><%= @overtime.day %></td>
-              <td><%= @wd[@overtime.day.wday]%></td>
-              <td><%= f.time_field :finish_at %></td>
-              <td><%= f.check_box :yesterday_state, {}, true, false%></td>
-              <td><%= f.text_field :remark %></td>
-              <td><%= f.select :sperior_id, @sperior_users.map{|u| [u.name, u.id]}, include_blank: true %></td>
-            </tr>
+            <%= fields_for "overtime[]", @overtime do |t| %>
+              <%= t.hidden_field :state, value: "申請中" %>
+              <%= t.hidden_field :day, value: @overtime.day %>
+              <%= t.hidden_field :type, value: "Overtime" %>
+              <tr>
+                <td><%= @overtime.day %></td>
+                <td><%= @wd[@overtime.day.wday]%></td>
+                <td><%= t.time_field :finish_at %></td>
+                <td><%= t.check_box :yesterday_state, {}, true, false%></td>
+                <td><%= t.text_field :remark %></td>
+                <td><%= t.select :sperior_id, @sperior_users.map{|u| [u.name, u.id]}, include_blank: true %></td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
         <%= f.submit class: "btn btn_default btn_modal" %>

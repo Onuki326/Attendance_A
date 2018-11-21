@@ -27,23 +27,25 @@
                 </thead>
                 <tbody>
                   <% user_overtime_apploy_to_srerior(user).each do |overtime| %>
-                    <%= fields_for "overtime[]", @overtime do |t| %>
-                      <%= t.hidden_field :user_id, value: overtime.user_id %>
-                      <%= t.hidden_field :day, value: overtime.day %>
-                      <%= t.hidden_field :finish_at, value: overtime.finish_at %>
-                      <%= t.hidden_field :remark, value: overtime.remark %>
-                      <%= t.hidden_field :sperior_id, value: overtime.sperior_id %> 
-                      <tr>
-                        <td><%= overtime_day(overtime) %></td>
-                        <td><%= overtime_week(overtime, @wd) %></td>
-                        <td><%= overtime_finish_hour(overtime)%>:<%= overtime_finish_min(overtime) %></td>
-                        <td><%= overtime_finishing_hour(user) %></td>
-                        <td><%= overtime_work(user, overtime) %></td>
-                        <td><%= overtime.remark %></td>
-                        <td><%= t.select :state, Attendance.states.map{|k, v| [k, k] } %></td>
-                        <td><%= t.check_box :change_state, {multiple: true}, true, false %></td>
-                        <td></td>
-                      </tr>
+                    <% if overtime.state == "申請中" %>
+                      <%= fields_for "overtime[]", @overtime do |t| %>
+                        <%= t.hidden_field :user_id, value: overtime.user_id %>
+                        <%= t.hidden_field :day, value: overtime.day %>
+                        <%= t.hidden_field :finish_at, value: overtime.finish_at %>
+                        <%= t.hidden_field :remark, value: overtime.remark %>
+                        <%= t.hidden_field :sperior_id, value: overtime.sperior_id %> 
+                        <tr>
+                          <td><%= overtime_day(overtime) %></td>
+                          <td><%= overtime_week(overtime, @wd) %></td>
+                          <td><%= overtime_finish_hour(overtime)%>:<%= overtime_finish_min(overtime) %></td>
+                          <td><%= overtime_finishing_hour(user) %></td>
+                          <td><%= overtime_work(user, overtime) %></td>
+                          <td><%= overtime.remark %></td>
+                          <td><%= t.select :state, Attendance.states.map{|k, v| [k, k] } %></td>
+                          <td><%= t.check_box :change_state, {multiple: true}, true, false %></td>
+                          <td></td>
+                        </tr>
+                      <% end %>
                     <% end %>
                   <% end %>
                 </tbody>

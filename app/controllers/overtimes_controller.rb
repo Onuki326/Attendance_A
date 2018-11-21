@@ -16,14 +16,14 @@ class OvertimesController < ApplicationController
   
   def new
     @user = User.find(params[:user_id])
-    @overtime = Overtime.new(user_id: @user.id, day: params[:day])
+    @overtime = Attendance.new(user_id: @user.id, day: params[:day])
     @sperior_users = User.where(sperior: true)
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
   end
 
   def create
     @user = User.find(params[:user_id])
-    @overtime = @user.overtime_applications.new(overtime_params)
+    @overtime = @user.overtime_applications.new(overtime_params[:overtime].first)
     @day = @overtime.day.mday
     @overtime.finish_at = @overtime.finish_at.change(day: @day)
     if @overtime.sperior_id == present?
@@ -36,6 +36,7 @@ class OvertimesController < ApplicationController
   end
 
   def update
+    
     @user = User.find(params[:user_id])
     overtime_params[:overtime].each do |overtime|
       #binding.pry
@@ -51,5 +52,5 @@ class OvertimesController < ApplicationController
     private
       def overtime_params
         params.permit(overtime: [:user_id, :finish_at, :day, :sperior_id, :remark, :yesterday_state, :state, change_state: []])
-      end  
+      end
 end
