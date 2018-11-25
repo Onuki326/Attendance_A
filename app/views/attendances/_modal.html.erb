@@ -4,7 +4,7 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <%= form_for(@aploy, url: user_overtime_path(@user), html: {method: "put"}) do |f| %>
+      <%= form_for(@aploy, url: user_aploy_path(@user), html: {method: "put"}) do |f| %>
         <div class="modal-body">
           <% @users.each do |user| %>
             <% if not user.aploys.where(state: "申請中").blank? %>
@@ -23,6 +23,8 @@
                 <tbody>
                   <% user_aploy(user).each do |aploy| %>
                     <%= fields_for "aploy[]", @aploy do |t| %>
+                      <%= t.hidden_field :user_id, value: user.id %>
+                      <%= t.hidden_field :day, value: aploy.day %>
                       <tr>
                         <td><%= aploy_month(aploy) %></td>
                         <td><%= t.select :state, Attendance.states.map{|k, v| [k, k] } %></td>
@@ -35,6 +37,7 @@
               </table>
             <% end %>  
           <% end %>
+          <%= f.submit "変更を送信する",  class: "btn btn_default btn_modal" %>
         </div>
       <% end %>
     </div>  

@@ -38,7 +38,7 @@ class AttendancesController < ApplicationController
         @users.push(aploy_user)
       end
     end
-    binding.pry
+    #binding.pry
   end
   
   def create
