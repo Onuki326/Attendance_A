@@ -33,12 +33,12 @@ class AttendancesController < ApplicationController
     @aploys = Aploy.where(sperior_id: @user)
     @users = []
     @aploys.each do |user|
-      if @users.index(user.user_id).nil?
         aploy_user = User.find(user.user_id)
+      if not @users.include?(aploy_user)
         @users.push(aploy_user)
       end
     end
-    #binding.pry
+    binding.pry
   end
   
   def create
