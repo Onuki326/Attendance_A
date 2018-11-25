@@ -37,6 +37,9 @@ class User < ApplicationRecord
   has_many :requesting, through: :active_relationships, source: :requested
   has_many :requesters, through: :passive_relationships, source: :requester
   
+  # aployとの紐付け
+  has_many :aploys, dependent: :destroy
+  
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

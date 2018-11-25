@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181115130442) do
+ActiveRecord::Schema.define(version: 20181125084123) do
+
+  create_table "aploys", force: :cascade do |t|
+    t.string "day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "sperior_id"
+    t.boolean "change_state", default: false
+    t.integer "state", default: 0
+  end
 
   create_table "attendances", force: :cascade do |t|
     t.date "day"
@@ -26,6 +36,8 @@ ActiveRecord::Schema.define(version: 20181115130442) do
     t.integer "state", default: 0
     t.boolean "change_state", default: false
     t.datetime "finish_at"
+    t.string "year_month"
+    t.string "aploy_date"
     t.index ["user_id", "created_at"], name: "index_attendances_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end

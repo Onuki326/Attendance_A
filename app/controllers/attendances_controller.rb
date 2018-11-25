@@ -27,9 +27,19 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
   
-  def approval
-    
-  end  
+  def modal
+    @user = User.find(params[:user_id])
+    @aploy = Aploy.new
+    @aploys = Aploy.where(sperior_id: @user)
+    @users = []
+    @aploys.each do |user|
+      if @users.index(user.user_id).nil?
+        aploy_user = User.find(user.user_id)
+        @users.push(aploy_user)
+      end
+    end
+    #binding.pry
+  end
   
   def create
     binding.pry
@@ -57,10 +67,6 @@ class AttendancesController < ApplicationController
   
     private
   
-      def revise_params
-        params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, :leave, :sperior_id, :type])
-      end
-      
       def normal_params
         params.permit([normal: [:day, :arrival, :leave, :sperior_id, :user_id]])
       end

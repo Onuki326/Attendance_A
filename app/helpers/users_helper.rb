@@ -119,5 +119,12 @@ module UsersHelper
     standard = user.finishing_work_at.change(day: date.day)
     overtime = (finish - standard)/3600
     overtime = sprintf("%.2f", overtime)
-  end  
+  end
+  
+  def aproy_day(day)
+    day_year = day.year
+    day_month = day.month
+    aploy_date = "#{day_year}-#{day_month}"
+  end
+    
 end

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-   
+    @aploy = Aploy.new
     # 日付の取得、変更
     if params[:date]
       @date = params[:date]
@@ -45,17 +45,24 @@ class UsersController < ApplicationController
       end
       # 上長ユーザーの取得
       @sperior_users = User.where(sperior: true)
-      # 編集申請お知らせ
+      # 編集申請お知らせ(revise,overtime)
       @revise_aploy = []
       @overtime_aploy = []
       @user.requesters.each do |user|
         if user.revise_applications.present?
-          @revise_aploy.push(user)
+          user.revise_applications.each do |revise|
+            @revise_aploy.push(revise)
+          end
         end
         if user.overtime_applications.where(state: "申請中").present?
-          @overtime_aploy.push(user)
+          user.overtime_applications.each do |overtime|
+            @overtime_aploy.push(overtime)
+          end
         end
       end
+      # 編集申請お知らせ(aploy)
+      @aploys = Aploy.where(sperior_id: @user.id)
+      #binding.pry
     end
     
     # 在社時間と出勤日数
@@ -70,9 +77,11 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    
   end
   
   def update
+    binding.pry
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "アカウントを更新しました"

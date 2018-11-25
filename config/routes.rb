@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :users do
     resource :normal, only: [:update]
     resource :overtime
+    resource :aploy, only: [:create]
     resource :attendances do
+      member do 
+        get :modal
+      end  
       resource :revise do
         member do
           get :modal
