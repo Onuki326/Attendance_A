@@ -41,7 +41,6 @@ class OvertimesController < ApplicationController
     overtime_params[:overtime].each do |overtime|
       #binding.pry
       if overtime[:change_state].present? && overtime[:state].in?(["申請中","承認","否認"])
-      #if overtime[:change_state].present? && overtime[:state] == "なし"
         @overtime = Overtime.find_by(user_id: overtime[:user_id], day: overtime[:day])
         @overtime.update(overtime)
       end

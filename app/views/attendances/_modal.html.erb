@@ -22,15 +22,17 @@
                 </thead>
                 <tbody>
                   <% user_aploy(user).each do |aploy| %>
-                    <%= fields_for "aploy[]", @aploy do |t| %>
-                      <%= t.hidden_field :user_id, value: user.id %>
-                      <%= t.hidden_field :day, value: aploy.day %>
-                      <tr>
-                        <td><%= aploy_month(aploy) %></td>
-                        <td><%= t.select :state, Attendance.states.map{|k, v| [k, k] } %></td>
-                        <td><%= t.check_box :change_state, {multiple: true}, true, false %></td>
-                        <td><button>確認</button></td>
-                      </tr>
+                    <% if aploy.state == "申請中" %>
+                      <%= fields_for "aploy[]", @aploy do |t| %>
+                        <%= t.hidden_field :user_id, value: user.id %>
+                        <%= t.hidden_field :day, value: aploy.day %>
+                        <tr>
+                          <td><%= aploy_month(aploy) %></td>
+                          <td><%= t.select :state, Attendance.states.map{|k, v| [k, k] } %></td>
+                          <td><%= t.check_box :change_state, {multiple: true}, true, false %></td>
+                          <td><button>確認</button></td>
+                        </tr>
+                      <% end %>  
                     <% end %>  
                   <% end %>      
                 </tbody>
