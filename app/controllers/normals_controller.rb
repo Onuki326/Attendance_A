@@ -1,9 +1,7 @@
 class NormalsController < ApplicationController
   
-  #skip_before_action :verify_authenticity_token
   
   def update
-    binding.pry
     @user = User.find(params[:user_id])
     @revises = []
     revise_params[:revise].each do |revise|

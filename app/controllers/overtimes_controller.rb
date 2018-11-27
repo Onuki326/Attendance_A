@@ -8,7 +8,6 @@ class OvertimesController < ApplicationController
         @users.push(user)
       end
     end
-    #binding.pry
     @applications = Overtime.where(sperior_id: @user.id, state: "申請中")
     @overtime = Attendance.new(sperior_id: @user.id)
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
@@ -39,7 +38,6 @@ class OvertimesController < ApplicationController
     
     @user = User.find(params[:user_id])
     overtime_params[:overtime].each do |overtime|
-      #binding.pry
       if overtime[:change_state].present? && overtime[:state].in?(["申請中","承認","否認"])
         @overtime = Overtime.find_by(user_id: overtime[:user_id], day: overtime[:day])
         @overtime.update(overtime)

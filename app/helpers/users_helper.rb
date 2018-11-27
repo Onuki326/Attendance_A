@@ -121,10 +121,26 @@ module UsersHelper
     overtime = sprintf("%.2f", overtime)
   end
   
+  # 申請年月の取得
   def aproy_day(day)
     day_year = day.year
     day_month = day.month
     aploy_date = "#{day_year}-#{day_month}"
   end
-    
+  
+  # 上長からの申請結果の表示
+  def aploy_to_user(day, user)
+    aploy_date = aproy_day(day)
+    user_aploy = user.aploys.find_by(day: aploy_date)
+    if not user_aploy.nil?
+      sperior = User.find_by(id: user_aploy.sperior_id).name
+      if user_aploy.state == "申請中"
+        "上長#{sperior}から承認待ち"
+      elsif user_aploy.state == "承認"
+        "上長#{sperior}から承認済み"
+      elsif user_aploy.state == "否認"
+        "上長#{sperior}から否認"
+      end
+    end  
+  end  
 end
