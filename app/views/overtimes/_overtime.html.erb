@@ -43,7 +43,8 @@
                           <td><%= overtime.remark %></td>
                           <td><%= t.select :state, Attendance.states.map{|k, v| [k, k] } %></td>
                           <td><%= t.check_box :change_state, {multiple: true}, true, false %></td>
-                          <td></td>
+                          <td><%= link_to "確認", {controller: "attendances", action: "check", user_id: user.id, day: overtime.day}, 
+                                                                                            class: "btn btn_default btn_modal" %></td>
                         </tr>
                       <% end %>
                     <% end %>

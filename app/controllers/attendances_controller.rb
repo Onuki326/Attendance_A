@@ -34,6 +34,28 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
   
+  def check
+    @user = User.find(params[:user_id])
+    @date = params[:day].to_date
+    @hours = []
+    @hour = []
+    @day = []
+    @beginning_date = @date.beginning_of_month
+    @end_date = @date.end_of_month
+    (@beginning_date..@end_date).each do |date|
+      @day.push(date)
+      if @user.attendances.find_by(day: date)
+        @hour.push(@user.attendances.find_by(day: date))
+      end
+      if @user.normal_arrival(date).present? && @user.normal_leave(date).present?
+      @duty_hour = ((@user.normal_leave(date)) - (@user.normal_arrival(date))) / 3600
+      @duty_hour = sprintf("%.2f", @duty_hour)
+      @hours.push(@duty_hour.to_f)
+    end
+    end
+    @wd = ["日", "月", "火", "水", "木", "金", "土"]
+  end  
+  
     private
   
       def normal_params

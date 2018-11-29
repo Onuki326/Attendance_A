@@ -1,53 +1,24 @@
-<% if logged_in? %>
-  <% provide(:title, @user.name) %>
+<% provide(:title, @user.name) %>
   <div class="row">
     <table class="table table-bordered">
       <tr>
         <td>
-          <%= link_to "←", user_path(date: @date.prev_month), class: "btn btn_default btn_key" %>
           <p><%= @date.strftime("%Y年%m月") %>　時間管理表</p>
-          <%= link_to "→", user_path(date: @date.next_month), class: "btn btn_default btn_key" %>
         </td>
         <td width="250px">指定勤務開始時間 <%= starting_hour %><br>
                           指定勤務終了時間 <%= finishing_hour %></td>
         <td colspan="3">基本勤務時間 <%= basic_working_hour %></td>
-        <td width="150px">初日<%= @fd.strftime("%m/%d") %></td>
+        <td width="150px">初日<%= @beginning_date.strftime("%m/%d") %></td>
       </tr>
       <tr>
         <td>所属　<%= @user.affiliation %></td>
         <td width="250px">氏名　<%= @user.name %></td>
         <td width="60px">コード</td>
         <td width="10px"><%= @user.employee_number %></td>
-        <td width="180px">出勤日数 <%= @hours.length %>日</td>
-        <td width="150px">締め<%= @ed.strftime("%m/%d") %></td>
+        <td width="180px">出勤日数 <%= @hour.length %>日</td>
+        <td width="150px">締め<%= @end_date.strftime("%m/%d") %></td>
       </tr>
     </table>
-    <div class="link_wrapper">
-      <%= link_to "【所属長承認のお知らせ】", modal_user_attendances_path(@user), remote: true, class: "info" %><br>
-      <div id="aploy_modal" class="modal fade" tabindex="-1" role="daualog" aria-hudden="true"></div>
-      <% if @aploys.present? %>
-        <p class="flash"><%= @aploys.count %>件のお知らせ</p>
-      <% end %>
-    </div>
-      <div class="link_wrapper">
-      <%= link_to "【勤怠変更申請のお知らせ】", modal_user_attendances_revise_path(user_id: @user), remote: true, class: "info" %>
-      <div id="revise-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-      <% if @revise_aploy.present? %>
-        <p class="flash"><%= @revise_aploy.count %>件のお知らせ</p>
-      <% end %>
-    </div>
-    <div class="link_wrapper">
-      <%= link_to "【残業申請のお知らせ】", user_overtime_path(user_id: @user), remote: true, class: "info" %>
-      <% if @overtime_aploy.present? %>
-        <p class="flash"><%= @overtime_aploy.count %>件のお知らせ</p>
-      <% end %>
-    </div>
-    <div class="link_wrapper">
-      <div id="overtime_check_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-      <%= link_to "勤怠を編集", new_user_attendances_revise_path(@user, date: @date), class: "btn btn_default" %>
-      <%= link_to "CSV出力", "#", class: "btn btn_default btn_key" %><br>
-      <%= link_to "勤怠修正ログ(承認済み)", "#", class: "btn btn_default btn_key block_btn" %>
-    </div>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -79,10 +50,8 @@
         </tr>
       </thead>
       <tbody>
-      <% @d.each do |date| %>
+      <% @day.each do |date| %>
         <tr>
-          <td><%= link_to "残業申請", new_user_overtime_path(user_id: @user, day: date), remote: true, class: "btn btn_default btn_key"%></td>
-          <div id="overtime-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" ></div>
           <td><%= date.strftime("%m/%d") %></td>
           <td><%= date.strftime("#{@wd[date.wday]}") %></td>
           <td>
@@ -96,10 +65,6 @@
             <% end %>
           </td>
           <td>
-            <% if date == Date.today && @user.normal_arrival(date).nil? %>
-              <%= button_to "出社", user_attendances_path( 
-                                    user_id: @user, day: @date), class: "btn btn_default btn_key" %>
-            <% end %>
           </td>
           <td>
             <% if not @user.normal_leave(date).nil?  %>
@@ -112,10 +77,6 @@
             <% end %>
           </td>
           <td>
-            <% if date == Date.today && @user.normal_arrival(date).present? && @user.normal_leave(date).nil?  %>
-              <%= button_to "退社", user_attendances_path( 
-                                    user_id: @user, day: @date), class: "btn btn_default btn_key" %>
-            <% end %>
           <td><%= duty_hour(date) %></td>
           <td></td>
           <td></td>
@@ -160,21 +121,10 @@
           <td colspan="4"></td>
           <td colspan="4">
             <p>
-              所属長承認
-              <%= aploy_to_user(@date, @user) %>
+              所属長承認 <%= aploy_to_user(@date, @user) %>
             </p>
-            <%= form_for(@aploy, url: user_aploy_path(@user), html: {method: "post"}) do |f| %>
-              <%= f.hidden_field :user_id, value: @user.id %>
-              <%= f.hidden_field :day, value: aproy_day(@date) %>
-              <%= f.hidden_field :state, value: "申請中" %>
-              <%= f.select :sperior_id, @sperior_users.map{|t| [t.name, t.id]}, include_blank: true %>
-              <%= f.submit "申請", class: "btn btn_default btn_key" %>
-            <% end %>
           </td>
         </tr>
       </tfoot>
     </table>
   </div>
-<% else %>
-  <% render "static_pages/home" %>
-<% end %>

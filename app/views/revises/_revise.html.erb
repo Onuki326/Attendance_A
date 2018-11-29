@@ -59,7 +59,8 @@
                         <td><%= revise.remark %></td>
                         <td><%= t.select :state, Attendance.states.map{|k, v| [k, k]} %></td>
                         <td><%= t.check_box :change_state, {multiple: true}, true, false %></td>
-                        <td><%#= button_to "確認", "#", class: "btn btn_default btn_key" %></td>
+                        <td><%= link_to "確認", {controller: "attendances", action: "check", user_id: user.id, day: revise.day}, 
+                                                                                            class: "btn btn_default btn_modal" %></td>
                       </tr>
                     <% end %>
                   <% end %>
