@@ -30,17 +30,24 @@ class OvertimesController < ApplicationController
         @overtime.finish_at = @overtime.finish_at.tomorrow
       end
     end
+    if @user.active_relationships.blank? && @overtime.present?
+      @user.approy(User.find_by(id: @overtime.sperior_id))
+    end  
     @overtime.save
     redirect_to @user
   end
 
   def update
-    
     @user = User.find(params[:user_id])
     overtime_params[:overtime].each do |overtime|
+    #binding.pry
+      @appliant = User.find_by(id: overtime[:user_id])
       if overtime[:change_state].present? && overtime[:state].in?(["申請中","承認","否認"])
         @overtime = Overtime.find_by(user_id: overtime[:user_id], day: overtime[:day])
         @overtime.update(overtime)
+      end
+      if @appliant.revise_applications.where(state: "申請中").blank? && @appliant.overtime_applications.where(state: "申請中").blank?
+        @appliant.active_relationships.find_by(requested_id: @user).destroy
       end
     end
     redirect_to @user

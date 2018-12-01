@@ -10,8 +10,8 @@ class NormalsController < ApplicationController
       end
     end
     @revises.each do |revise_data|
-      @applicant = User.find_by(id: revise_data[:user_id])
-      @normal_attendance = Normal.find_by(user_id: @applicant.id, day: revise_data[:day])
+      @appliant = User.find_by(id: revise_data[:user_id])
+      @normal_attendance = Normal.find_by(user_id: @appliant.id, day: revise_data[:day])
       if revise_data[:state] == "承認"
         @normal_attendance.update(revise_data)
         revise = Revise.find_by(day: revise_data[:day], user_id: revise_data[:user_id])
@@ -21,9 +21,9 @@ class NormalsController < ApplicationController
         revise = Revise.find_by(day: revise_data[:day], user_id: revise_data[:user_id])
         revise.destroy
       end
-      if @applicant.revise_applications.blank?
-        @applicant.active_relationships.find_by(requested_id: @user).destroy
-      end
+      #if @appliant.revise_applications.where(state: "申請中").blank? && @appliant.overtime_applications.where(state: "申請中").blank?
+      #  @appliant.active_relationships.find_by(requested_id: @user).destroy
+      #end
     end
     redirect_to @user
   end

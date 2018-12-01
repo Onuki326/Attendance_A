@@ -3,13 +3,14 @@
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
-      </button>  
+      </button>
         <%= form_for(@attendance, url: user_normal_path(@user), html: {method: "put"}, class: "form-control") do |f| %>
           <div class="modal-body">
             <% @users.each do |user| %>
-              <h2 class="modal-title">【<%= user.name %>からの勤怠申請変更】</h2>
-              <table class="table table-bordered table-striped">
-                <thead>
+              <% if user.revise_applications.present? %>
+                <h2 class="modal-title">【<%= user.name %>からの勤怠申請変更】</h2>
+                <table class="table table-bordered table-striped">
+                  <thead>
             <tr>
               <td rowspan="3">日付</td>
               <td rowspan="3">曜日</td>
@@ -37,35 +38,36 @@
               <td>分</td>
             </tr>
           </thead>
-                <tbody>
-                  <% user_apploy_to_srerior(user).each do |revise| %>
-                    <%= fields_for "revise[]", @attendance do |t| %>
-                      <%= t.hidden_field :user_id, value: user.id %>
-                      <%= t.hidden_field :day, value: revise.day %>
-                      <%= t.hidden_field :arrival, value: revise.arrival %>
-                      <%= t.hidden_field :leave, value: revise.leave %>
-                      <%= t.hidden_field :sperior_id, value: revise.sperior_id %>
-                      <tr>
-                        <td><%= revise_day(revise) %></td>
-                        <td><%= revise_week(revise, @wd) %></td>
-                        <td><%= normal_arrival_hour(user, revise) %></td>
-                        <td><%= normal_arrival_min(user, revise) %></td>
-                        <td><%= normal_leave_hour(user, revise) %></td>
-                        <td><%= normal_leave_min(user, revise) %></td>
-                        <td><%= revise_arrival_hour(revise) %></td>
-                        <td><%= revise_arrival_min(revise) %></td>
-                        <td><%= revise_leave_hour(revise) %></td>
-                        <td><%= revise_leave_min(revise)%></td>
-                        <td><%= revise.remark %></td>
-                        <td><%= t.select :state, Attendance.states.map{|k, v| [k, k]} %></td>
-                        <td><%= t.check_box :change_state, {multiple: true}, true, false %></td>
-                        <td><%= link_to "確認", {controller: "attendances", action: "check", user_id: user.id, day: revise.day}, 
-                                                                                            class: "btn btn_default btn_modal" %></td>
-                      </tr>
+                  <tbody>
+                    <% user_apploy_to_srerior(user).each do |revise| %>
+                      <%= fields_for "revise[]", @attendance do |t| %>
+                        <%= t.hidden_field :user_id, value: user.id %>
+                        <%= t.hidden_field :day, value: revise.day %>
+                        <%= t.hidden_field :arrival, value: revise.arrival %>
+                        <%= t.hidden_field :leave, value: revise.leave %>
+                        <%= t.hidden_field :sperior_id, value: revise.sperior_id %>
+                        <tr>
+                          <td><%= revise_day(revise) %></td>
+                          <td><%= revise_week(revise, @wd) %></td>
+                          <td><%= normal_arrival_hour(user, revise) %></td>
+                          <td><%= normal_arrival_min(user, revise) %></td>
+                          <td><%= normal_leave_hour(user, revise) %></td>
+                          <td><%= normal_leave_min(user, revise) %></td>
+                          <td><%= revise_arrival_hour(revise) %></td>
+                          <td><%= revise_arrival_min(revise) %></td>
+                          <td><%= revise_leave_hour(revise) %></td>
+                          <td><%= revise_leave_min(revise)%></td>
+                          <td><%= revise.remark %></td>
+                          <td><%= t.select :state, Attendance.states.map{|k, v| [k, k]} %></td>
+                          <td><%= t.check_box :change_state, {multiple: true}, true, false %></td>
+                          <td><%= link_to "確認", {controller: "attendances", action: "check", user_id: user.id, day: revise.day}, 
+                                                                                              class: "btn btn_default btn_modal" %></td>
+                        </tr>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              <% end %>  
             <% end %>
             <%= f.submit "変更を送信する",  class: "btn btn_default btn_modal" %>
           </div>

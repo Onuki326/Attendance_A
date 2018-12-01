@@ -56,7 +56,9 @@ class UsersController < ApplicationController
         end
         if user.overtime_applications.where(state: "申請中").present?
           user.overtime_applications.each do |overtime|
-            @overtime_aploy.push(overtime)
+            if overtime.state == "申請中"
+              @overtime_aploy.push(overtime)
+            end
           end
         end
       end

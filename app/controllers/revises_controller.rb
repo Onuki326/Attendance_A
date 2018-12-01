@@ -29,7 +29,6 @@ class RevisesController < ApplicationController
           @revise.arrival = @revise.arrival&.change(day: @day)
           @revise.leave = @revise.leave&.change(day: @day)
           @revise.leave = @revise.leave.tomorrow
-          binding.pry
         else
           @revise.arrival = @revise.arrival&.change(day: @day)
           @revise.leave = @revise.leave&.change(day: @day)
@@ -43,6 +42,10 @@ class RevisesController < ApplicationController
           @revise.arrival = @revise.arrival&.change(day: @day)
           @revise.leave = @revise.leave&.change(day: @day)
         end
+      end
+        #binding.pry
+      if @user.active_relationships.blank? && @sperior.present?
+        @user.approy(User.find_by(id: @sperior.id))
       end
       if @revise.save
         @normal = @user.normal_applications.find_by(day: @revise.day)

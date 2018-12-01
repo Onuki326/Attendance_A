@@ -1,4 +1,4 @@
-<% if not @aploys.nil? %>
+<% if not @aploys.blank? %>
   <div class="modal-dialog">
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -30,10 +30,10 @@
                           <td><%= aploy_month(aploy) %></td>
                           <td><%= t.select :state, Attendance.states.map{|k, v| [k, k] } %></td>
                           <td><%= t.check_box :change_state, {multiple: true}, true, false %></td>
-                          <td><%= link_to "確認", {controller: "attendances", action: "check", user_id: user.id, day: aploy.day}, 
+                          <td><%= link_to "確認", {controller: "attendances", action: "check", user_id: user.id, day: "#{aploy.day}-1"}, 
                                                                                             class: "btn btn_default btn_modal" %></td>
                         </tr>
-                      <% end %>  
+                      <% end %>
                     <% end %>  
                   <% end %>      
                 </tbody>

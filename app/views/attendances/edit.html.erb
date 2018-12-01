@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <%= form_for(@user, url: user_attendances_path(date: @date), html: {method: "post"}, class: "form-control") do |f| %>
-    <table class="table table-bordered table-striped">
+  <%= form_for(@user, url: user_attendances_path(date: @date), html: {method: "post"}) do |f| %>
+    <table class="">
       <thead>
         <tr>
           <td>日付</td>
@@ -42,8 +42,8 @@
       </tbody>
     </table>
       <div class="form-btn-wrapper">
-        <%= link_to "キャンセル", @user, class: "btn btn_default btn_key" %>
-        <%= f.submit "編集を保存する", class: "btn btn_default btn_key" %>
+        <%= link_to "キャンセル", @user, class: "btn btn-primary test", id: "test" %>
+        <%= f.submit "編集を保存する", class: "test", id: "test" %>
       </div>
   <% end %>
 </div>
