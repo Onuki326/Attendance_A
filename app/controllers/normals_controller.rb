@@ -21,9 +21,9 @@ class NormalsController < ApplicationController
         revise = Revise.find_by(day: revise_data[:day], user_id: revise_data[:user_id])
         revise.destroy
       end
-      #if @appliant.revise_applications.where(state: "申請中").blank? && @appliant.overtime_applications.where(state: "申請中").blank?
-      #  @appliant.active_relationships.find_by(requested_id: @user).destroy
-      #end
+      if @appliant.revise_applications.where(state: "申請中").blank? && @appliant.overtime_applications.where(state: "申請中").blank?
+        @appliant.active_relationships.find_by(requested_id: @user).destroy
+      end
     end
     redirect_to @user
   end

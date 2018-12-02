@@ -23,7 +23,7 @@
               <%= f.fields_for :revise_applications, @user.normal_applications.find_by(day: d) do |t| %>
                 <%= t.hidden_field :user_id, value: @user.id %> 
                 <%= t.hidden_field :day, value: d %>
-                <%= t.hidden_field :atate, value: "申請中" %>
+                <%= t.hidden_field :state, value: "申請中" %>
                 <%= t.time_field :arrival, class: "form-control" %>
             </td>
             <td colspan="3">
@@ -43,8 +43,8 @@
       </tbody>
     </table>
       <div class="form-btn-wrapper">
-        <%= link_to "キャンセル", @user, {:class => "btn btn_default btn_key" } %>
-        <%= f.submit "編集を保存する", class: "btn btn_default btn_key" %>
+        <%= link_to "キャンセル", @user, class: "btn btn_default btn_key btn_edit" %>
+        <%= f.submit "編集を保存する", class: "btn btn_default btn_key btn_edit" %>
       </div>
   <% end %>
 </div>

@@ -153,7 +153,7 @@ input {
 }
 
 .form-btn-wrapper{
-  width: 75%;
+  width: 40%;
   margin: auto;
   text-align: center;
 }
@@ -167,6 +167,11 @@ input {
   width: auto;
   margin-bottom: 15px;
   margin: 0, auto;
+}
+
+.btn_edit {
+  width: 50%;
+  float: left;
 }
 
 .info {

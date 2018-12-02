@@ -43,10 +43,6 @@ class RevisesController < ApplicationController
           @revise.leave = @revise.leave&.change(day: @day)
         end
       end
-        #binding.pry
-      if @user.active_relationships.blank? && @sperior.present?
-        @user.approy(User.find_by(id: @sperior.id))
-      end
       if @revise.save
         @normal = @user.normal_applications.find_by(day: @revise.day)
         @normal.state = "申請中"
@@ -70,9 +66,15 @@ class RevisesController < ApplicationController
     private
   
       def revise_params
-        params.require(:user).permit(revise_applications_attributes: [:day, :user_id, :arrival, 
-                                                                      :leave, :sperior_id, :type, 
-                                                                      :remark, :state, yesterday_state: []])
+        params.require(:user).permit(revise_applications_attributes: [:day, 
+                                                                      :user_id, 
+                                                                      :arrival, 
+                                                                      :leave, 
+                                                                      :sperior_id, 
+                                                                      :type, 
+                                                                      :remark, 
+                                                                      :state, 
+                                                                      yesterday_state: []])
       end
 
 end

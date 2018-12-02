@@ -70,16 +70,16 @@ Attendance.create(day: "2018-10-4",
                    user_id: 4,
                    type: "Normal"
                    )
-Attendance.create(day: "2018-11-01",
-                  arrival: "2018-11-1 09:00:00",
-                  leave: "2018-11-1 17:0:00",
+Attendance.create(day: "2018-12-01",
+                  arrival: "2018-12-1 09:00:00",
+                  leave: "2018-12-1 17:0:00",
                   user_id: 4,
                   type: "Normal",
                   )    
                 
-Attendance.create(day: "2018-11-02",
-                  arrival: "2018-11-2 09:00:00",
-                  leave: "2018-11-2 17:00:00",
+Attendance.create(day: "2018-12-02",
+                  arrival: "2018-12-2 09:00:00",
+                  leave: "2018-12-2 17:00:00",
                   user_id: 4,
                   type: "Normal",
                   )
@@ -113,9 +113,9 @@ Attendance.create(day: "2018-11-02",
 #                  state: "申請中"
 #                  )
                    
-Attendance.create(day: "2018-11-05",
-                   arrival: "2018-11-5 08:52:00",
-                   leave: "2018-11-5 22:53:00",
+Attendance.create(day: "2018-12-05",
+                   arrival: "2018-12-5 08:52:00",
+                   leave: "2018-12-5 22:53:00",
                    user_id: 2,
                    type: "Normal"
                    )
@@ -142,9 +142,9 @@ Attendance.create(day: "2018-10-4",
                    user_id: 3,
                    type: "Normal"
                    )
-Attendance.create(day: "2018-11-01",
-                  arrival: "2018-11-1 08:39:00",
-                  leave: "2018-11-1 17:34:00",
+Attendance.create(day: "2018-12-01",
+                  arrival: "2018-12-1 08:39:00",
+                  leave: "2018-12-1 17:34:00",
                   user_id: 3,
                   type: "Normal",
                   )    
@@ -159,9 +159,9 @@ Attendance.create(day: "2018-11-01",
 #                  state: "申請中"
 #                  )
                   
-Attendance.create(day: "2018-11-03",
-                   arrival: "2018-11-3 08:52:00",
-                   leave: "2018-11-3 18:21:00",
+Attendance.create(day: "2018-12-03",
+                   arrival: "2018-12-3 08:52:00",
+                   leave: "2018-12-3 18:21:00",
                    user_id: 3,
                    type: "Normal"
                   )
@@ -175,15 +175,15 @@ Attendance.create(day: "2018-11-03",
 #                  state: "申請中"
 #                  )
                   
-Attendance.create(day: "2018-11-04",
-                   arrival: "2018-11-4 08:40:00",
-                   leave: "2018-11-4 17:11:00",
+Attendance.create(day: "2018-12-04",
+                   arrival: "2018-12-4 08:40:00",
+                   leave: "2018-12-4 17:11:00",
                    user_id: 3,
                    type: "Normal"
                    )
-Attendance.create(day: "2018-11-05",
-                   arrival: "2018-11-5 08:43:00",
-                   leave: "2018-11-5 17:04:00",
+Attendance.create(day: "2018-12-05",
+                   arrival: "2018-12-5 08:43:00",
+                   leave: "2018-12-5 17:04:00",
                    user_id: 3,
                    type: "Normal"
                 )

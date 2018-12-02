@@ -25,14 +25,14 @@ class OvertimesController < ApplicationController
     @overtime = @user.overtime_applications.new(overtime_params[:overtime].first)
     @day = @overtime.day.mday
     @overtime.finish_at = @overtime.finish_at.change(day: @day)
-    if @overtime.sperior_id == present?
+    if @overtime.sperior_id.present?
       if @overtime.yesterday_state == true
-        @overtime.finish_at = @overtime.finish_at.tomorrow
+        @overtime.finish_at = @overtime.finish_at.tomorrore
+      end
+      if @user.active_relationships.blank? && @overtime.present?
+        @user.approy(User.find_by(id: @overtime.sperior_id))
       end
     end
-    if @user.active_relationships.blank? && @overtime.present?
-      @user.approy(User.find_by(id: @overtime.sperior_id))
-    end  
     @overtime.save
     redirect_to @user
   end
@@ -40,7 +40,6 @@ class OvertimesController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     overtime_params[:overtime].each do |overtime|
-    #binding.pry
       @appliant = User.find_by(id: overtime[:user_id])
       if overtime[:change_state].present? && overtime[:state].in?(["申請中","承認","否認"])
         @overtime = Overtime.find_by(user_id: overtime[:user_id], day: overtime[:day])
