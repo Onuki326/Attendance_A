@@ -50,23 +50,23 @@ User.create(name: "吉田 一貴",
 
 # ユーザー4
 
-Attendance.create(day: "2018-10-01",
-                  arrival: "2018-10-01 08:49:00",
-                  leave: "2018-10-01 17:31:00",
+Attendance.create(day: "2018-11-01",
+                  arrival: "2018-11-01 08:49:00",
+                  leave: "2018-11-01 17:31:00",
                   user_id: 4,
                   type: "Normal"
                   )    
                 
-Attendance.create(day: "2018-10-03",
-                  arrival: "2018-10-03 08:43:00",
-                  leave: "2018-10-03 17:15:00",
+Attendance.create(day: "2018-11-03",
+                  arrival: "2018-11-03 08:43:00",
+                  leave: "2018-11-03 17:15:00",
                   user_id: 4,
                   type: "Normal"
                   )
                   
-Attendance.create(day: "2018-10-4",
-                   arrival: "2018-10-04 08:56:00",
-                   leave: "2018-10-04 18:02:00",
+Attendance.create(day: "2018-11-4",
+                   arrival: "2018-11-04 08:56:00",
+                   leave: "2018-11-04 18:02:00",
                    user_id: 4,
                    type: "Normal"
                    )
@@ -122,23 +122,23 @@ Attendance.create(day: "2018-12-05",
                   
 # ユーザー3
                    
-Attendance.create(day: "2018-10-01",
-                  arrival: "2018-10-01 08:42:00",
-                  leave: "2018-10-01 17:45:00",
+Attendance.create(day: "2018-11-01",
+                  arrival: "2018-11-01 08:42:00",
+                  leave: "2018-11-01 17:45:00",
                   user_id: 3,
                   type: "Normal"
                   )    
                 
-Attendance.create(day: "2018-10-03",
-                  arrival: "2018-10-03 08:46:00",
-                  leave: "2018-10-03 17:11:00",
+Attendance.create(day: "2018-11-03",
+                  arrival: "2018-11-03 08:46:00",
+                  leave: "2018-11-03 17:11:00",
                   user_id: 3,
                   type: "Normal"
                   )
                   
-Attendance.create(day: "2018-10-4",
-                   arrival: "2018-10-04 08:41:00",
-                   leave: "2018-10-04 18:06:00",
+Attendance.create(day: "2018-11-4",
+                   arrival: "2018-11-04 08:41:00",
+                   leave: "2018-11-04 18:06:00",
                    user_id: 3,
                    type: "Normal"
                    )
