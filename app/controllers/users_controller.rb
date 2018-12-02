@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:show, :edit, :update]
   before_action :admin_user_true?,     only: [:destroy, :index]
@@ -104,6 +105,15 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  def csv_output
+    @users = User.all
+    respond_to do |format|
+      format.csv do
+        send_data render_to_string, filename: "勤怠A.csv", type: :csv
+      end
+    end
+  end  
   
   private
     def user_params

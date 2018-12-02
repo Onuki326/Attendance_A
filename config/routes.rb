@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post   '/login',            to: 'sessions#create'
   delete '/logout',           to: 'sessions#destroy'
   get    '/check_attendance', to: 'attendances#check'
+  get    '/csv_output',       to: 'users#csv_output'
   
   resources :users do
     resource :normal, only: [:update]
