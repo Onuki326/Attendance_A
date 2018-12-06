@@ -1,4 +1,7 @@
 class AploysController < ApplicationController
+  
+  before_action :redirect_admin
+  
   def create
     @user = User.new(id: params[:user_id])
     if Aploy.where(user_id: @user, day: params_aploy[:day]).blank?

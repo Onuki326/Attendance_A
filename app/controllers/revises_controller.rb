@@ -1,4 +1,18 @@
 class RevisesController < ApplicationController
+  
+  before_action :redirect_admin
+  
+  def modal
+    @user = User.find(params[:user_id])
+    @users = []
+    @user.requesters.each do |i|
+      @users.push(i)
+    end
+    @applications = Revise.where(sperior_id: @user.id)
+    @attendance = Attendance.new(sperior_id: @user.id)
+    @wd = ["日", "月", "火", "水", "木", "金", "土"]
+  end
+  
   def new
     @user = User.find(params[:user_id])
     @attendance = Revise.new
@@ -52,19 +66,8 @@ class RevisesController < ApplicationController
     redirect_to @user
   end
   
-  def modal
-    @user = User.find(params[:user_id])
-    @users = []
-    @user.requesters.each do |i|
-      @users.push(i)
-    end
-    @applications = Revise.where(sperior_id: @user.id)
-    @attendance = Attendance.new(sperior_id: @user.id)
-    @wd = ["日", "月", "火", "水", "木", "金", "土"]
-  end
-  
     private
-  
+    
       def revise_params
         params.require(:user).permit(revise_applications_attributes: [:day, 
                                                                       :user_id, 
@@ -76,5 +79,4 @@ class RevisesController < ApplicationController
                                                                       :state, 
                                                                       yesterday_state: []])
       end
-
 end

@@ -1,5 +1,6 @@
 class NormalsController < ApplicationController
   
+  before_action :redirect_admin
   
   def update
     @user = User.find(params[:user_id])

@@ -71,6 +71,11 @@ module SessionsHelper
     redirect_to(root_url) unless current_user.admin?
   end
   
+  # 管理者かどうか確認してtrueならhomeへ
+  def redirect_admin
+    redirect_to(users_path) if current_user.admin?
+  end
+  
   # 正しいユーザーかどうか確認、管理者も
   def correct_user
     if not admin_user?

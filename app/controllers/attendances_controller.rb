@@ -1,11 +1,7 @@
 class AttendancesController < ApplicationController
   
-  def update
-    @user = User.find(params[:user_id])
-    @user.update_attributes(normal_params)
-    redirect_to @user
-  end
-  
+   before_action :redirect_admin
+   
   def modal
     @user = User.find(params[:user_id])
     @aploy = Aploy.new
@@ -17,21 +13,6 @@ class AttendancesController < ApplicationController
         @users.push(aploy_user)
       end
     end
-  end
-  
-  def create
-    @user = User.find_by(id: params[:user_id])
-    @attendance = @user.attendances.find_by(day: params[:day])
-    if @attendance.arrival.nil?
-      attendance = @user.attendances.find_by(day: params[:day])
-      attendance.arrival = DateTime.now.change(sec: 00)
-      attendance.save
-    elsif @attendance.leave.nil?
-      attendance = @user.attendances.find_by(day: params[:day])
-      attendance.leave = DateTime.now.change(sec: 00)
-      attendance.save
-    end
-    redirect_to @user
   end
   
   def check
@@ -56,19 +37,30 @@ class AttendancesController < ApplicationController
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
   end  
   
+  def create
+    @user = User.find_by(id: params[:user_id])
+    @attendance = @user.attendances.find_by(day: params[:day])
+    if @attendance.arrival.nil?
+      attendance = @user.attendances.find_by(day: params[:day])
+      attendance.arrival = DateTime.now.change(sec: 00)
+      attendance.save
+    elsif @attendance.leave.nil?
+      attendance = @user.attendances.find_by(day: params[:day])
+      attendance.leave = DateTime.now.change(sec: 00)
+      attendance.save
+    end
+    redirect_to @user
+  end
+  
+  def update
+    @user = User.find(params[:user_id])
+    @user.update_attributes(normal_params)
+    redirect_to @user
+  end
+  
     private
   
       def normal_params
         params.permit([normal: [:day, :arrival, :leave, :sperior_id, :user_id]])
       end
-     
-  # beforeアクション
-  
-  def attendance_correct_user
-    if not admin_user?
-      @user = User.find(params[:user_id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
-  end
-  
 end

@@ -1,5 +1,7 @@
 class OvertimesController < ApplicationController
   
+  before_action :redirect_admin
+  
   def show
     @user = User.find(params[:user_id])
     @users = []
