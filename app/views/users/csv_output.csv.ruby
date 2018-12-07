@@ -1,35 +1,23 @@
 require 'csv'
   CSV.generate do |csv|
-    column_names = [
-      "id", 
-      "name",
-      "email",
-      "password",
-      "admin",
-      "affiliation",
-      "employee_number",
-      "employee_id",
-      "basic_working_hours",
-      "starting_work_at",
-      "finishing_work_at",
-      "sperior"
+    column_header = [
+      "日付",
+      "曜日",
+      "出社",
+      "退社",
+      "在社時間",
+      "備考"
     ]
-    csv << column_names
-    @users.each do |user|
+    csv << column_header
+    @attendances.each do |attendance|
       column_values = [
-        user.id, 
-        user.name, 
-        user.email,
-        user.password,
-        user.admin,
-        user.affiliation,
-        user.employee_number,
-        user.employee_id,
-        user.basic_working_hours,
-        user.starting_work_at,
-        user.finishing_work_at,
-        user.sperior
-      ]
-      csv << column_values   
+        "#{attendance.day}",
+        "#{@week[attendance.day.wday]}",
+        "#{attendance.arrival.strftime("%H:%M")}",
+        "#{attendance.leave.strftime("%H:%M")}",
+        "#{(((attendance.leave)-(attendance.arrival))/3600).floor(2).to_f}",
+        "#{attendance.remark}"
+        ]
+      csv << column_values
     end
-  end  
+  end

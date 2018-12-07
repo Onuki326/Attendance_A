@@ -108,13 +108,25 @@ class UsersController < ApplicationController
   end
   
   def csv_output
-    @users = User.all
-    respond_to do |format|
-      format.csv do
-        send_data render_to_string, filename: "勤怠A.csv", type: :csv
+    @user = User.find(params[:user_id])
+    @date = params[:date]
+    @date = @date.to_datetime
+    @week = ["日", "月", "火", "水", "木", "金", "土"]
+    @fd = @date.beginning_of_month
+    @ed = @date.end_of_month
+    @attendances = []
+    (@fd..@ed).each do |i|
+      attendance = @user.normal_applications.find_by(day: i)
+      if attendance.arrival != nil || attendance.leave != nil
+        @attendances.push(attendance)
       end
     end
-  end  
+    respond_to do |format|
+      format.csv do
+        send_data render_to_string, filename: "#{@user.name}#{@date.month}月分勤怠一覧.csv", type: :csv
+      end
+    end
+  end
   
   private
     def user_params
