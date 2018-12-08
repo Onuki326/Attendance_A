@@ -129,8 +129,18 @@ class UsersController < ApplicationController
   end
   
   def revise_log
-    @user = User.find(params[:user_id])
-    
+    #@user = User.find(params[:user_id])
+    #@date = params[:date]
+    #@date = @date.to_datetime
+    #@week = ["日", "月", "火", "水", "木", "金", "土"]
+    #@fd = @date.beginning_of_month
+    #@ed = @date.end_of_month
+    #@attendances = []
+    #@user.normal_applications.all.each do |attendance|
+    #  if attendance.change?
+    #    n.arrival_was
+    #  end
+    #end 
   end
   
   private
