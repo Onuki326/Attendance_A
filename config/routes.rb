@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete '/logout',           to: 'sessions#destroy'
   get    '/check_attendance', to: 'attendances#check'
   get    '/csv_output',       to: 'users#csv_output'
+  get    '/revise_log',       to: 'users#revise_log'
   
   resources :users do
     resource :normal, only: [:update]

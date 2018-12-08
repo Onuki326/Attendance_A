@@ -48,7 +48,8 @@
     <div class="link_wrapper">
       <%= link_to "勤怠を編集", new_user_attendances_revise_path(@user, date: @date), class: "btn btn_default" %>
       <%= link_to "CSV出力", csv_output_path(format: :csv, user_id: @user.id, date: @date), class: "btn btn_default btn_key" %><br>
-      <%= link_to "勤怠修正ログ(承認済み)", "#", class: "btn btn_default btn_key block_btn" %>
+      <%= link_to "勤怠修正ログ(承認済み)", revise_log_path, remote: true, class: "btn btn_default btn_key block_btn" %>
+      <div id="log_show" class="modal fade" tabindex="-1" role="daualog" aria-hudden="true"></div>
     </div>
     <table class="table table-bordered table-striped">
       <thead>

@@ -128,6 +128,11 @@ class UsersController < ApplicationController
     end
   end
   
+  def revise_log
+    @user = User.find(params[:user_id])
+    
+  end
+  
   private
     def user_params
       params.require(:user).permit(:name, 
