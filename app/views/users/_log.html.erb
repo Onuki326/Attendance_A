@@ -12,47 +12,49 @@
                 <td colspan="8">変更後</td>
               </tr>
               <tr>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td colspan="2"></td>
-                <td colspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td colspan="2"></td>
-                <td colspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
+                <td rowspan="2">日付</td>
+                <td rowspan="2">曜日</td>
+                <td colspan="2">出社</td>
+                <td colspan="2">退社</td>
+                <td rowspan="2">在社時間</td>
+                <td rowspan="2">備考</td>
+                <td rowspan="2">日付</td>
+                <td rowspan="2">曜日</td>
+                <td colspan="2">出社</td>
+                <td colspan="2">退社</td>
+                <td rowspan="2">在社時間</td>
+                <td rowspan="2">備考</td>
               </tr>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>時</td>
+                <td>分</td>
+                <td>時</td>
+                <td>分</td>
+                <td>時</td>
+                <td>時</td>
+                <td>分</td>
               </tr>
             </thead>
-            <tbody>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tbody>
+            <% @attendances.each do |attendance| %>
+              <tbody>
+                <td><%= "#{approval_attendance_data(attendance).day.month}/#{approval_attendance_data(attendance).day.day}" %></td>
+                <td><%= @week[approval_attendance_data(attendance).day.wday] %></td>
+                <td><%= approval_attendance_data(attendance).arrival.strftime("%H") %></td>
+                <td><%= approval_attendance_data(attendance).arrival.strftime("%M") %></td>
+                <td><%= approval_attendance_data(attendance).leave.strftime("%H") %></td>
+                <td><%= approval_attendance_data(attendance).leave.strftime("%M") %></td>
+                <td><%= ((approval_attendance_data(attendance).leave-approval_attendance_data(attendance).arrival)/3600).floor(2).to_f %></td>
+                <td><%= attendance.remark %></td>
+                <td><%= "#{attendance.day.month}/#{attendance.day.day}" %></td>
+                <td><%= @week[attendance.day.wday] %></td>
+                <td><%= attendance.arrival.strftime("%H") %></td>
+                <td><%= attendance.arrival.strftime("%M") %></td>
+                <td><%= attendance.leave.strftime("%H") %></td>
+                <td><%= attendance.leave.strftime("%M") %></td>
+                <td><%= ((attendance.leave-attendance.arrival)/3600).floor(2).to_f %></td>
+                <td><%= attendance.remark %></td>
+              </tbody>
+            <% end %>
           </table>  
       </div>
   </div>  

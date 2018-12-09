@@ -142,5 +142,9 @@ module UsersHelper
         "上長#{sperior}から否認"
       end
     end  
-  end  
+  end
+  
+  def approval_attendance_data(attendance)
+    approval = @user.approval_attendances.find_by(day: attendance.day)
+  end
 end

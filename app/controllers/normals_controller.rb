@@ -13,9 +13,16 @@ class NormalsController < ApplicationController
     @revises.each do |revise_data|
       @appliant = User.find_by(id: revise_data[:user_id])
       @normal_attendance = Normal.find_by(user_id: @appliant.id, day: revise_data[:day])
+      #binding.pry
       if revise_data[:state] == "承認"
+        Approval_attendance.create(user_id: @normal_attendance.user_id,
+                                   day: @normal_attendance.day, 
+                                   arrival: @normal_attendance.arrival, 
+                                   leave: @normal_attendance.leave, 
+                                   remark: @normal_attendance.remark)
         @normal_attendance.update(revise_data)
         revise = Revise.find_by(day: revise_data[:day], user_id: revise_data[:user_id])
+        #binding.pry
         revise.destroy
       elsif revise_data[:state] == "否認"
         @normal_attendance.update(state: revise_data[:state])

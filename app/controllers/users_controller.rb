@@ -80,7 +80,6 @@ class UsersController < ApplicationController
   end
   
   def update
-    binding.pry
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "アカウントを更新しました"
@@ -129,18 +128,16 @@ class UsersController < ApplicationController
   end
   
   def revise_log
-    #@user = User.find(params[:user_id])
-    #@date = params[:date]
-    #@date = @date.to_datetime
-    #@week = ["日", "月", "火", "水", "木", "金", "土"]
-    #@fd = @date.beginning_of_month
-    #@ed = @date.end_of_month
-    #@attendances = []
-    #@user.normal_applications.all.each do |attendance|
-    #  if attendance.change?
-    #    n.arrival_was
-    #  end
-    #end 
+    @user = User.find(params[:user_id])
+    @date = params[:date]
+    @date = @date.to_datetime
+    @week = ["日", "月", "火", "水", "木", "金", "土"]
+    @fd = @date.beginning_of_month
+    @ed = @date.end_of_month
+    @attendances = []
+    @user.normal_applications.each do |attendance|
+      @attendances.push(attendance) if attendance.state == "承認" 
+    end 
   end
   
   private

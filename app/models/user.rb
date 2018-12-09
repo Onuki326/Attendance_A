@@ -24,7 +24,9 @@ class User < ApplicationRecord
   has_many :normal_applications, class_name: "Normal",
                                  dependent: :destroy
   accepts_nested_attributes_for :normal_applications 
-  
+  # 申請承認ログ
+  has_many :approval_attendances, class_name: "Approval_attendance",
+                                  dependent: :destroy
   #relationshipと紐付け
   has_many :active_relationships, class_name: "Relationship",
                            foreign_key: "requester_id",
