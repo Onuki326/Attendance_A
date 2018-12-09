@@ -1,5 +1,5 @@
 require 'csv'
-  CSV.generate do |csv|
+  CSV.generate(encoding: Encoding::SJIS) do |csv|
     column_header = [
       "日付",
       "曜日",

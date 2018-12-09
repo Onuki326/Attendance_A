@@ -120,7 +120,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.csv do
-        send_data render_to_string, filename: "#{@user.name}#{@date.month}月分勤怠一覧.csv", type: :csv
+        send_data(render_to_string, {filename: "#{@user.name}#{@date.month}月分勤怠一覧.csv", type: 'text/csv; charset=shift_jis'})
       end
     end
   end
