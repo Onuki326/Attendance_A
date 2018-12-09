@@ -116,9 +116,7 @@ class UsersController < ApplicationController
     @attendances = []
     (@fd..@ed).each do |i|
       attendance = @user.normal_applications.find_by(day: i)
-      if attendance.arrival != nil || attendance.leave != nil
-        @attendances.push(attendance)
-      end
+      @attendances.push(attendance)
     end
     respond_to do |format|
       format.csv do

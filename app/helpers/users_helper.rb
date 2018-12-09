@@ -144,7 +144,16 @@ module UsersHelper
     end  
   end
   
+  # 申請ログattendanceを探す
   def approval_attendance_data(attendance)
     approval = @user.approval_attendances.find_by(day: attendance.day)
   end
+  
+  # CSV用在社時間時間
+  def csv_attendance(attendance)
+    if attendance.arrival.present? && attendance.leave.present?
+      ((attendance.leave-attendance.arrival)/3600).floor(2).to_f
+    end
+  end
+  
 end
