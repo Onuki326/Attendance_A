@@ -29,13 +29,13 @@ class OvertimesController < ApplicationController
     @overtime.finish_at = @overtime.finish_at.change(day: @day)
     if @overtime.sperior_id.present?
       if @overtime.yesterday_state == true
-        @overtime.finish_at = @overtime.finish_at.tomorrore
+        @overtime.finish_at = @overtime.finish_at.tomorrow
       end
       if @user.active_relationships.blank? && @overtime.present?
         @user.approy(User.find_by(id: @overtime.sperior_id))
       end
+      @overtime.save
     end
-    @overtime.save
     redirect_to @user
   end
 
