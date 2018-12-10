@@ -5,7 +5,7 @@ class AttendancesController < ApplicationController
   def modal
     @user = User.find(params[:user_id])
     @aploy = Aploy.new
-    @aploys = Aploy.where(sperior_id: @user)
+    @aploys = Aploy.where(sperior_id: @user, state: "申請中")
     @users = []
     @aploys.each do |user|
         aploy_user = User.find(user.user_id)
