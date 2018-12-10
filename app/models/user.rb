@@ -107,14 +107,12 @@ class User < ApplicationRecord
     CSV.foreach(file.path, headers: true) do |row|
       csv = row.to_hash.slice(*update_attribute)
       user = User.find_by(id: csv["id"])
-      
       if user.nil?  
         user = User.new
       end
       user.attributes = row.to_hash.slice(*update_attribute)
-      
       user.save!
-    end  
+    end
   end
   
   # CSV読み込みを許可するカラム

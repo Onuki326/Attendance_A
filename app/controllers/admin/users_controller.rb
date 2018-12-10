@@ -18,8 +18,14 @@ class Admin::UsersController < ApplicationController
   end
   
   def create
-    User.import(params[:csv_file])
-    redirect_to admin_users_url
+    begin
+      User.import(params[:csv_file])
+      flash[:success] = '登録しました'
+      redirect_to admin_users_url
+    rescue
+      flash[:danger] = '登録に失敗しました'
+      redirect_to admin_users_url
+    end
   end
   
   def update
