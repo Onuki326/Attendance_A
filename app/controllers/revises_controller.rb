@@ -31,39 +31,58 @@ class RevisesController < ApplicationController
 
   def create
     @user = User.find_by(id: params[:user_id])
-    @revises = []
+    @attendances = []
     @revises = revise_params
+    @error_count = 0
+    @succes_count = 0
     @revises[:revise_applications_attributes].each do |i|
-      @revise = Revise.new(@revises[:revise_applications_attributes][:"#{i}"])
-      @sperior = User.find_by(id: @revise.sperior_id)
-      if @revise.sperior_id.present? && !@user.requesting?(@sperior)
-        @user.approy(@sperior)
-        @day = @revise.day.mday
-        if @revise.yesterday_state == "true"
-          @revise.arrival = @revise.arrival&.change(day: @day)
-          @revise.leave = @revise.leave&.change(day: @day)
-          @revise.leave = @revise.leave.tomorrow
-        else
-          @revise.arrival = @revise.arrival&.change(day: @day)
-          @revise.leave = @revise.leave&.change(day: @day)
-        end
-      elsif @revise.sperior_id.present? && @user.requesting?(@sperior)
-        if @revise.yesterday_state == "true"
-          @revise.arrival = @revise.arrival&.change(day: @day)
-          @revise.leave = @revise.leave&.change(day: @day)
-          @revise.leave = @revise.leave.tomorrow
-        else
-          @revise.arrival = @revise.arrival&.change(day: @day)
-          @revise.leave = @revise.leave&.change(day: @day)
-        end
-      end
-      if @revise.save
-        @normal = @user.normal_applications.find_by(day: @revise.day)
-        @normal.state = "申請中"
-        @normal.save
+      #if @user.normal_applications.find_by(day: @revises[:revise_applications_attributes][:"#{i}"][:day]).arrival != nil && @user.normal_applications.find_by(day: @revises[:revise_applications_attributes][:"#{i}"][:day]).leave != nil
+         # binding.pry
+        @revise = Revise.new(@revises[:revise_applications_attributes][:"#{i}"])
+      #end
+      if @user.normal_applications.find_by(day: @revise.day).arrival != nil && @user.normal_applications.find_by(day: @revise.day).leave != nil
+        if @revise.sperior_id.present? && @revise.arrival != nil && @revise.leave != nil
+          @sperior = User.find_by(id: @revise.sperior_id)
+          @day = @revise.day.mday
+          if !@user.requesting?(@sperior)
+            @user.approy(@sperior)
+          end
+          if @revise.yesterday_state == "true"
+            @revise.arrival = @revise.arrival&.change(day: @day)
+            @revise.leave = @revise.leave&.change(day: @day)
+            @revise.leave = @revise.leave.tomorrow
+          else
+            @revise.arrival = @revise.arrival&.change(day: @day)
+            @revise.leave = @revise.leave&.change(day: @day)
+          end
+          
+            #if @revise.yesterday_state == "true"
+            #  @revise.arrival = @revise.arrival&.change(day: @day)
+            #  @revise.leave = @revise.leave&.change(day: @day)
+            #  @revise.leave = @revise.leave.tomorrow
+            #else
+            #  @revise.arrival = @revise.arrival&.change(day: @day)
+            #  @revise.leave = @revise.leave&.change(day: @day)
+            #end
+          @attendances.push(@revise)
+        end  
+      elsif @revise.sperior_id.present? || @revise.arrival.present? || @revise.leave.present?
+        @error_count += 1
       end
     end
-    redirect_to @user
+    #binding.pry
+    if not @error_count > 0
+      @attendances.each do |attendance|
+        attendance = attendance
+        attendance.save
+        @succes_count += 1
+      end
+      flash[:sacces] = "#{@succes_count}件登録しました"
+      redirect_to @user
+    else
+      flash[:danger] = "#{@error_count}件の入力ミスがあります"
+      redirect_to new_user_attendances_revise_path(user_id: @user.id, date: params[:date])
+    end
   end
   
     private
