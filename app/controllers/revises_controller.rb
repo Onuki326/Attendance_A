@@ -32,7 +32,17 @@ class RevisesController < ApplicationController
   def create
     @user = User.find_by(id: params[:user_id])
     @attendances = []
+    @sperior_users = User.where(sperior: true)
     @revises = revise_params
+    @date = params[:date]
+    @date = @date.to_datetime
+    @d = []
+    @fd = @date.beginning_of_month
+    @ed = @date.end_of_month
+    @wd = ["日", "月", "火", "水", "木", "金", "土"]
+    (@fd..@ed).each do |i|
+      @d.push(i)
+    end
     @error_count = 0
     @succes_count = 0
     @revises[:revise_applications_attributes].each do |i|
@@ -68,6 +78,7 @@ class RevisesController < ApplicationController
         end  
       elsif @revise.sperior_id.present? || @revise.arrival.present? || @revise.leave.present?
         @error_count += 1
+        @error_revise = @revises[:revise_applications_attributes][:"#{i}"]
       end
     end
     #binding.pry
@@ -81,7 +92,7 @@ class RevisesController < ApplicationController
       redirect_to @user
     else
       flash[:danger] = "#{@error_count}件の入力ミスがあります"
-      redirect_to new_user_attendances_revise_path(user_id: @user.id, date: params[:date])
+      render "new"
     end
   end
   

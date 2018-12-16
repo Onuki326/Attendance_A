@@ -20,10 +20,17 @@
             <td><%= d.strftime("%m/%d") %></td>
             <td><%= d.strftime("#{@wd[d.wday]}") %></td>
             <td colspan="3">
+              <%= f.fields_for :revise_applications, @error_revise do |t| %>
+                <%= t.hidden_field :user_id, value: @error_revise.id %> 
+                <%= t.hidden_field :day, value: @error_revise.day %>
+                <%= t.time_field :arrival, class: "form-control" %>
+              <% end %>  
               <%= f.fields_for :revise_applications, @user.normal_applications.find_by(day: d) do |t| %>
                 <%= t.hidden_field :user_id, value: @user.id %> 
                 <%= t.hidden_field :day, value: d %>
                 <%= t.time_field :arrival, class: "form-control" %>
+              <% end %>  
+            <% end %>
             </td>
             <td colspan="3">
                 <%= t.time_field :leave, class: "form-control" %>
