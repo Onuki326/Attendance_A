@@ -81,7 +81,6 @@ class RevisesController < ApplicationController
         @error_revise = @revises[:revise_applications_attributes][:"#{i}"]
       end
     end
-    #binding.pry
     if not @error_count > 0
       @attendances.each do |attendance|
         attendance = attendance
@@ -91,7 +90,7 @@ class RevisesController < ApplicationController
       flash[:sacces] = "#{@succes_count}件登録しました"
       redirect_to @user
     else
-      flash[:danger] = "#{@error_count}件の入力ミスがあります"
+      flash.now[:danger] = "#{@error_count}件の入力ミスがあります"
       render "new"
     end
   end
