@@ -57,7 +57,8 @@ class RevisesController < ApplicationController
           if !@user.requesting?(@sperior)
             @user.approy(@sperior)
           end
-          if @revise.yesterday_state == "true"
+            binding.pry
+          if @revise.yesterday_state == true
             @revise.arrival = @revise.arrival&.change(day: @day)
             @revise.leave = @revise.leave&.change(day: @day)
             @revise.leave = @revise.leave.tomorrow
