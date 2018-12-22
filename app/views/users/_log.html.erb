@@ -40,11 +40,11 @@
                 <tbody>
                   <td><%= "#{approval_attendance_data(attendance).day.month}/#{approval_attendance_data(attendance).day.day}" %></td>
                   <td><%= @week[approval_attendance_data(attendance).day.wday] %></td>
-                  <td><%= approval_attendance_data(attendance).arrival.strftime("%H") %></td>
-                  <td><%= approval_attendance_data(attendance).arrival.strftime("%M") %></td>
-                  <td><%= approval_attendance_data(attendance).leave.strftime("%H") %></td>
-                  <td><%= approval_attendance_data(attendance).leave.strftime("%M") %></td>
-                  <td><%= ((approval_attendance_data(attendance).leave-approval_attendance_data(attendance).arrival)/3600).floor(2).to_f %></td>
+                  <td><%= approval_arrival_hour(attendance) %></td>
+                  <td><%= approval_arrival_min(attendance) %></td>
+                  <td><%= approval_leave_hour(attendance) %></td>
+                  <td><%= approval_leave_min(attendance) %></td>
+                  <td><%= living_at(attendance) %></td>
                   <td><%= attendance.remark %></td>
                   <td><%= "#{attendance.day.month}/#{attendance.day.day}" %></td>
                   <td><%= @week[attendance.day.wday] %></td>

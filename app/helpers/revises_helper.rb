@@ -34,25 +34,33 @@ module RevisesHelper
   # normmalの出社時間(時)
   def normal_arrival_hour(user, revise)
     normal = user.normal_applications.find_by(day: revise.day)
-    normal.arrival.strftime("%H")
+    if not normal.arrival.nil?
+      normal.arrival.strftime("%H")
+    end
   end
   
   # normalの出社時間(分)
   def normal_arrival_min(user, revise)
     normal = user.normal_applications.find_by(day: revise.day)
-    normal.arrival.strftime("%M")
+    if not normal.arrival.nil?
+      normal.arrival.strftime("%M")
+    end
   end
   
   # normalの退社時間(時)
   def normal_leave_hour(user, revise)
     normal = user.normal_applications.find_by(day: revise.day)
-    normal.leave.strftime("%H")
+    if not normal.leave.nil?
+      normal.leave.strftime("%H")
+    end
   end
   
   # normalの退社時間(分)
   def normal_leave_min(user, revise)
     normal = user.normal_applications.find_by(day: revise.day)
-    normal.leave.strftime("%M")
+    if not normal.leave.nil?
+      normal.leave.strftime("%M")
+    end
   end
   
   # select-box用 第二引数に入れる

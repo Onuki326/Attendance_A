@@ -149,6 +149,36 @@ module UsersHelper
     approval = @user.approval_attendances.find_by(day: attendance.day)
   end
   
+  # 変更前出社時間(時)
+  def approval_arrival_hour(attendance)
+    approval = @user.approval_attendances.find_by(day: attendance.day)
+    approval.arrival.strftime("%H") if approval.arrival != nil
+  end
+  
+  # 変更前出社時間(分)
+  def approval_arrival_min(attendance)
+    approval = @user.approval_attendances.find_by(day: attendance.day)
+    approval.arrival.strftime("%M") if approval.arrival != nil
+  end
+  
+  # 変更前退社時間(時)
+  def approval_leave_hour(attendance)
+    approval = @user.approval_attendances.find_by(day: attendance.day)
+    approval.leave.strftime("%H") if approval.leave != nil
+  end
+  
+  # 変更前退社時間(分)
+  def approval_leave_min(attendance)
+    approval = @user.approval_attendances.find_by(day: attendance.day)
+    approval.leave.strftime("%M") if approval.leave != nil
+  end
+  
+  # 変更前在社時間
+  def living_at(attendance)
+    approval = @user.approval_attendances.find_by(day: attendance.day)
+    ((approval.leave-approval.arrival)/3600).floor(2).to_f if approval.leave != nil && approval.arrival != nil
+  end
+  
   # CSV用在社時間時間
   def csv_attendance(attendance)
     if attendance.arrival.present? && attendance.leave.present?
