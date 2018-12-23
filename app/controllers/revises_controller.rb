@@ -50,29 +50,34 @@ class RevisesController < ApplicationController
       if @revise.sperior_id.present?
         @sperior = User.find_by(id: @revise.sperior_id)
         @day = @revise.day.mday
-        @user.approy(@sperior) if !@user.requesting?(@sperior)
-        if @revise.yesterday_state == true
-          @revise.arrival = @revise.arrival&.change(day: @day)
-          @revise.leave = @revise.leave&.change(day: @day)
-          @revise.leave = @revise.leave.tomorrow
+        if @revise.arrival != nil && @revise.leave  != nil
+          if @revise.yesterday_state == true
+            @revise.arrival = @revise.arrival&.change(day: @day)
+            @revise.leave = @revise.leave&.change(day: @day)
+            @revise.leave = @revise.leave.tomorrow
+          else
+            @revise.arrival = @revise.arrival&.change(day: @day)
+            @revise.leave = @revise.leave&.change(day: @day)
+          end
+          @attendances.push(@revise)
+          @user.approy(@sperior) if !@user.requesting?(@sperior)
         else
-          @revise.arrival = @revise.arrival&.change(day: @day)
-          @revise.leave = @revise.leave&.change(day: @day)
+          @error_count += 1
+          @error_revise = @revises[:revise_applications_attributes][:"#{i}"]
         end
-        @attendances.push(@revise)
-      elsif @revise.sperior_id.present? || @revise.arrival.present? || @revise.leave.present?
-        @error_count += 1
-        @error_revise = @revises[:revise_applications_attributes][:"#{i}"]
       end
     end
-    if not @error_count > 0
+    if not @attendances.blank? || @error_count > 0
       @attendances.each do |attendance|
         attendance = attendance
         attendance.save
         @success_count += 1
       end
-      flash[:success] = "#{@success_count}件登録しました"
+      flash[:success] = "#{@success_count}件の勤怠変更を申請しました"
       redirect_to @user
+    elsif @error_count == 0
+      flash.now[:danger] = "上長の指定、または、出勤時間、退勤時間が入力されていません"
+      render "new"
     else
       flash.now[:danger] = "#{@error_count}件の入力ミスがあります"
       render "new"
