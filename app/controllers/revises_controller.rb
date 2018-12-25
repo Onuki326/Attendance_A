@@ -67,19 +67,19 @@ class RevisesController < ApplicationController
         end
       end
     end
-    if not @attendances.blank? || @error_count > 0
+    if @error_count > 0
+      flash.now[:danger] = "#{@error_count}件の入力ミスがあります"
+      render "new"
+    elsif @attendances.present? && @error_count == 0
       @attendances.each do |attendance|
-        attendance = attendance
-        attendance.save
+        revise = attendance
+        revise.save
         @success_count += 1
       end
       flash[:success] = "#{@success_count}件の勤怠変更を申請しました"
       redirect_to @user
-    elsif @error_count == 0
-      flash.now[:danger] = "上長の指定、または、出勤時間、退勤時間が入力されていません"
-      render "new"
     else
-      flash.now[:danger] = "#{@error_count}件の入力ミスがあります"
+      flash[:danger] = "上長の指定がありません"
       render "new"
     end
   end
