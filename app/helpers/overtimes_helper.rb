@@ -49,7 +49,10 @@ module OvertimesHelper
     
   # 時間外時間
   def overtime_work(requester_user, overtime)
-    overtime_hour = (overtime_finish_at(requester_user, overtime).to_f) - (overtime_finishing_hour(requester_user).to_f)
+    finishing_hour = requester_user.overtime_applications.find_by(day: overtime.day).finish_at
+    finish_hour = requester_user.finishing_work_at
+    finish_hour = finish_hour.change(day: overtime.day.day)
+    overtime_hour = (finishing_hour - finish_hour) / 3600
     overtime_hour = sprintf("%.2f", overtime_hour)
   end
     

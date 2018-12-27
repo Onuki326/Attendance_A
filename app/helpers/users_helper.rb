@@ -115,10 +115,12 @@ module UsersHelper
   
   # 時間外時間取得
   def overtime_at(user, date)
-    finish = user.overtime_applications.find_by(day: date).finish_at
-    standard = user.finishing_work_at.change(day: date.day)
-    overtime = (finish - standard)/3600
-    overtime = sprintf("%.2f", overtime)
+    finish = user.overtime_applications.find_by(day: date).finish_at if user.overtime_applications.find_by(day: date).finish_at != nil
+    standard = user.finishing_work_at.change(day: date.day) if user.finishing_work_at != nil 
+    if finish != nil && standard != nil
+      overtime = (finish - standard)/3600
+      overtime = sprintf("%.2f", overtime)
+    end  
   end
   
   # 申請年月の取得
