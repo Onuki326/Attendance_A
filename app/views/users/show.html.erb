@@ -170,7 +170,7 @@
               <%= f.hidden_field :user_id, value: @user.id %>
               <%= f.hidden_field :day, value: aproy_day(@date) %>
               <%= f.hidden_field :state, value: "申請中" %>
-              <%= f.select :sperior_id, @sperior_users.map{|t| [t.name, t.id]}, include_blank: true %>
+              <%= f.select :sperior_id, @sperior, include_blank: true %>
               <%= f.submit "申請", class: "btn btn_default btn_key" %>
             <% end %>
           </td>

@@ -18,6 +18,8 @@ class RevisesController < ApplicationController
     @attendance = Revise.new
     # 上長ユーザーの取得
     @sperior_users = User.where(sperior: true)
+    @sperior_users = @sperior_users.where.not(id: @user.id)
+    @sperior = @sperior_users.map{|t| [t.name, t.id]}
     @date = params[:date]
     @date = @date.to_datetime
     @d = []
