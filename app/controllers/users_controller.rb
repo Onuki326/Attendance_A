@@ -46,8 +46,7 @@ class UsersController < ApplicationController
         @hours.push(@duty_hour.to_f)
       end
       # 上長ユーザーの取得
-      @sperior_users = User.where(sperior: true)
-      @sperior_users = @sperior_users.where.not(id: @user.id)
+      @sperior_users = User.where(sperior: true).where.not(id: @user.id)
       @sperior = @sperior_users.map{|t| [t.name, t.id]}
       # 編集申請お知らせ(revise,overtime)
       @revise_aploy = []

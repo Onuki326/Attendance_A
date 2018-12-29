@@ -18,7 +18,10 @@ class OvertimesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @overtime = Attendance.new(user_id: @user.id, day: params[:day])
-    @sperior_users = User.where(sperior: true)
+    # 上長ユーザーの取得
+    @sperior_users = User.where(sperior: true).where.not(id: @user.id)
+    #@sperior_users = @sperior_users.where.not(id: @user.id)
+    @sperior = @sperior_users.map{|t| [t.name, t.id]}
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
   end
 
