@@ -188,4 +188,24 @@ module UsersHelper
     end
   end
   
+  # overtimeの終了予定時間(hour)
+  def user_finish_hour(user, date)
+    finish_hour = user.overtime_applications.find_by(day: date)&.finish_at
+    if finish_hour.nil?
+      finish_hour = ""
+    else
+      h = finish_hour.strftime("%H")
+    end
+  end
+  
+  # overtimeの終了予定時間(min)
+  def user_finish_min(user, date)
+    finish_hour = user.overtime_applications.find_by(day: date)&.finish_at
+    if finish_hour.nil?
+      finish_hour = ""
+    else
+      h = finish_hour.strftime("%M")
+    end
+  end
+  
 end

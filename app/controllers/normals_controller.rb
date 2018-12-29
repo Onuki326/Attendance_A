@@ -22,10 +22,9 @@ class NormalsController < ApplicationController
                                    remark: @normal_attendance.remark)
         @normal_attendance.update(revise_data)
         revise = Revise.find_by(day: revise_data[:day], user_id: revise_data[:user_id])
-        #binding.pry
         revise.destroy
       elsif revise_data[:state] == "否認"
-        @normal_attendance.update(state: revise_data[:state])
+        @normal_attendance.update(state: revise_data[:state], arrival: revise_data[:arrival])
         revise = Revise.find_by(day: revise_data[:day], user_id: revise_data[:user_id])
         revise.destroy
       end

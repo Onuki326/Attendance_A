@@ -35,7 +35,7 @@ module OvertimesHelper
   
   # overtimeの終了予定時間
   def overtime_finish_at(requester_user, overtime)
-    finish_hour = requester_user.overtime_applications.find_by(day: overtime.day).finish_at
+    finish_hour = requester_user.overtime_applications.find_by(day: overtime.day)&.finish_at
     if finish_hour.nil?
       finish_hour = 0.00
       finish_hour = sprintf("%.2f", finish_hour)

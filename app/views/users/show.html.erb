@@ -121,8 +121,8 @@
             <% end %>
           <td><%= duty_hour(date) %></td>
           <td></td>
-          <td></td>
-          <td></td>
+          <td><%= user_finish_hour(@user, date) %></td>
+          <td><%= user_finish_min(@user, date) %></td>
           <td colspan="4">
             <% if overtime_state(@user, date) == "承認" || overtime_state(@user, date) == "否認" %>
               <%= overtime_at(@user, date) %></td>
