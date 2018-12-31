@@ -10,7 +10,7 @@
         <div class="modal-body">
           <% @users.each do |user| %>
             <% if user.revise_applications.present? %>
-              <h2 class="modal-title">【<%= user.name %>からの勤怠申請変更】</h2>
+              <h2 class="modal-title">【<%= user.name %>からの勤怠変更申請】</h2>
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>

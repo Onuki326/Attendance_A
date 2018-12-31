@@ -113,6 +113,10 @@ module UsersHelper
     user.normal_applications.find_by(day: day)&.state
   end
   
+  def revise_state(user, day)
+    user.revise_applications.find_by(day: day)&.state
+  end
+  
   # 時間外時間取得
   def overtime_at(user, date)
     finish = user.overtime_applications.find_by(day: date).finish_at if user.overtime_applications.find_by(day: date).finish_at != nil

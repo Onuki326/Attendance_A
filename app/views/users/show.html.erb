@@ -140,7 +140,7 @@
             <% elsif overtime_state(@user, date) == "否認" %>
               <p>残業否認</p>
             <% end %>  
-            <% if normal_state(@user, date) == "申請中" %>
+            <% if revise_state(@user, date) == "申請中" %>
               <p>勤怠編集申請中</p>
             <% elsif normal_state(@user, date) == "承認"%>
               <p>勤怠編集承認済</p>
