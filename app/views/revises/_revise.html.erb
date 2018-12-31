@@ -1,9 +1,11 @@
 <% if not @applications.blank? %>
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <%= form_for(@attendance, url: user_normal_path(@user), html: {method: "put"}, class: "form-control") do |f| %>
         <div class="modal-body">
           <% @users.each do |user| %>
@@ -77,9 +79,11 @@
 <% else %>
   <div class="modal-dialog">
     <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="modal-body">
         <div class="modal-title">
           <h2>勤怠変更申請ははありません</h2>

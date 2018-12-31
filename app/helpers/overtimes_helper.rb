@@ -3,6 +3,7 @@ module OvertimesHelper
   def overtime_day(overtime)
     overtime.day.strftime("%m/%d")
   end
+  
   # overtimeの曜日
   def overtime_week(overtime, weeks)
     week = overtime.day.wday
@@ -49,7 +50,7 @@ module OvertimesHelper
     
   # 時間外時間
   def overtime_work(requester_user, overtime)
-    finishing_hour = requester_user.overtime_applications.find_by(day: overtime.day).finish_at
+    finishing_hour = requester_user.overtime_applications.find_by(day: overtime.day)&.finish_at
     finish_hour = requester_user.finishing_work_at
     if finish_hour != nil && finishing_hour != nil
       finish_hour = finish_hour.change(day: overtime.day.day)
