@@ -134,9 +134,10 @@ class UsersController < ApplicationController
     @fd = @date.beginning_of_month
     @ed = @date.end_of_month
     @attendances = []
-    @user.normal_applications.each do |attendance|
-      @attendances.push(attendance) if attendance.state == "承認" 
-    end 
+    (@fd..@ed).each do |date|
+      attendance = @user.normal_applications.find_by(day: date)
+        @attendances.push(attendance) if attendance.state == "承認" 
+      end  
   end
   
   private
