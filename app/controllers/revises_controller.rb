@@ -34,7 +34,7 @@ class RevisesController < ApplicationController
   def create
     @user = User.find_by(id: params[:user_id])
     @attendances = []
-    @sperior_users = User.where(sperior: true)
+    @sperior_users = User.where(sperior: true).where.not(id: @user.id)
     @sperior = @sperior_users.map{|t| [t.name, t.id]}
     @revises = revise_params
     @date = params[:date]
