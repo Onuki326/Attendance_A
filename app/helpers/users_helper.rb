@@ -138,7 +138,7 @@ module UsersHelper
   def aploy_to_user(day, user)
     aploy_date = aproy_day(day)
     user_aploy = user.aploys.find_by(day: aploy_date)
-    if not user_aploy.nil?
+    if user_aploy.present? && user_aploy.sperior_id.present?
       sperior = User.find_by(id: user_aploy.sperior_id).name
       if user_aploy.state == "申請中"
         "上長#{sperior}から承認待ち"
@@ -147,7 +147,7 @@ module UsersHelper
       elsif user_aploy.state == "否認"
         "上長#{sperior}から否認"
       end
-    end  
+    end
   end
   
   # 申請ログattendanceを探す

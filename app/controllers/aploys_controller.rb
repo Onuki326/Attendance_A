@@ -4,11 +4,15 @@ class AploysController < ApplicationController
   
   def create
     @user = User.new(id: params[:user_id])
-    if Aploy.where(user_id: @user, day: params_aploy[:day]).blank?
+    if params_aploy[:sperior_id].present?
       @aploy = Aploy.new(params_aploy)
       @aploy.save
+      flash[:success] = "一ヶ月分の勤怠を申請しました"
+      redirect_to @user
+    else
+      flash[:danger] = "上長の指定がありません"
+      redirect_to @user
     end
-    redirect_to @user
   end
   
   def update

@@ -166,7 +166,7 @@
               所属長承認
               <%= aploy_to_user(@date, @user) %>
             </p>
-            <%= form_for(@aploy, url: user_aploy_path(@user), html: {method: "post"}) do |f| %>
+            <%= form_for(@aploy, url: user_aploy_path(@user, id: @user.id), html: {method: "post"}) do |f| %>
               <%= f.hidden_field :user_id, value: @user.id %>
               <%= f.hidden_field :day, value: aproy_day(@date) %>
               <%= f.hidden_field :state, value: "申請中" %>
