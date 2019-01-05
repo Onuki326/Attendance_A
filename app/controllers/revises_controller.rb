@@ -35,6 +35,7 @@ class RevisesController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @attendances = []
     @sperior_users = User.where(sperior: true)
+    @sperior = @sperior_users.map{|t| [t.name, t.id]}
     @revises = revise_params
     @date = params[:date]
     @date = @date.to_datetime
@@ -50,9 +51,8 @@ class RevisesController < ApplicationController
     @revises[:revise_applications_attributes].each do |i|
       @revise = Revise.new(@revises[:revise_applications_attributes][:"#{i}"])
       if @revise.sperior_id.present?
-        @sperior = User.find_by(id: @revise.sperior_id)
         @day = @revise.day.mday
-        if @revise.arrival != nil && @revise.leave  != nil
+        if @revise.arrival != nil && @revise.leave  != nil && check_time(@revise)
           if @revise.yesterday_state == true
             @revise.arrival = @revise.arrival&.change(day: @day)
             @revise.leave = @revise.leave&.change(day: @day)
@@ -62,7 +62,7 @@ class RevisesController < ApplicationController
             @revise.leave = @revise.leave&.change(day: @day)
           end
           @attendances.push(@revise)
-          @user.approy(@sperior) if !@user.requesting?(@sperior)
+          @user.approy(User.find(@revise.user_id)) if !@user.requesting?(User.find(@revise.user_id))
         else
           @error_count += 1
           @error_revise = @revises[:revise_applications_attributes][:"#{i}"]
@@ -99,4 +99,8 @@ class RevisesController < ApplicationController
                                                                       :state, 
                                                                       yesterday_state: []])
       end
+      
+      def check_time(revise)
+        revise.arrival < revise.leave
+      end  
 end
