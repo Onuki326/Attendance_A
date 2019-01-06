@@ -62,7 +62,7 @@ class RevisesController < ApplicationController
             @revise.leave = @revise.leave&.change(day: @day)
           end
           @attendances.push(@revise)
-          @user.approy(User.find(@revise.user_id)) if !@user.requesting?(User.find(@revise.user_id))
+          @user.approy(User.find(@revise.sperior_id)) if !@user.requesting?(User.find(@revise.sperior_id))
         else
           @error_count += 1
           @error_revise = @revises[:revise_applications_attributes][:"#{i}"]

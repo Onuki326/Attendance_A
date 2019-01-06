@@ -54,12 +54,14 @@ class UsersController < ApplicationController
       @user.requesters.each do |user|
         if user.revise_applications.present?
           user.revise_applications.each do |revise|
-            @revise_aploy.push(revise)
+            if revise.sperior_id == "#{@user.id}"
+              @revise_aploy.push(revise)
+            end
           end
         end
         if user.overtime_applications.where(state: "申請中").present?
           user.overtime_applications.each do |overtime|
-            if overtime.state == "申請中"
+            if overtime.state == "申請中" && overtime.sperior_id == "#{@user.id}"
               @overtime_aploy.push(overtime)
             end
           end
