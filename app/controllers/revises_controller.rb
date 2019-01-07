@@ -54,12 +54,12 @@ class RevisesController < ApplicationController
         @day = @revise.day.mday
         if @revise.arrival != nil && @revise.leave  != nil && check_time(@revise)
           if @revise.yesterday_state == true
-            @revise.arrival = @revise.arrival&.change(day: @day)
-            @revise.leave = @revise.leave&.change(day: @day)
-            @revise.leave = @revise.leave.tomorrow
+            #@revise.arrival = @revise.arrival&.change(day: @day)
+            #@revise.leave = @revise.leave&.change(day: @day)
+            #@revise.leave = @revise.leave.tomorrow
           else
-            @revise.arrival = @revise.arrival&.change(day: @day)
-            @revise.leave = @revise.leave&.change(day: @day)
+            #@revise.arrival = @revise.arrival&.change(day: @day)
+            #@revise.leave = @revise.leave&.change(day: @day)
           end
           @attendances.push(@revise)
           @user.approy(User.find(@revise.sperior_id)) if !@user.requesting?(User.find(@revise.sperior_id))
@@ -101,6 +101,15 @@ class RevisesController < ApplicationController
       end
       
       def check_time(revise)
-        revise.arrival < revise.leave
-      end  
+        if revise.yesterday_state == true
+          revise.arrival = revise.arrival&.change(day: revise.day.day)
+          revise.leave = revise.leave&.change(day: revise.day.day)
+          revise.leave = revise.leave.tomorrow
+          revise.arrival < revise.leave
+        else
+          revise.arrival = revise.arrival&.change(day: revise.day.day)
+          revise.leave = revise.leave&.change(day: revise.day.day)
+          revise.arrival < revise.leave
+        end
+      end
 end
